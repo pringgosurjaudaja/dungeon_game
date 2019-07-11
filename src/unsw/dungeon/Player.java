@@ -61,9 +61,13 @@ public class Player extends Entity {
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a key
-    				carry_ons = w;
-    				dungeon.getEntities().remove(w);
-        			removedEntity = i;
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
     			}
     		}
     		if(w instanceof Locked_Door) {
@@ -138,9 +142,13 @@ public class Player extends Entity {
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a key
-    				carry_ons = w;
-    				dungeon.getEntities().remove(w);
-        			removedEntity = i;
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
     			}
     		}
 
@@ -190,9 +198,13 @@ public class Player extends Entity {
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a key
-    				carry_ons = w;
-    				dungeon.getEntities().remove(w);
-        			removedEntity = i;
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
     			}
     		}
     	}
@@ -240,9 +252,13 @@ public class Player extends Entity {
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a key
-    				carry_ons = w;
-    				dungeon.getEntities().remove(w);
-        			removedEntity = i;
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
     			}
     		}
     	}
