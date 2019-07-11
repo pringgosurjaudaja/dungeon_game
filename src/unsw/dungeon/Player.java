@@ -20,23 +20,22 @@ public class Player extends Entity {
     }
 
     public void moveUp() {
-        if (getY() > 0 && (dungeon.checkWall(getX(), getY()-1))== false) {
+        if (getY() > 0)
             y().set(getY() - 1);
-        }
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1&& (dungeon.checkWall(getX(), getY()+1))== false)
+        if (getY() < dungeon.getHeight() - 1)
             y().set(getY() + 1);
     }
 
     public void moveLeft() {
-        if (getX() > 0&& (dungeon.checkWall(getX()-1, getY()))== false)
+        if (getX() > 0)
             x().set(getX() - 1);
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1&& (dungeon.checkWall(getX()+1, getY()))== false)
+        if (getX() < dungeon.getWidth() - 1)
             x().set(getX() + 1);
     }
 }
