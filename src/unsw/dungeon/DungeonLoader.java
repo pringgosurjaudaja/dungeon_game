@@ -19,6 +19,8 @@ import org.json.JSONTokener;
 public abstract class DungeonLoader {
 
     private JSONObject json;
+    int key_id = 0;
+    int door_id = 0;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
@@ -57,12 +59,11 @@ public abstract class DungeonLoader {
     	
     }
     
+    
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
         int x = json.getInt("x");
         int y = json.getInt("y");
-        int key_id = 0;
-        int door_id = 0;
 
         Entity entity = null;
         switch (type) {

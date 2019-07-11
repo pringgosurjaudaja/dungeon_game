@@ -58,6 +58,18 @@ public class Player extends Entity {
         			treasure++;
     			} 
     		}
+    		if(w instanceof Bomb) {
+    			// Collect the bomb
+    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a bomb
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
+    			}
+    		}
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a key
@@ -74,15 +86,22 @@ public class Player extends Entity {
     			// If it fits, change door to unlockImage and change entity
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a locked door
     				if(carry_ons instanceof Key) {		// if player carries a key
-    					if(((Key) carry_ons).getId() == ((Locked_Door) w).getId() ) {	// Check if the key fits the door
+    					if(((Key) carry_ons).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    						System.out.println("in");
     	    				carry_ons = null;
     	    				w = new Unlocked_Door(w.getX(), w.getY(), ((Locked_Door) w).getId());
     	    				//dungeon.getEntities().remove(w);
-    	    				removedEntity = i;
+    	    				//removedEntity = i;
     	    				//lockedDoorImage.setImage(null);
     	    				//set image of unlockedDoorImage
+    	    				// TO DO
+    	    				removedEntity = -2;
+    					} else {
+    						System.out.println("in2");
+    						return removedEntity;
     					}
     				}else {		// if player doesn't carries any key
+    					System.out.println("3");
     					if(w.getY() == getY() - 1 && w.getX() == getX()){	// cannot move up because the key doesn't fit the closed dooor
     						return removedEntity;
     					}
@@ -139,6 +158,18 @@ public class Player extends Entity {
         			treasure++;
     			} 
     		}
+    		if(w instanceof Bomb) {
+    			// Collect the bomb
+    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a bomb
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
+    			}
+    		}
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a key
@@ -189,11 +220,23 @@ public class Player extends Entity {
     		}
     		if(w instanceof Treasure) {
     			// collect treasure and remove treasureImage    			
-    			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if up is a treasure
+    			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a treasure
         			dungeon.getEntities().remove(w);
         			removedEntity = i;        			
         			treasure++;
     			} 
+    		}
+    		if(w instanceof Bomb) {
+    			// Collect the bomb
+    			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a bomb
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
+    			}
     		}
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
@@ -243,11 +286,23 @@ public class Player extends Entity {
     		}
     		if(w instanceof Treasure) {
     			// collect treasure and remove treasureImage    			
-    			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if up is a treasure
+    			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a treasure
         			dungeon.getEntities().remove(w);
         			removedEntity = i;        			
         			treasure++;
     			} 
+    		}
+    		if(w instanceof Bomb) {
+    			// Collect the bomb
+    			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a bomb
+    				if(carry_ons == null) {		// if player is not carrying anything
+    					carry_ons = w;
+    					dungeon.getEntities().remove(w);
+    					removedEntity = i;
+    				} else {	// if player is carrying another entity
+    					return removedEntity;
+    				}
+    			}
     		}
     		if(w instanceof Key) {
     			// Collect the key and remove keyImage
@@ -268,4 +323,20 @@ public class Player extends Entity {
 		return removedEntity;
 
     }
+    
+    // to drop the carry-ons by pressing SPACE on the keyboard
+    // entities that can be dropped: key, bomb, sword?
+    public int dropEntity() {
+    	int removedEntity = -1;
+    	
+    	if(carry_ons instanceof Key) {
+    		carry_ons = null;
+    		removedEntity = -2;
+    		
+    	}
+	 	
+
+    	return removedEntity;
+    }
+
 }

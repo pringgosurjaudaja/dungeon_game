@@ -61,6 +61,11 @@ public class DungeonController {
         case UP:
             removedEntity = player.moveUp();
             System.out.println("removed : " + removedEntity);
+            /*if(removedEntity == -2) {
+            	squares.getChildren().remove(initialEntities.get(removedEntity));
+            	//Image openDoorImage = new Image("open_door.png");
+            	//squares.add(new ImageView(openDoorImage), player.getX(), player.getY());
+            }*/
             if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
             break;
         case DOWN:
@@ -77,6 +82,17 @@ public class DungeonController {
         	removedEntity = player.moveRight();
         	System.out.println("removed : " + removedEntity);
             if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+            break;
+        case SPACE:		// used to drop carry_ons
+        	removedEntity = player.dropEntity();
+        	System.out.println("removed : " + removedEntity);
+        	if(removedEntity == -2) {
+        		Image keyImage = new Image("key.png");
+        	//	squares.getChildren().add(new ImageView(keyImage));
+        		squares.add(new ImageView(keyImage), player.getX(), player.getY());
+        	}
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+           
             break;
         default:
             break;
