@@ -49,22 +49,39 @@ public class DungeonController {
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
+    	Boolean finish = false;
+    	int removedEntity;
+    	
         switch (event.getCode()) {
         case UP:
-            player.moveUp();
+            removedEntity = player.moveUp();
+            System.out.println("removed : " + removedEntity);
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
             break;
         case DOWN:
-            player.moveDown();
+            removedEntity = player.moveDown();
+            System.out.println("removed : " + removedEntity);
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
             break;
         case LEFT:
-            player.moveLeft();
+        	removedEntity = player.moveLeft();
+        	System.out.println("removed : " + removedEntity);
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
             break;
         case RIGHT:
-            player.moveRight();
+        	removedEntity = player.moveRight();
+        	System.out.println("removed : " + removedEntity);
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
             break;
+        /*case ENTER:
+        	removedEntity = player.killEnemy();
+        	System.out.println("enemy to kill : " + removedEntity);
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+        	break;*/
         default:
             break;
         }
+
     }
 
 }
