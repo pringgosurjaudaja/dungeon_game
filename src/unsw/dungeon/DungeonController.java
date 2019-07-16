@@ -34,6 +34,9 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        
+        BotAutoMove bot = new BotAutoMove(dungeon, player);
+        bot.start();
     }
 
     @FXML
