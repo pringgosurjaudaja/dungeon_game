@@ -2,6 +2,8 @@ package unsw.dungeon;
 
 import org.json.JSONObject;
 
+import javafx.scene.image.Image;
+
 /**
  * The player entity
  * @author Robert Clifton-Everest
@@ -51,7 +53,6 @@ public class Player extends Entity {
     			} 
     		}
     		if(w instanceof Treasure) {
-    			// collect treasure and remove treasureImage    			
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
         			removedEntity = w;
         			w.getImage().setImage(null);
@@ -72,7 +73,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Key) {
-    			// Collect the key and remove keyImage
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a key
     				if(carry_ons == null) {		// if player is not carrying anything
     					carry_ons = w;
@@ -84,7 +84,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Locked_Door) {
-    			// If it fits, change door to unlockImage and change entity
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a door
         			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
     					if(carry_ons instanceof Key) {		// if player carries a key
@@ -146,15 +145,7 @@ public class Player extends Entity {
     					moveBoulder(w , 0 , 1);
     			}
     		}
-    		if(w instanceof Treasure) {
-    			// collect treasure and remove treasureImage    			
-/*    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
-        			dungeon.getEntities().remove(w);
-        			removedEntity = i;        			
-        			treasure++;
-    			} */
-    			
-      			// collect treasure and remove treasureImage    			
+    		if(w instanceof Treasure) { 			
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a treasure
         			removedEntity = w;
         			w.getImage().setImage(null);
@@ -176,7 +167,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Key) {
-    			// Collect the key and remove keyImage
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a key
     				if(carry_ons == null) {		// if player is not carrying anything
     					carry_ons = w;
@@ -188,7 +178,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Locked_Door) {
-    			// If it fits, change door to unlockImage and change entity
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a door
         			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
     					if(carry_ons instanceof Key) {		// if player carries a key
@@ -267,7 +256,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Key) {
-    			// Collect the key and remove keyImage
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a key
     				if(carry_ons == null) {		// if player is not carrying anything
     					carry_ons = w;
@@ -279,7 +267,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Locked_Door) {
-    			// If it fits, change door to unlockImage and change entity
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a door
         			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
     					if(carry_ons instanceof Key) {		// if player carries a key
@@ -336,7 +323,6 @@ public class Player extends Entity {
     			} 
     		}
     		if(w instanceof Treasure) {
-    			// collect treasure and remove treasureImage    			
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a treasure
         			removedEntity = w;
         			w.getImage().setImage(null);
@@ -357,7 +343,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Key) {
-    			// Collect the key and remove keyImage
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a key
     				if(carry_ons == null) {		// if player is not carrying anything
     					carry_ons = w;
@@ -369,7 +354,6 @@ public class Player extends Entity {
     			}
     		}
     		if(w instanceof Locked_Door) {
-    			// If it fits, change door to unlockImage and change entity
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a door
         			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
     					if(carry_ons instanceof Key) {		// if player carries a key
@@ -404,17 +388,27 @@ public class Player extends Entity {
     
     // to drop the carry-ons by pressing SPACE on the keyboard
     // entities that can be dropped: key, bomb, sword?
-    public int dropEntity() {
-    	int removedEntity = -1;
+    public void dropEntity() {
     	
-    	if(carry_ons instanceof Key) {
-    		carry_ons = null;
-    		removedEntity = -2;
-    		
+    	if(carry_ons != null) {
+
+        	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
+        		Entity w = dungeon.getEntities().get(i);
+        		
+        		if(w.getX() == getX() && w.getY() == getY()){ 	// if there is an entity in this coordinate
+        			return;
+        		} else {	// if there is nothing on this coordinate
+        			if(carry_ons instanceof Key) {
+        				carry_ons = null;
+        				Entity key = new Key(getX(), getY(), ((Key) carry_ons).getId());
+        				System.out.println("Dropped a key with id: " + ((Key) carry_ons).getId());
+        				dungeon.addEntity(key);
+        				key.getImage().setImage(new Image("/key.png"));	// still wrong
+        			}
+        		}
+    		}
     	}
 	 	
-
-    	return removedEntity;
     }
 
 }
