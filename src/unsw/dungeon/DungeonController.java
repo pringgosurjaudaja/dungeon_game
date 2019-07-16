@@ -74,16 +74,16 @@ public class DungeonController {
             if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));*/
             break;
         case LEFT:
-        	//player.moveLeft();
-        	removedEntity = player.moveLeft();
+        	player.moveLeft();
+/*        	removedEntity = player.moveLeft();
         	System.out.println("removed : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));*/
             break;
         case RIGHT:
-        	//player.moveRight();
-        	removedEntity = player.moveRight();
+        	player.moveRight();
+/*        	removedEntity = player.moveRight();
         	System.out.println("removed : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));*/
             break;
         case SPACE:		// used to drop carry_ons
         	// NOT DONE
