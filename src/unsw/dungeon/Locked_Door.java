@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-public class Locked_Door extends Entity {
+public class Locked_Door extends Entity implements Door{
 
 	private int id;
 

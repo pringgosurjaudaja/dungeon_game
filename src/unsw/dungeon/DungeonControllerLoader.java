@@ -143,6 +143,7 @@ public class DungeonControllerLoader extends DungeonLoader {
 	}	
 
 	private void addEntity(Entity entity, ImageView view) {
+		entity.setImage(view);
         trackPosition(entity, view);
         entities.add(view);
     }
@@ -160,7 +161,7 @@ public class DungeonControllerLoader extends DungeonLoader {
      * @param entity
      * @param node
      */
-    private void trackPosition(Entity entity, Node node) {
+    private void trackPosition(Entity entity, final Node node) {
         GridPane.setColumnIndex(node, entity.getX());
         GridPane.setRowIndex(node, entity.getY());
         entity.x().addListener(new ChangeListener<Number>() {
