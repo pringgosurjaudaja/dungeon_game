@@ -1,10 +1,38 @@
 package unsw.dungeon;
 
+import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
 
-public interface Door {
+public class Door extends Entity {
 
-    public void openDoorUsingKey();
+	private int id;
+	private boolean isOpen = false;
+
+    public Door(int x, int y, int id) {
+        super(x, y);
+        this.id = id;
+    }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
+	}
     
-    public void changeState(Entity d);	// change state from locked to unlocked
+	public void openDoor() {
+		this.isOpen = true;
+		this.getImage().setImage(new Image("/open_door.png"));
+	}
+    
     
 }

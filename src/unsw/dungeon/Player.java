@@ -85,31 +85,33 @@ public class Player extends Entity {
     		}
     		if(w instanceof Locked_Door) {
     			// If it fits, change door to unlockImage and change entity
-    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a locked door
-    				if(carry_ons instanceof Key) {		// if player carries a key
-    					if(((Key) carry_ons).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
-    						System.out.println("in");
-    	    				carry_ons = null;
-    	    				
+    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a door
+        			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
+    					if(carry_ons instanceof Key) {		// if player carries a key
+    						if(((Key) carry_ons).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    							System.out.println("Opening the door");
+    							carry_ons = null;
+    							((Locked_Door) w).openDoor();
+    							//((Door) w).setOpen(true);
+    	    					//w.getImage().setImage(unlockedDoorImage);	//change image to openedDoor.png
     	    				//dungeon.getEntities().remove(w);
     	    				//removedEntity = i;
     	    				//lockedDoorImage.setImage(null);
     	    				//set image of unlockedDoorImage
-    	    				// TO DO
     	    				
-    					} else {
-    						System.out.println("don't carry key");
-    					}
-    					return; 
-    				}else {		// if player doesn't carries any key
-    					System.out.println("3");
-    					if(w.getY() == getY() - 1 && w.getX() == getX()){	// cannot move up because the key doesn't fit the closed dooor
+    						} else {
+    							System.out.println("Key doesn't fit");
+    							return;
+    						}
+    					}else {		// if player doesn't carries any key
+    						System.out.println("Player doesn't carry any key");
     						return ;
     					}
     				}
     			}
     			
     		}
+    		
     	}
 
     	//remove entity from list of entities
