@@ -68,6 +68,20 @@ public class Dungeon {
 	public void removeEntity(Entity e) {
 		this.entities.remove(e);
 	}
-	
-	
+	public boolean checkEnemyGoal() {
+		for(Entity e : this.entities) {
+			if(e instanceof Enemy) {
+				return false;
+			}
+		}
+		return true;
+	}
+	public boolean checkTreasureGoal() {
+		for(Entity e : this.entities) {
+			if(e instanceof Treasure) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
