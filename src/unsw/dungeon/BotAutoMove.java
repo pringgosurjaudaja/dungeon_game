@@ -28,9 +28,20 @@ public class BotAutoMove extends Thread{
 
 	private ArrayList<Point> getAllEntitiesCoordinates(){
 		
+		ArrayList<Point> entityPoints = new ArrayList<Point>();
+		
+    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
+    		Entity w = dungeon.getEntities().get(i);
+    		
+    		if(!(w instanceof Enemy) && !(w instanceof Player)) {
+    			Point a = new Point(w.getX(), w.getY());
+    			entityPoints.add(a);
+    			
+    		}
+    	}
 		
 		
-		return null;
+		return entityPoints;
 	}
 	
 	public BotAutoMove(Dungeon dungeon , Player player) {
@@ -38,7 +49,7 @@ public class BotAutoMove extends Thread{
 		this.player = player;
 		
 		for(Entity e : dungeon.getEntities()){
-			if(e instanceof Enemy)enemies.add((AutoMoveAction) e);
+			if(e instanceof Enemy) enemies.add((AutoMoveAction) e);
 		}
 	}
 	

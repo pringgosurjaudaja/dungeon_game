@@ -55,7 +55,6 @@ public class DungeonController {
     @FXML
     public void handleKeyPress(KeyEvent event) {
     	Boolean finish = false;
-    	int removedEntity;
     	
         switch (event.getCode()) {
         case UP:

@@ -28,7 +28,6 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image exitImage;
     public Image treasureImage;
     private Image lockedDoorImage;
-    private Image unlockedDoorImage;
     private Image keyImage;
     private Image boulderImage;
     private Image switchImage;
@@ -49,7 +48,6 @@ public class DungeonControllerLoader extends DungeonLoader {
         exitImage = new Image("/exit.png");
         treasureImage = new Image("/gold_pile.png");
         lockedDoorImage = new Image("/closed_door.png");
-        unlockedDoorImage = new Image("open_door.png");
         keyImage = new Image("/key.png");
         boulderImage = new Image("/boulder.png");
         switchImage = new Image("/pressure_plate.png");

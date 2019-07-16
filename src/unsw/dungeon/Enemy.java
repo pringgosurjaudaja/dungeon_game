@@ -1,4 +1,4 @@
-package unsw.dungeon;
+/*package unsw.dungeon;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -30,6 +30,65 @@ public class Enemy extends Entity implements AutoMoveAction{
 	public void autoMove(ArrayList<Point> listCoordinates) {
 		// TODO Auto-generated method stub
 		
+    	for (Point p : listCoordinates) {
+    		if(p.y == getY() - 1 && p.x == getX()){
+    			moveUp();
+    		}
+    		if(p.y == getY() + 1 && p.x == getX()){
+    			moveDown();
+    		}
+    		if(p.x == getX() - 1 && p.y == getY()){
+    			moveLeft();
+    		}
+    		if(p.x == getX() + 1 && p.y == getY()){
+    			moveRight();
+    		}
+    		
+    	}
+		
+	}
+
+}
+*/
+
+package unsw.dungeon;
+
+import java.awt.Point;
+import java.util.ArrayList;
+
+public class Enemy extends Entity implements AutoMoveAction{
+
+	public Enemy(int x, int y) {
+		super(x, y);
+	}
+
+	private void move(int x , int y) {
+		y().set(getY() + y);
+		x().set(getX() + x);
+		
+	}
+
+
+	@Override
+	public void autoMove(ArrayList<Point> listCoordinates) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Point> points = new ArrayList<Point>();
+		
+		points.add(new Point(0, 1));
+		points.add(new Point(0, -1));
+		points.add(new Point(1, 0));
+		points.add(new Point(-1, 0));
+		
+		while(true){
+
+			int random = (int) (Math.random() * 4);
+			//check if there are another entity;
+			if(!listCoordinates.contains(points.get(random))){
+				move(points.get(random).x, points.get(random).y);
+				break;
+			}
+		}
 	}
 
 }
