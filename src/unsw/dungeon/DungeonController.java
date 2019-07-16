@@ -68,10 +68,10 @@ public class DungeonController {
             //if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
             break;
         case DOWN:
-        	//player.moveDown();
-            removedEntity = player.moveDown();
+        	player.moveDown();
+/*            removedEntity = player.moveDown();
             System.out.println("removed : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));*/
             break;
         case LEFT:
         	//player.moveLeft();

@@ -92,13 +92,6 @@ public class Player extends Entity {
     							System.out.println("Opening the door");
     							carry_ons = null;
     							((Locked_Door) w).openDoor();
-    							//((Door) w).setOpen(true);
-    	    					//w.getImage().setImage(unlockedDoorImage);	//change image to openedDoor.png
-    	    				//dungeon.getEntities().remove(w);
-    	    				//removedEntity = i;
-    	    				//lockedDoorImage.setImage(null);
-    	    				//set image of unlockedDoorImage
-    	    				
     						} else {
     							System.out.println("Key doesn't fit");
     							return;
@@ -127,15 +120,15 @@ public class Player extends Entity {
 		w.x().set(w.getX() + x);
 	}
 
-    public int moveDown() {
-    	int removedEntity = -1;
+    public void moveDown() {
+    	Entity removedEntity = null;
     	
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
     		
     		if(w instanceof Wall) {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// cannot move down because there's a wall
-    				return removedEntity;
+    				return;
     			}
     		}
     		if(w instanceof Exit) {
@@ -148,28 +141,37 @@ public class Player extends Entity {
     		if(w instanceof Boulder) {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a boulder
     				if(!((Boulder)(w)).checkBoulder(0 , 1 , dungeon.getEntities())){	//if there is another entity(other than switch) below the boulder
-    					return removedEntity;
+    					return;
     				}else
     					moveBoulder(w , 0 , 1);
     			}
     		}
     		if(w instanceof Treasure) {
     			// collect treasure and remove treasureImage    			
-    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
+/*    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
         			dungeon.getEntities().remove(w);
         			removedEntity = i;        			
         			treasure++;
+    			} */
+    			
+      			// collect treasure and remove treasureImage    			
+    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a treasure
+        			removedEntity = w;
+        			w.getImage().setImage(null);
+        			treasure++;
+        			System.out.println("treasure = " + treasure);
     			} 
+    			
     		}
     		if(w instanceof Bomb) {
     			// Collect the bomb
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a bomb
     				if(carry_ons == null) {		// if player is not carrying anything
     					carry_ons = w;
-    					dungeon.getEntities().remove(w);
-    					removedEntity = i;
+    					removedEntity = w;
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
-    					return removedEntity;
+    					return ;
     				}
     			}
     		}
@@ -178,20 +180,43 @@ public class Player extends Entity {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a key
     				if(carry_ons == null) {		// if player is not carrying anything
     					carry_ons = w;
-    					dungeon.getEntities().remove(w);
-    					removedEntity = i;
+    					removedEntity = w;
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
-    					return removedEntity;
+    					return;
     				}
     			}
     		}
+    		if(w instanceof Locked_Door) {
+    			// If it fits, change door to unlockImage and change entity
+    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a door
+        			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
+    					if(carry_ons instanceof Key) {		// if player carries a key
+    						if(((Key) carry_ons).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    							System.out.println("Opening the door");
+    							carry_ons = null;
+    							((Locked_Door) w).openDoor();
+    						} else {
+    							System.out.println("Key doesn't fit");
+    							return;
+    						}
+    					}else {		// if player doesn't carries any key
+    						System.out.println("Player doesn't carry any key");
+    						return ;
+    					}
+    				}
+    			}
+    			
+    		}
 
     	}
+    	
+    	//remove entity from list of entities
+    	if(removedEntity != null)dungeon.getEntities().remove(removedEntity);
+    	
         if (getY() < dungeon.getHeight() - 1) // move down
             y().set(getY() + 1);
         
-        return removedEntity;
-
     }
 
     public int moveLeft() {
