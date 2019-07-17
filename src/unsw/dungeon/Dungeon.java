@@ -6,6 +6,7 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * A dungeon in the interactive dungeon player.
@@ -22,12 +23,14 @@ public class Dungeon {
     private List<Entity> entities;
     private Player player;
     private JSONArray goals;
-
-    public Dungeon(int width, int height) {
+    private Goals dungeonGoal;
+    public Dungeon(int width, int height, JSONObject goals) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
+        goalToJSON(goals);
+        System.out.println(dungeonGoal.toString());
     }
 
     public int getWidth() {
@@ -67,6 +70,17 @@ public class Dungeon {
 	}
 	public void removeEntity(Entity e) {
 		this.entities.remove(e);
+	}
+	public void goalToJSON(JSONObject goalJSON) {
+		String goal = goalJSON.getString("goal");
+		if(goal.equals("AND") || goal.equals("OR")) {
+			CompositeGoal cg = new CompositeGoal(goal, goalJSON.getJSONArray("subgoals"));
+			this.dungeonGoal = cg;
+		}
+		else {
+			LeafGoal lg = new LeafGoal(goal);
+			this.dungeonGoal = lg;
+		}
 	}
 	public boolean checkEnemyGoal() {
 		for(Entity e : this.entities) {
