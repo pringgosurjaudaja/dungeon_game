@@ -2,6 +2,7 @@ package unsw.dungeon;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.ImageView;
 
 /**
  * An entity in the dungeon.
@@ -13,7 +14,7 @@ public class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
-
+    private ImageView image;
     /**
      * Create an entity positioned in square (x,y)
      * @param x
@@ -24,7 +25,15 @@ public class Entity {
         this.y = new SimpleIntegerProperty(y);
     }
 
-    public IntegerProperty x() {
+    public ImageView getImage() {
+		return image;
+	}
+
+	public void setImage(ImageView image) {
+		this.image = image;
+	}
+
+	public IntegerProperty x() {
         return x;
     }
 
