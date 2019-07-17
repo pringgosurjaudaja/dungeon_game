@@ -8,8 +8,9 @@ public class LeafGoal implements Goals {
 	}
 
 	@Override
-	public void getGoal() {
+	public String getGoal() {
 		System.out.println(goal);
+		return goal;
 	}
 
 	@Override

@@ -17,15 +17,25 @@ public class CompositeGoal implements Goals {
 	}
 
 	@Override
-	public void getGoal() {
+	public String getGoal() {
 		for(Goals g: this.goalList) {
 			System.out.println(g);
 		}
+		return logicalOperator;
 	}
 	
 	public void addGoal(Goals g) {
 		this.goalList.add(g);
 	}
+	
+	public List<Goals> getGoalList() {
+		return goalList;
+	}
+
+	public void setGoalList(List<Goals> goalList) {
+		this.goalList = goalList;
+	}
+
 	public void goalGenerate(JSONArray goals) {
 		System.out.println("ROPSFDS");
 		for(Object o : goals) {
