@@ -82,6 +82,71 @@ public class Dungeon {
 			this.dungeonGoal = lg;
 		}
 	}
+	public boolean checkGoal(Goals g) {
+		if(g instanceof LeafGoal) {
+			if(g.getGoal().equals("treasure")) {
+				return checkTreasureGoal();
+			}
+			else if(g.getGoal().equals("enemies")) {
+				return checkEnemyGoal();
+			}
+			else if(g.getGoal().equals("exit")) {
+				
+			}
+			else if(g.getGoal().equals("boulders")) {
+				
+			}
+		}
+		else {
+			if(g.getGoal().equals("AND")) {
+				return checkAndGoalComposite((CompositeGoal) g);
+			}
+			if(g.getGoal().equals("OR")) {
+				return checkOrGoalComposite((CompositeGoal) g);
+			}
+		}
+		return false;
+	}
+	public boolean checkOrGoalComposite(CompositeGoal g) {
+		boolean complete = false;
+		for(Goals go : g.getGoalList()) {
+			if(go instanceof LeafGoal) {
+				complete = checkGoal(go);
+			}
+			if(go instanceof CompositeGoal) {
+				if(go.getGoal().equals("AND")) {
+					return checkAndGoalComposite((CompositeGoal)go);
+				}
+				else {
+					return checkOrGoalComposite((CompositeGoal)go);
+				}
+			}
+			if( complete == true) {
+				break;
+			}
+		}
+		return complete;
+	}
+	public boolean checkAndGoalComposite(CompositeGoal g) {
+		boolean complete = false;
+		for(Goals go : g.getGoalList()) {
+			if(go instanceof LeafGoal) {
+				complete = checkGoal(go);
+			}
+			if(go instanceof CompositeGoal) {
+				if(go.getGoal().equals("AND")) {
+					return checkAndGoalComposite((CompositeGoal)go);
+				}
+				else {
+					return checkOrGoalComposite((CompositeGoal)go);
+				}
+			}
+			if( complete == false) {
+				break;
+			}
+		}
+		return complete;
+	}
 	public boolean checkEnemyGoal() {
 		for(Entity e : this.entities) {
 			if(e instanceof Enemy) {
