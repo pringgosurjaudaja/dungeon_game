@@ -28,6 +28,7 @@ public class Bomb extends Entity {
 	public void countDownBomb() {
 		state.countdown();
 		state.explode();
+		countdown--;
 	}
 	public BombState getUnlitBomb() {
 		return unlitBomb;
@@ -65,5 +66,10 @@ public class Bomb extends Entity {
 	public void setState(BombState state) {
 		this.state = state;
 	}
-
+	public boolean isLit() {
+		if(state == unlitBomb) {
+			return false;
+		}
+		return true;
+	}
 }
