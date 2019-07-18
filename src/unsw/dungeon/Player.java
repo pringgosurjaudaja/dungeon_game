@@ -13,6 +13,8 @@ import javafx.scene.layout.GridPane;
  *
  */
 public class Player extends Entity {
+	
+	//HELLO tEST
 
     private Dungeon dungeon;
     private Entity carryOns;
@@ -83,7 +85,7 @@ public class Player extends Entity {
             if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -101,7 +103,7 @@ public class Player extends Entity {
     		if(w instanceof Treasure) {
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
         			removedEntity = w;
-        			//w.getImage().setImage(null);
+        			w.getImage().setImage(null);
         			treasure++;
         			System.out.println("treasure = " + treasure);
     			}
@@ -109,7 +111,7 @@ public class Player extends Entity {
     		if(w instanceof Invincibility) {
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
         			removedEntity = w;
-        			//w.getImage().setImage(null);
+        			w.getImage().setImage(null);
         			invincibilityCounter = 10;
     			}
     		}
@@ -119,7 +121,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -130,7 +132,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -209,7 +211,7 @@ public class Player extends Entity {
             if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -218,14 +220,14 @@ public class Player extends Entity {
         if(w instanceof Invincibility) {
 			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
     			removedEntity = w;
-    			//w.getImage().setImage(null);
+    			w.getImage().setImage(null);
     			invincibilityCounter = 10;
 			}
 		}
         if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
-    				if(invincibilityCounter >0) {
+    				if(invincibilityCounter > 0) {
     					System.out.println("Invincible");
     				}
     				System.out.println("Game Over");}
@@ -233,7 +235,7 @@ public class Player extends Entity {
     		if(w instanceof Treasure) {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a treasure
         			removedEntity = w;
-        			//w.getImage().setImage(null);
+        			w.getImage().setImage(null);
         			treasure++;
         			System.out.println("treasure = " + treasure);
     			}
@@ -245,7 +247,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -256,7 +258,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return;
     				}
@@ -331,7 +333,7 @@ public class Player extends Entity {
             if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -340,7 +342,7 @@ public class Player extends Entity {
         if(w instanceof Invincibility) {
 			if(w.getY() == getY() && w.getX() == getX()-1){	// if up is a treasure
     			removedEntity = w;
-    			//w.getImage().setImage(null);
+    			w.getImage().setImage(null);
     			invincibilityCounter = 10;
 			}
 		}
@@ -355,7 +357,7 @@ public class Player extends Entity {
     		if(w instanceof Treasure) {
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a treasure
         			removedEntity = w;
-        			//w.getImage().setImage(null);
+        			w.getImage().setImage(null);
         			treasure++;
         			System.out.println("treasure = " + treasure);
     			}
@@ -366,7 +368,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return;
     				}
@@ -377,7 +379,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return;
     				}
@@ -442,7 +444,7 @@ public class Player extends Entity {
             if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return ;
     				}
@@ -451,7 +453,7 @@ public class Player extends Entity {
         if(w instanceof Invincibility) {
 			if(w.getY() == getY() && w.getX() == getX()+1){	// if up is a treasure
     			removedEntity = w;
-    			//w.getImage().setImage(null);
+    			w.getImage().setImage(null);
     			invincibilityCounter = 10;
 			}
 		}
@@ -474,7 +476,7 @@ public class Player extends Entity {
     		if(w instanceof Treasure) {
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a treasure
         			removedEntity = w;
-        			//w.getImage().setImage(null);
+        			w.getImage().setImage(null);
         			treasure++;
         			System.out.println("treasure = " + treasure);
     			}
@@ -485,7 +487,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return;
     				}
@@ -496,7 +498,7 @@ public class Player extends Entity {
     				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
-    					//w.getImage().setImage(null);
+    					w.getImage().setImage(null);
     				} else {	// if player is carrying another entity
     					return;
     				}
@@ -542,7 +544,6 @@ public class Player extends Entity {
         	if(carryOns instanceof Key) {
         		Key key = new Key(getX(), getY(), ((Key) carryOns).getId());
         		System.out.println("Dropped a key with id: " + ((Key) carryOns).getId() + " at "+ getX() + getY());
-        		//Image keyImage = new Image("/key.png");
                 key.setImage(new ImageView(new Image("/key.png")));
                 grid.add(key.getImage() , getX() , getY());
                 
