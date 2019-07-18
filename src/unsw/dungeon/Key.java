@@ -2,9 +2,20 @@ package unsw.dungeon;
 
 public class Key extends Entity {
 
-	public Key(int x, int y) {
-		super(x, y);
-		// TODO Auto-generated constructor stub
+	private int id;
+	
+    public Key(int x, int y, int id) {
+        super(x, y);
+        this.id = id;
+    }
+
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+    
+    
 }
