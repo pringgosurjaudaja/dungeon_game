@@ -128,14 +128,14 @@ public class Player extends Entity {
     				}
     			}
     		}
-    		if(w instanceof Locked_Door) {
+    		if(w instanceof LockedDoor) {
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a door
-        			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
+        			if(((LockedDoor) w).isOpen() == false) {	// if the door is locked
     					if(carryOns instanceof Key) {		// if player carries a key
-    						if(((Key) carryOns).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    						if(((Key) carryOns).getId() == ((LockedDoor) w).getId() ) {	// if the key fits the door
     							System.out.println("Opening the door");
     							carryOns = null;
-    							((Locked_Door) w).openDoor();
+    							((LockedDoor) w).openDoor();
     						} else {
     							System.out.println("Key doesn't fit");
     							return;
@@ -244,14 +244,14 @@ public class Player extends Entity {
     				}
     			}
     		}
-    		if(w instanceof Locked_Door) {
+    		if(w instanceof LockedDoor) {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a door
-        			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
+        			if(((LockedDoor) w).isOpen() == false) {	// if the door is locked
     					if(carryOns instanceof Key) {		// if player carries a key
-    						if(((Key) carryOns).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    						if(((Key) carryOns).getId() == ((LockedDoor) w).getId() ) {	// if the key fits the door
     							System.out.println("Opening the door");
     							carryOns = null;
-    							((Locked_Door) w).openDoor();
+    							((LockedDoor) w).openDoor();
     						} else {
     							System.out.println("Key doesn't fit");
     							return;
@@ -355,14 +355,14 @@ public class Player extends Entity {
     				}
     			}
     		}
-    		if(w instanceof Locked_Door) {
+    		if(w instanceof LockedDoor) {
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a door
-        			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
+        			if(((LockedDoor) w).isOpen() == false) {	// if the door is locked
     					if(carryOns instanceof Key) {		// if player carries a key
-    						if(((Key) carryOns).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    						if(((Key) carryOns).getId() == ((LockedDoor) w).getId() ) {	// if the key fits the door
     							System.out.println("Opening the door");
     							carryOns = null;
-    							((Locked_Door) w).openDoor();
+    							((LockedDoor) w).openDoor();
     						} else {
     							System.out.println("Key doesn't fit");
     							return;
@@ -464,14 +464,14 @@ public class Player extends Entity {
     				}
     			}
     		}
-    		if(w instanceof Locked_Door) {
+    		if(w instanceof LockedDoor) {
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// if right is a door
-        			if(((Locked_Door) w).isOpen() == false) {	// if the door is locked
+        			if(((LockedDoor) w).isOpen() == false) {	// if the door is locked
     					if(carryOns instanceof Key) {		// if player carries a key
-    						if(((Key) carryOns).getId() == ((Locked_Door) w).getId() ) {	// if the key fits the door
+    						if(((Key) carryOns).getId() == ((LockedDoor) w).getId() ) {	// if the key fits the door
     							System.out.println("Opening the door");
     							carryOns = null;
-    							((Locked_Door) w).openDoor();
+    							((LockedDoor) w).openDoor();
     						} else {
     							System.out.println("Key doesn't fit");
     							return;
