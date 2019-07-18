@@ -73,22 +73,10 @@ public class DungeonController {
         	player.moveRight();
             break;
         case SPACE:		// used to drop carry_ons
-        	// NOT DONE
-        	System.out.println("in1");
         	player.dropEntity(squares);
-        	System.out.println("in8");
-
-/*        	removedEntity = player.dropEntity();
-        	System.out.println("removed : " + removedEntity);
-        	if(removedEntity == -2) {
-        		Image keyImage = new Image("key.png");
-        	//	squares.getChildren().add(new ImageView(keyImage));
-        		squares.add(new ImageView(keyImage), player.getX(), player.getY());
-        	}
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
-           */
             break;
-        /*case ENTER:
+       /* case ENTER:
+        	
         	removedEntity = player.killEnemy();
         	System.out.println("enemy to kill : " + removedEntity);
             if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));

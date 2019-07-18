@@ -113,7 +113,7 @@ public abstract class DungeonLoader {
         	entity = enemy;
         	break;
     	case "sword":
-    		Sword sword = new Sword(x, y);
+    		Sword sword = new Sword(x, y, 5);
     		onLoad(sword);
     		entity = sword;
     		break;
