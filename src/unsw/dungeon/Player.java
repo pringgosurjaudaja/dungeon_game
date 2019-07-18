@@ -3,6 +3,9 @@ package unsw.dungeon;
 import org.json.JSONObject;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+
 
 /**
  * The player entity
@@ -389,25 +392,50 @@ public class Player extends Entity {
     // to drop the carry-ons by pressing SPACE on the keyboard
     // entities that can be dropped: key, bomb, sword?
     public void dropEntity() {
-    	
+    	System.out.println("in2");
     	if(carry_ons != null) {
-
-        	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
+    		System.out.println("in3");
+/*        	STILL NOT WORKING
+ * 			for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
         		Entity w = dungeon.getEntities().get(i);
         		
-        		if(w.getX() == getX() && w.getY() == getY()){ 	// if there is an entity in this coordinate
+        		if(w.getX() == getX() && w.getY() == getY()){ 	// if there is an entity in this coordinate, cannot drop carry_ons here
+        			System.out.println("in return");
         			return;
-        		} else {	// if there is nothing on this coordinate
-        			if(carry_ons instanceof Key) {
-        				carry_ons = null;
-        				Entity key = new Key(getX(), getY(), ((Key) carry_ons).getId());
-        				System.out.println("Dropped a key with id: " + ((Key) carry_ons).getId());
-        				dungeon.addEntity(key);
-        				key.getImage().setImage(new Image("/key.png"));	// still wrong
-        			}
-        		}
-    		}
+        		} 
+        	}*/	
+        	System.out.println("in4");
+        	// if there is nothing on this coordinate, can drop carry_ons here
+        	if(carry_ons instanceof Key) {
+        		System.out.println("in5");
+        		Key key = new Key(getX(), getY(), ((Key) carry_ons).getId());
+        		System.out.println("Dropped a key with id: " + ((Key) carry_ons).getId() + " at "+ getX() + getY());
+        		
+        		//Image keyImage = new Image("/key.png");
+        		//key.setImage(keyImage);
+            	//   trackPosition(wall, view);
+            	//   entities.add(view);	//list of images
+                //   entity = wall;
+             //   ImageView view = new ImageView("/key.png");
+             //   key.getImage().setImage(view);
+             //     key.getImage().setImage(new Image("/key.png"));
+                key.setImage(new ImageView("/key.png"));
+                key.getImage();
+                
+        		dungeon.addEntity(key);
+
+        	//	this.getImage().setImage(new Image("/open_door.png"));
+             //   trackPosition(entity, view);
+             //   entities.add(view);
+
+        		//key.getImage().setImage(new Image("/key.png"));	// still wrong
+        		carry_ons = null;
+        		System.out.println("in6");	
+        	}
+        	
+        	//if(carry_ons instanceof bombs, swords... etc
     	}
+    	System.out.println("in7");
 	 	
     }
 

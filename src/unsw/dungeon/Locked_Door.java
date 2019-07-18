@@ -1,7 +1,6 @@
 package unsw.dungeon;
 
 import javafx.scene.image.Image;
-//import javafx.scene.image.ImageView;
 
 public class Locked_Door extends Entity {
 
