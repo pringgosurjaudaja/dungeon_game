@@ -72,4 +72,10 @@ public class Bomb extends Entity {
 		}
 		return true;
 	}
+	public boolean exploded() {
+		if(state == explodingBomb) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -12,7 +12,7 @@ public class Player extends Entity {
     private Dungeon dungeon;
     private Entity carryOns;
     private int treasure = 0;
-   
+    private int invincibilityCounter = 0;
 
     /**
      * Create a player positioned in square (x,y)
@@ -25,17 +25,20 @@ public class Player extends Entity {
     }
 
     public void grabItem(Entity e) {
-    	dungeon.removeEntity(e);
-    	carryOns = e;
+		dungeon.removeEntity(e);
+		if( e instanceof Treasure) treasure++;
+		else if(e instanceof Invincibility) invincibilityCounter = 5;
+		else carryOns = e;    	
     }
     public void grabTreasure(Treasure t) {
     	dungeon.removeEntity(t);
-    	treasure++;
-    	dungeon.checkTreasureGoal();
+       	treasure++;
+       	dungeon.checkTreasureGoal();
     }
-    public void setBomb(Bomb b) {
+    public void setBomb() {
     	if(carryOns instanceof Bomb) {
-    		b.getState().countdown();
+    		dungeon.addEntity(carryOns);
+    		((Bomb) carryOns).getState().countdown();
     	}
     }
     public int killEnemy() {
@@ -71,16 +74,20 @@ public class Player extends Entity {
     				return removedEntity;
     			}
     		}
+    		if(w instanceof Bomb && ((Bomb) w).isLit()) {
+    			((Bomb) w).getState().explode();
+    			((Bomb) w).getState().countdown();
+    			dungeon.explode((Bomb) w);
+    		}
     		else if(w instanceof Exit) {
     			// Exit the game TO DO
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// up is an exit
-    				System.out.println("You have successfully exit the dungeon.");
+    				System.out.println("You have succes sfully exit the dungeon.");
     			}
     		}
     		else if(w instanceof Sword) {
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
-    				//weapon = w;
-    				dungeon.getEntities().remove(w);
+    				grabItem(w);
         			removedEntity = i;
     			}
     		}
@@ -95,9 +102,8 @@ public class Player extends Entity {
     		else if(w instanceof Treasure) {
     			// collect treasure and remove treasureImage    			
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
-        			dungeon.getEntities().remove(w);
-        			removedEntity = i;        			
-        			treasure++;
+    				grabItem(w);
+    				removedEntity = i;        			
     			} 
     		}
     		else if(w instanceof Enemy) {
@@ -147,6 +153,7 @@ public class Player extends Entity {
     		if(w instanceof Bomb && ((Bomb) w).isLit()) {
     			((Bomb) w).getState().explode();
     			((Bomb) w).getState().countdown();
+    			dungeon.explode((Bomb) w);
     		}
     		else if(w instanceof Exit) {
     			// Exit the game TO DO
@@ -198,7 +205,7 @@ public class Player extends Entity {
 
     	}
     	if(carryOns instanceof Invincibility) {
-    		((Invincibility) carryOns).reduceDuration();
+    		invincibilityCounter--;
     	}
         if (getY() < dungeon.getHeight() - 1) // move down
             y().set(getY() + 1);
@@ -217,6 +224,11 @@ public class Player extends Entity {
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// cannot move left because there's a wall
     				return removedEntity;
     			}
+    		}
+    		if(w instanceof Bomb && ((Bomb) w).isLit()) {
+    			((Bomb) w).getState().explode();
+    			((Bomb) w).getState().countdown();
+    			dungeon.explode((Bomb) w);
     		}
     		if(w instanceof Exit) {
     			// Exit the game TO DO
@@ -280,8 +292,12 @@ public class Player extends Entity {
     			if(w.getX() == getX() + 1 && w.getY() == getY()){	// right is an exit
     				// TO DO
     				System.out.println("You have successfully exit the dungeon.");
-
     			}
+    		}
+    		if(w instanceof Bomb && ((Bomb) w).isLit()) {
+    			((Bomb) w).getState().explode();
+    			((Bomb) w).getState().countdown();
+    			dungeon.explode((Bomb) w);
     		}
     		if(w instanceof Sword) {
     			if(w.getY() == getY() && w.getX() == getX()+1){	// if up is a treasure
