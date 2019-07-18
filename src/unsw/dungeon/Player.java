@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.layout.GridPane;
 
 
 /**
@@ -537,51 +537,39 @@ public class Player extends Entity {
 
     // to drop the carry-ons by pressing SPACE on the keyboard
     // entities that can be dropped: key, bomb, sword?
-    public void dropEntity() {
-    	System.out.println("in2");
+    public void dropEntity(GridPane grid) {
     	if(carryOns != null) {
-    		System.out.println("in3");
-/*        	STILL NOT WORKING
- * 			for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
-        		Entity w = dungeon.getEntities().get(i);
-
-        		if(w.getX() == getX() && w.getY() == getY()){ 	// if there is an entity in this coordinate, cannot drop carry_ons here
-        			System.out.println("in return");
-        			return;
-        		}
-        	}*/
-        	System.out.println("in4");
-        	// if there is nothing on this coordinate, can drop carry_ons here
         	if(carryOns instanceof Key) {
-        		System.out.println("in5");
         		Key key = new Key(getX(), getY(), ((Key) carryOns).getId());
         		System.out.println("Dropped a key with id: " + ((Key) carryOns).getId() + " at "+ getX() + getY());
-
         		//Image keyImage = new Image("/key.png");
-        		//key.setImage(keyImage);
-            	//   trackPosition(wall, view);
-            	//   entities.add(view);	//list of images
-                //   entity = wall;
-             //   ImageView view = new ImageView("/key.png");
-             //   key.getImage().setImage(view);
-             //     key.getImage().setImage(new Image("/key.png"));
-                key.setImage(new ImageView("/key.png"));
-                key.getImage();
-
+                key.setImage(new ImageView(new Image("/key.png")));
+                grid.add(key.getImage() , getX() , getY());
+                
         		dungeon.addEntity(key);
-
-        	//	this.getImage().setImage(new Image("/open_door.png"));
-             //   trackPosition(entity, view);
-             //   entities.add(view);
-
-        		//key.getImage().setImage(new Image("/key.png"));	// still wrong
         		carryOns = null;
-        		System.out.println("in6");
+        		}
+        	if(carryOns instanceof Sword) {
+        		Sword sword = new Sword(getX(), getY(), ((Sword) carryOns).getDurability());
+        		System.out.println("Dropped a sword with durability: " + ((Sword) carryOns).getDurability() + " at "+ getX() + getY());
+                sword.setImage(new ImageView(new Image("/greatsword_1_new.png")));
+                grid.add(sword.getImage() , getX() , getY());
+    
+        		dungeon.addEntity(sword);
+        		carryOns = null;
         	}
-
-        	//if(carry_ons instanceof bombs, swords... etc
+        	if(carryOns instanceof Bomb) {
+        		Bomb bomb = new Bomb(getX(), getY());
+        		System.out.println("Dropped a bomb at "+ getX() + getY());
+                bomb.setImage(new ImageView(new Image("/bomb_unlit.png")));
+                grid.add(bomb.getImage() , getX() , getY());
+    
+        		dungeon.addEntity(bomb);
+        		carryOns = null;
+        		bomb.getState().countdown();
+        	}
+        	
     	}
-    	System.out.println("in7");
 
     }
 	public Entity getCarryOns() {

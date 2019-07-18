@@ -4,9 +4,10 @@ public class Sword extends Entity {
 
 	private int durability;
 
-	public Sword(int x, int y) {
+	public Sword(int x, int y, int durability) {
 		super(x, y);
-		durability = 5;
+		this.durability = durability;
+		//durability = 5;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -17,5 +18,11 @@ public class Sword extends Entity {
 	public int getDurability() {
 		return durability;
 	}
+
+	public void setDurability(int durability) {
+		this.durability = durability;
+	}
+	
+	
 
 }
