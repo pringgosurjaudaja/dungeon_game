@@ -80,9 +80,9 @@ public class Player extends Entity {
     			((Bomb) w).getState().countdown();
     			dungeon.explode((Bomb) w);
     		}
-        if(w instanceof Sword) {
-    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
-            if(carryOns == null) {		// if player is not carrying anything
+         	if(w instanceof Sword) {
+    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a sword
+    				if(carryOns == null) {		// if player is not carrying anything
     					carryOns = w;
     					removedEntity = w;
     					w.getImage().setImage(null);
@@ -91,10 +91,10 @@ public class Player extends Entity {
     				}
     			}
     		}
-        if(w instanceof Enemy) {
-    			// collect treasure and remove treasureImage
-    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
+        	if(w instanceof Enemy) {
+    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is an enemy
     				System.out.println("Game Over");
+    				// TO DO
     			}
     		}
     		if(w instanceof Treasure) {
