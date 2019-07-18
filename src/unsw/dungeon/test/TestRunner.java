@@ -15,10 +15,14 @@ public class TestRunner {
 		   
 		   ArrayList<Result> res = new ArrayList<Result>();
 		   
-		      Result result = JUnitCore.runClasses(US1Test.class);
-		      Result result1 = JUnitCore.runClasses(US2Test.class);
-		      res.add(result);
+		      Result result1 = JUnitCore.runClasses(US1Test.class);
+		      Result result2 = JUnitCore.runClasses(US2Test.class);
+		      Result result6 = JUnitCore.runClasses(US6Test.class);
+
 		      res.add(result1);
+		      res.add(result2);
+		      res.add(result6);
+
 		      
 		      for(Result r : res) {
 			      for (Failure failure : r.getFailures()) {

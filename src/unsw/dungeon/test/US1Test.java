@@ -10,7 +10,15 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.Player;
 import unsw.dungeon.Wall;
 
+/*
+User-story 1: Moving around
 
+Description: As a player, I want to be able to move around the dungeon so that I can do tasks and achieve my goals.
+
+Acceptance Criteria:
+- The player will be able to move around the dungeon in 4 directions namely up, down, left and right.
+- The player won’t be able to go through the walls of the dungeon.
+*/
 
 
 public class US1Test {
@@ -57,7 +65,7 @@ public class US1Test {
 		assertEquals(3, player1.getX());
 		assertEquals(2, player1.getY());
 		
-		player1.moveRight();	// check moving right, should fail
+		player1.moveRight();	// check moving right, should FAIL
 		assertEquals(3, player1.getX());
 		assertEquals(2, player1.getY());
 
@@ -100,7 +108,7 @@ public class US1Test {
 		assertEquals(8, player.getX());
 		assertEquals(1, player.getY());
 		
-		player.moveRight();		// moving right to wall, should fail
+		player.moveRight();		// moving right to wall, should FAIL
 		assertEquals(9, player.getX());
 		assertEquals(1, player.getY());
 	
