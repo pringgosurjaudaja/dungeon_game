@@ -65,7 +65,18 @@ public class Dungeon {
 	public List<Entity> getEntities() {
 		return entities;
 	}
-
+	public Entity getEntity(int x, int y) {
+		for(Entity enti: this.entities) {
+			//System.out.println("x "+ enti.getX());
+			//System.out.println("x s = "+ x);
+			//System.out.println("y "+enti.getY());
+			//System.out.println("y s = "+ y);
+			if(enti.getX() == x && enti.getY()== y) {
+				return enti;
+			}
+		}
+		return null;
+	}
 	public void setEntities(List<Entity> entities) {
 		this.entities = entities;
 	}
