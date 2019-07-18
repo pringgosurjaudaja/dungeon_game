@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.layout.GridPane;
 
 
 /**
@@ -499,7 +499,7 @@ public class Player extends Entity {
 
     // to drop the carry-ons by pressing SPACE on the keyboard
     // entities that can be dropped: key, bomb, sword?
-    public void dropEntity() {
+    public void dropEntity(GridPane grid) {
     	System.out.println("in2");
     	if(carryOns != null) {
     		System.out.println("in3");
@@ -519,16 +519,17 @@ public class Player extends Entity {
         		Key key = new Key(getX(), getY(), ((Key) carryOns).getId());
         		System.out.println("Dropped a key with id: " + ((Key) carryOns).getId() + " at "+ getX() + getY());
 
-        		//Image keyImage = new Image("/key.png");
-        		//key.setImage(keyImage);
+        		Image keyImage = new Image("/key.png");
+        		//key.setImage(new ImageView(keyImage));
             	//   trackPosition(wall, view);
             	//   entities.add(view);	//list of images
                 //   entity = wall;
              //   ImageView view = new ImageView("/key.png");
              //   key.getImage().setImage(view);
              //     key.getImage().setImage(new Image("/key.png"));
-                key.setImage(new ImageView("/key.png"));
-                key.getImage();
+                key.setImage(new ImageView(new Image("/key.png")));
+                grid.add(key.getImage() , getX() , getY());
+                
 
         		dungeon.addEntity(key);
 
@@ -546,5 +547,4 @@ public class Player extends Entity {
     	System.out.println("in7");
 
     }
-
 }

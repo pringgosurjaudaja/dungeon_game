@@ -75,7 +75,7 @@ public class DungeonController {
         case SPACE:		// used to drop carry_ons
         	// NOT DONE
         	System.out.println("in1");
-        	player.dropEntity();
+        	player.dropEntity(squares);
         	System.out.println("in8");
 
 /*        	removedEntity = player.dropEntity();
