@@ -19,6 +19,8 @@ import org.json.JSONTokener;
 public abstract class DungeonLoader {
 
     private JSONObject json;
+    int keyId = 0;
+    int doorId = 0;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
@@ -72,14 +74,16 @@ public abstract class DungeonLoader {
             entity = treasure;
         	break;
         case "door":
-        	Door door = new Door(x, y);
+        	LockedDoor door = new LockedDoor(x, y, doorId);
             onLoad(door);
             entity = door;
+            doorId++;
         	break;
         case "key":
-            Key key = new Key(x, y);
+            Key key = new Key(x, y, keyId);
             onLoad(key);
             entity = key;
+            keyId++;
         	break;	       
         case "boulder":
         	Boulder boulder = new Boulder(x, y);
@@ -121,7 +125,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Wall wall);
     public abstract void onLoad(Exit exit); 
     public abstract void onLoad(Treasure treasure);
-    public abstract void onLoad(Door door);
+    public abstract void onLoad(LockedDoor door);
     public abstract void onLoad(Key key);
     public abstract void onLoad(Boulder boulder);
     public abstract void onLoad(Switch switch_);
