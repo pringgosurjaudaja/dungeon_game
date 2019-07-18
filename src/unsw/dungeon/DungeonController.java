@@ -1,7 +1,12 @@
 package unsw.dungeon;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -29,6 +34,9 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+
+        BotAutoMove bot = new BotAutoMove(dungeon, player);
+        bot.start();
     }
 
     @FXML
@@ -50,28 +58,35 @@ public class DungeonController {
     @FXML
     public void handleKeyPress(KeyEvent event) {
     	Boolean finish = false;
-    	int removedEntity;
-    	
+
         switch (event.getCode()) {
         case UP:
-            removedEntity = player.moveUp();
-            System.out.println("removed : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+            player.moveUp();
             break;
         case DOWN:
-            removedEntity = player.moveDown();
-            System.out.println("removed : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+        	player.moveDown();
             break;
         case LEFT:
-        	removedEntity = player.moveLeft();
-        	System.out.println("removed : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+        	player.moveLeft();
             break;
         case RIGHT:
-        	removedEntity = player.moveRight();
+        	player.moveRight();
+            break;
+        case SPACE:		// used to drop carry_ons
+        	// NOT DONE
+        	System.out.println("in1");
+        	player.dropEntity();
+        	System.out.println("in8");
+
+/*        	removedEntity = player.dropEntity();
         	System.out.println("removed : " + removedEntity);
+        	if(removedEntity == -2) {
+        		Image keyImage = new Image("key.png");
+        	//	squares.getChildren().add(new ImageView(keyImage));
+        		squares.add(new ImageView(keyImage), player.getX(), player.getY());
+        	}
             if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
+           */
             break;
         /*case ENTER:
         	removedEntity = player.killEnemy();
@@ -82,7 +97,66 @@ public class DungeonController {
             break;
         }
 
+        // checking goals
+        finish = checkGoals(dungeon, dungeon.getGoals());
+        if(finish == true) {
+        	System.out.println("The end, all goals have been reached.");
+        }else {
+        	// goals haven't been reached
+        }
+    }
+
+    // check if all the goals have been met
+    public boolean checkGoals(Dungeon dungeon, JSONArray subgoals) {
+    	if (subgoals == null) return false;
+    	Boolean finish = false;		// not all goals have been met.
+/*    	String goal = json.getString("goal");
+    	JSONArray subgoals = new JSONArray();
+    	if(goal == "AND") {
+    		subgoals = json.getJSONArray("subgoals");
+    	} else {
+    		subgoals.put(goal);
+    	}*/
+
+    	for (int i = 0 ; i < subgoals.length() ; i++) {
+    		if(subgoals.get(i) == "boulders") { // check if all switches have boulders on them
+    	    	for (Entity s : dungeon.getEntities()) {
+    	        	if(s instanceof Switch) {
+    	        		int temp = 0;
+    	                for (Entity b : dungeon.getEntities()) {
+    	                	if(b instanceof Boulder) {
+    	                		if(b.getX() == s.getX() && b.getY() == s.getY()) {
+    	                			temp = 1;	// there is boulder on this switch
+    	                			break;
+    	                		}
+    	                	}
+    	                }
+    	                if(temp == 0) {	// no boulder on this switch
+    	                	System.out.println("No boulder on this switch");
+    	                	// TO DO
+    	               		return false;
+    	               	}
+    	        	}
+    	        }
+    	        System.out.println("All switches have been pressed down by boulders.");
+    	       	finish = true;
+    	       	// TO DO
+    	       	break;
+    		} else if(subgoals.get(i) == "exit") {
+    	       	// TO DO
+    	       	break;
+            } else if(subgoals.get(i) == "enemies") {
+   	        	// TO DO
+   	        	break;
+   	        } else if(subgoals.get(i) == "treasure") {
+   	        	// TO DO
+   	        	break;
+    	    }
+
+    	}
+
+        return finish; // TO DO
+
     }
 
 }
-

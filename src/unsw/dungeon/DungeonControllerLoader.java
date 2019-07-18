@@ -24,9 +24,10 @@ public class DungeonControllerLoader extends DungeonLoader {
     //Images
     private Image playerImage;
     private Image wallImage;
+    // MORE TO DO
     private Image exitImage;
     private Image treasureImage;
-    private Image doorImage;
+    private Image lockedDoorImage;
     private Image keyImage;
     private Image boulderImage;
     private Image switchImage;
@@ -43,9 +44,10 @@ public class DungeonControllerLoader extends DungeonLoader {
         entities = new ArrayList<>();
         playerImage = new Image("/human_new.png");
         wallImage = new Image("/brick_brown_0.png");
+        // MORE TO DO
         exitImage = new Image("/exit.png");
         treasureImage = new Image("/gold_pile.png");
-        doorImage = new Image("/closed_door.png");
+        lockedDoorImage = new Image("/closed_door.png");
         keyImage = new Image("/key.png");
         boulderImage = new Image("/boulder.png");
         switchImage = new Image("/pressure_plate.png");
@@ -54,7 +56,6 @@ public class DungeonControllerLoader extends DungeonLoader {
         enemyImage = new Image("/deep_elf_master_archer.png");
         swordImage = new Image("/greatsword_1_new.png");
         invincibilityImage = new Image("/brilliant_blue_new.png");
-
     }
 
     @Override
@@ -68,41 +69,43 @@ public class DungeonControllerLoader extends DungeonLoader {
         ImageView view = new ImageView(wallImage);
         addEntity(wall, view);
     }
-    
+
+    // MORE TO DO
     @Override
     public void onLoad(Exit exit) {
         ImageView view = new ImageView(exitImage);
         addEntity(exit, view);
     }
-    
+
+
 	@Override
 	public void onLoad(Treasure treasure) {
         ImageView view = new ImageView(treasureImage);
         addEntity(treasure, view);
-		
+
 	}
 
 	@Override
 	public void onLoad(LockedDoor door) {
-        ImageView view = new ImageView(doorImage);
+        ImageView view = new ImageView(lockedDoorImage);
         addEntity(door, view);
-		
+
 	}
-	
+
 	@Override
 	public void onLoad(Key key) {
         ImageView view = new ImageView(keyImage);
         addEntity(key, view);
-		
+
 	}
-	
+
 	@Override
 	public void onLoad(Boulder boulder) {
 		ImageView view = new ImageView(boulderImage);
 		addEntity(boulder, view);
 	}
-	
-	@Override
+
+	    @Override
     public void onLoad(Switch switch_) {
         ImageView view = new ImageView(switchImage);
         addEntity(switch_, view);
@@ -113,33 +116,40 @@ public class DungeonControllerLoader extends DungeonLoader {
         ImageView view = new ImageView(unlitBombImage);
         addEntity(bomb, view);
     }
-	
+
+	// onLoad(lit)
+
     @Override
 	public void onLoad(Enemy enemy) {
 		ImageView view = new ImageView(enemyImage);
 		addEntity(enemy, view);
+
 	}
 
 	@Override
 	public void onLoad(Sword sword) {
 		ImageView view = new ImageView(swordImage);
 		addEntity(sword, view);
+
 	}
-	
+
 	@Override
 	public void onLoad(Invincibility invincibility) {
 		ImageView view = new ImageView(invincibilityImage);
 		addEntity(invincibility, view);
+
 	}
 
-
-    private void addEntity(Entity entity, ImageView view) {
-    	entity.setImage(view);
-    	trackPosition(entity, view);
-        entities.add(view);
+	private void addEntity(Entity entity, ImageView view) {
+		  entity.setImage(view);
+      trackPosition(entity, view);
+      entities.add(view);
     }
 
-    /**
+
+
+
+	/**
      * Set a node in a GridPane to have its position track the position of an
      * entity in the dungeon.
      *
@@ -149,7 +159,7 @@ public class DungeonControllerLoader extends DungeonLoader {
      * @param entity
      * @param node
      */
-    private void trackPosition(Entity entity, Node node) {
+    private void trackPosition(Entity entity, final Node node) {
         GridPane.setColumnIndex(node, entity.getX());
         GridPane.setRowIndex(node, entity.getY());
         entity.x().addListener(new ChangeListener<Number>() {

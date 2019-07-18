@@ -34,7 +34,7 @@ public abstract class DungeonLoader {
         int width = json.getInt("width");
         int height = json.getInt("height");
         JSONObject goals = json.getJSONObject("goal-condition");
-        
+
         Dungeon dungeon = new Dungeon(width, height, goals);
 
         JSONArray jsonEntities = json.getJSONArray("entities");
@@ -44,6 +44,22 @@ public abstract class DungeonLoader {
         }
         return dungeon;
     }
+
+    private void loadGoal(Dungeon dungeon, JSONObject json){
+    	JSONArray subgoals = new JSONArray();
+
+
+    	String goal = json.getString("goal");
+    	if(goal.equals("AND")) {
+    		subgoals = json.getJSONArray("subgoals");
+    	} else {
+    		subgoals.put(goal);
+    	}
+
+    	dungeon.setGoals(subgoals);
+
+    }
+
 
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
@@ -63,16 +79,6 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
-        case "exit":
-            Exit exit = new Exit(x, y);
-            onLoad(exit);
-            entity = exit;
-            break;
-        case "treasure":
-            Treasure treasure = new Treasure(x, y);
-            onLoad(treasure);
-            entity = treasure;
-        	break;
         case "door":
         	LockedDoor door = new LockedDoor(x, y, doorId);
             onLoad(door);
@@ -84,7 +90,7 @@ public abstract class DungeonLoader {
             onLoad(key);
             entity = key;
             keyId++;
-        	break;	       
+        	break;
         case "boulder":
         	Boulder boulder = new Boulder(x, y);
         	onLoad(boulder);
@@ -99,7 +105,7 @@ public abstract class DungeonLoader {
         	Bomb bomb = new Bomb(x, y);
             onLoad(bomb);
             entity = bomb;
-            break;    
+            break;
         //case "lit bomb":
         case "enemy":
         	Enemy enemy = new Enemy(x, y);
@@ -117,13 +123,24 @@ public abstract class DungeonLoader {
     		entity = invincibility;
     		break;
         // TODO Handle other possible entities
-        }
+        case "exit":
+            Exit exit = new Exit(x, y);
+            onLoad(exit);
+            entity = exit;
+            break;
+        case "treasure":
+            Treasure treasure = new Treasure(x, y);
+            onLoad(treasure);
+            entity = treasure;
+        	break;
+    	}
+
         dungeon.addEntity(entity);
     }
 
     public abstract void onLoad(Entity player);
     public abstract void onLoad(Wall wall);
-    public abstract void onLoad(Exit exit); 
+    public abstract void onLoad(Exit exit);
     public abstract void onLoad(Treasure treasure);
     public abstract void onLoad(LockedDoor door);
     public abstract void onLoad(Key key);
@@ -135,6 +152,7 @@ public abstract class DungeonLoader {
   	public abstract void onLoad(Sword sword);
     public abstract void onLoad(Invincibility invincibility);
 
-    // TODO Create additional abstract methods for the other entities
+ 
+   
 
 }

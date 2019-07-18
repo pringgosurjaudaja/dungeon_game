@@ -100,10 +100,10 @@ public class Dungeon {
 				return checkEnemyGoal();
 			}
 			else if(g.getGoal().equals("exit")) {
-				
+
 			}
 			else if(g.getGoal().equals("boulders")) {
-				
+
 			}
 		}
 		else {
