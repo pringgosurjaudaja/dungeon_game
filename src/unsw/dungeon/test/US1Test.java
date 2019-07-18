@@ -1,7 +1,9 @@
 package unsw.dungeon.test;
 
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
+import org.json.JSONObject;
 import org.junit.Test;
 
 import unsw.dungeon.Dungeon;
@@ -12,11 +14,15 @@ import unsw.dungeon.Wall;
 
 
 public class US1Test {
-	Dungeon dungeon = new Dungeon(10,10, null);
+	JSONObject json = new JSONObject();
+	
+	Dungeon dungeon ;
 	
 	
 	@Test
-	public void testMoveUp(){
+	public void testMoveAllDirections(){
+		json.put("goal", "treasure");
+		dungeon = new Dungeon(10 , 10 , json);
 		dungeon.addEntity(new Wall(0, 0));
 		dungeon.addEntity(new Wall(1, 0));
 		dungeon.addEntity(new Wall(2, 0));
@@ -29,14 +35,79 @@ public class US1Test {
 		dungeon.addEntity(new Wall(9, 0));
 		Player player = new Player(dungeon, 2, 1);
 		player.moveUp();
-
-		Assert.assertEquals(2, player.getX());
-		Assert.assertEquals(1, player.getY());
 		
-		System.out.println("test");
+		assertEquals(2, player.getX());
+		assertEquals(1, player.getY());
+		
+		
+		Player player1 = new Player(dungeon, 3, 2);
+		player1.moveUp();	// check moving up, should succeed
+		assertEquals(3, player1.getX());
+		assertEquals(1, player1.getY());
+		
+		player1.moveDown();	// check moving down, should succeed
+		assertEquals(3, player1.getX());
+		assertEquals(2, player1.getY());
+		
+		player1.moveLeft();	// check moving left, should succeed
+		assertEquals(2, player1.getX());
+		assertEquals(2, player1.getY());
+		
+		player1.moveRight();	// check moving right, should succeed
+		assertEquals(3, player1.getX());
+		assertEquals(2, player1.getY());
+		
+		player1.moveRight();	// check moving right, should fail
+		assertEquals(3, player1.getX());
+		assertEquals(2, player1.getY());
 
-}
+	}
+	
+	@Test
+	public void testMoveWall(){
+		json.put("goal", "treasure");
+		dungeon = new Dungeon(10 , 10 , json);
+		dungeon.addEntity(new Wall(7, 1));
+		dungeon.addEntity(new Wall(8, 0));
+		dungeon.addEntity(new Wall(8, 2));
+		dungeon.addEntity(new Wall(9, 0));
+		dungeon.addEntity(new Wall(9, 1));
+		dungeon.addEntity(new Wall(9, 2));
+		dungeon.addEntity(new Wall(9, 3));
+		dungeon.addEntity(new Wall(9, 4));
+		dungeon.addEntity(new Wall(9, 5));
+		dungeon.addEntity(new Wall(9, 6));
+		dungeon.addEntity(new Wall(9, 7));
+		dungeon.addEntity(new Wall(9, 8));
+		dungeon.addEntity(new Wall(9, 9));
+		
+		
+		Player player = new Player(dungeon, 8, 1);
 
+		player.moveUp();		// moving up to wall, should success
+		assertEquals(8, player.getX());
+		assertEquals(1, player.getY());
+		
+		player.moveDown();		// moving down to wall, should success
+		assertEquals(8, player.getX());
+		assertEquals(1, player.getY());
+		
+		player.moveLeft();		// moving left to wall, should success
+		assertEquals(8, player.getX());
+		assertEquals(1, player.getY());
+		
+		player.moveRight();		// moving right to wall, should success
+		assertEquals(8, player.getX());
+		assertEquals(1, player.getY());
+		
+		player.moveRight();		// moving right to wall, should fail
+		assertEquals(9, player.getX());
+		assertEquals(1, player.getY());
+	
+	}
+
+	
+	
 	
 
 	

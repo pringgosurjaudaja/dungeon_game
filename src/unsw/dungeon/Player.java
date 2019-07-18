@@ -14,7 +14,6 @@ import javafx.scene.layout.GridPane;
  */
 public class Player extends Entity {
 	
-	//HELLO tEST
 
     private Dungeon dungeon;
     private Entity carryOns;
