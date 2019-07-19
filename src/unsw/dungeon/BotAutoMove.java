@@ -26,7 +26,9 @@ public class BotAutoMove extends Thread{
 	
 	}
 
-	private ArrayList<Point> getAllEntitiesCoordinates(){
+//	private ArrayList<Point> getAllEntitiesCoordinates(){
+	public ArrayList<Point> getAllEntitiesCoordinates(){
+
 		
 		ArrayList<Point> entityPoints = new ArrayList<Point>();
 		
