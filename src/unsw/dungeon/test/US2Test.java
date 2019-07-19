@@ -4,6 +4,7 @@ package unsw.dungeon.test;
 import static org.junit.Assert.assertEquals;
 
 import org.json.JSONObject;
+import org.junit.Before;
 import org.junit.Test;
 
 import unsw.dungeon.Dungeon;
@@ -32,10 +33,8 @@ public class US2Test {
 	
 	Dungeon dungeon;
 
-	
-	@Test
-	public void testMoveBoulderAllDirection(){
-
+	@Before
+	public void init() {
 		json.put("goal", "treasure");
 		dungeon = new Dungeon(10 , 10 , json);
 		dungeon.addEntity(new Wall(0, 0));
@@ -48,6 +47,10 @@ public class US2Test {
 		dungeon.addEntity(new Wall(7, 0));
 		dungeon.addEntity(new Wall(8, 0));
 		dungeon.addEntity(new Wall(9, 0));
+	}
+	
+	@Test
+	public void testMoveBoulderAllDirection(){
 		
 		Boulder boulder1 = new Boulder(3, 2);
 		dungeon.addEntity(boulder1);
@@ -98,19 +101,6 @@ public class US2Test {
 	
 	@Test
 	public void testMoveBoulderAgaintWall(){
-
-		json.put("goal", "treasure");
-		dungeon = new Dungeon(10 , 10 , json);
-		dungeon.addEntity(new Wall(0, 0));
-		dungeon.addEntity(new Wall(1, 0));
-		dungeon.addEntity(new Wall(2, 0));
-		dungeon.addEntity(new Wall(3, 0));
-		dungeon.addEntity(new Wall(4, 0));
-		dungeon.addEntity(new Wall(5, 0));
-		dungeon.addEntity(new Wall(6, 0));
-		dungeon.addEntity(new Wall(7, 0));
-		dungeon.addEntity(new Wall(8, 0));
-		dungeon.addEntity(new Wall(9, 0));
 		
 		Boulder boulder1 = new Boulder(4, 1);
 		dungeon.addEntity(boulder1);
@@ -131,45 +121,30 @@ public class US2Test {
 	}
 	
 	@Test
-	public void testMoveBoulderAgaintEntities(){
-
-		json.put("goal", "treasure");
-		dungeon = new Dungeon(10 , 10 , json);
-		dungeon.addEntity(new Wall(0, 0));
-		dungeon.addEntity(new Wall(1, 0));
-		dungeon.addEntity(new Wall(2, 0));
-		dungeon.addEntity(new Wall(3, 0));
-		dungeon.addEntity(new Treasure(4, 0));
-		dungeon.addEntity(new Wall(5, 0));
-		dungeon.addEntity(new Wall(6, 0));
-		dungeon.addEntity(new Wall(7, 0));
-		dungeon.addEntity(new Wall(8, 0));
-		dungeon.addEntity(new Wall(9, 0));
+	public void testMoveBoulderAgainstEntities(){
 		
+		Treasure treasure = new Treasure(0,3);
 		Switch switch_ = new Switch(0,2);
+		dungeon.addEntity(treasure);
+		dungeon.addEntity(switch_);
+		
 		Boulder boulder0 = new Boulder(1, 2);
 		dungeon.addEntity(boulder0);
 		Player player0 = new Player(dungeon, 2, 2);
-		player0.moveLeft();					// left is a Treasure, both player and boulders should move left, should succeed
+		player0.moveLeft();					// left is a switch, both player and boulders should move left, should succeed
 		assertEquals(1, player0.getX());
 		assertEquals(2, player0.getY());
 		assertEquals(0, boulder0.getX());
 		assertEquals(2, boulder0.getY());
 		
-		Boulder boulder1 = new Boulder(4, 1);
+		Boulder boulder1 = new Boulder(1, 3);
 		dungeon.addEntity(boulder1);
-		Player player1 = new Player(dungeon, 4, 2);
-		player1.moveUp();					// up is a Treasure, both player and boulders can't move up, should succeed
-		assertEquals(4, player1.getX());
-		assertEquals(2, player1.getY());
-		assertEquals(4, boulder1.getX());
-		assertEquals(1, boulder1.getY());
-		
-		player1.moveUp();					// up is a Treasure, both player and boulders can't move up, should FAIL
-		assertEquals(4, player1.getX());
-		assertEquals(1, player1.getY());
-		assertEquals(4, boulder1.getX());
-		assertEquals(0, boulder1.getY());
+		Player player1 = new Player(dungeon, 2, 3);
+		player1.moveLeft();					// left is a Treasure, both player and boulders can't move left, should succeed
+		assertEquals(2, player1.getX());
+		assertEquals(3, player1.getY());
+		assertEquals(1, boulder1.getX());
+		assertEquals(3, boulder1.getY());
 		
 
 	}

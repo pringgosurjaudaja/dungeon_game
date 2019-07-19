@@ -1,6 +1,5 @@
 package unsw.dungeon.test;
 
-
 import static org.junit.Assert.*;
 
 import java.awt.Point;
@@ -8,6 +7,7 @@ import java.awt.Point;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.json.JSONObject;
+import org.junit.Before;
 import org.junit.Test;
 
 import unsw.dungeon.Boulder;
@@ -16,6 +16,7 @@ import unsw.dungeon.Player;
 import unsw.dungeon.Wall;
 import unsw.dungeon.Enemy;
 import unsw.dungeon.BotAutoMove;
+
 //import unsw.dungeon.AutoMoveAction;;
 
 /*
@@ -40,9 +41,8 @@ public class US6Test {
 	
 	Dungeon dungeon ;
 	
-	
-	@Test
-	public void testMoveEnemy(){
+	@Before
+	public void init() {
 		json.put("goal", "treasure");
 		dungeon = new Dungeon(10 , 10 , json);
 		dungeon.addEntity(new Wall(0, 0));
@@ -55,6 +55,10 @@ public class US6Test {
 		dungeon.addEntity(new Wall(7, 0));
 		dungeon.addEntity(new Wall(8, 0));
 		dungeon.addEntity(new Wall(9, 0));
+	}
+	
+	@Test
+	public void testMoveEnemy(){
 		
 		Player player = new Player(dungeon, 2, 1);
 		
