@@ -36,7 +36,10 @@ public class Player extends Entity {
       }
     }
     
-    public void killEnemy() {
+    public Invincibility getInvincibility() {
+		return invincibility;
+	}
+	public void killEnemy() {
     	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability()!=0) {
 	    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
 	    		Entity w = dungeon.getEntities().get(i);
