@@ -17,7 +17,7 @@ public class LitBomb2 implements BombState {
 	public void countdown() {
 		bomb.setState(bomb.getLitBomb3());
 		System.out.println("Bomb State = LitBomb3");
-		bomb.getImage().setImage(new Image("/bomb_lit_3.png"));
+		//bomb.getImage().setImage(new Image("/bomb_lit_3.png"));
 
 	}
 

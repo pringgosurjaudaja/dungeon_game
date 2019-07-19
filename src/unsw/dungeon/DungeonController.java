@@ -73,7 +73,7 @@ public class DungeonController {
         	player.moveRight();
             break;
         case SPACE:		// used to drop carry_ons
-        	player.dropEntity(squares);
+        	player.dropEntity();
             break;
        /* case ENTER:
         	
