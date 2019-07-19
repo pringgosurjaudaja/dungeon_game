@@ -54,7 +54,7 @@ public class Player extends Entity {
     }
     public void moveUp() {
     	Entity removedEntity = null;
-
+    	int invinNew = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
 
@@ -97,6 +97,7 @@ public class Player extends Entity {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
     				if(invincibility !=null && invincibility.getCountdown()>0) {
+    					dungeon.getEntities().remove(w);
     					System.out.println("Invincible");
     				}
     				System.out.println("Game Over");
@@ -115,6 +116,7 @@ public class Player extends Entity {
         			removedEntity = w;
         			//w.getImage().setImage(null);
         			invincibility = (Invincibility) w;
+        			invinNew = 1;
     			}
     		}
     		if(w instanceof Bomb) {
@@ -168,7 +170,10 @@ public class Player extends Entity {
 
 		if (getY() > 0)
             y().set(getY() - 1);// move up
-			if(invincibility != null) invincibility.countdownInvincibility();
+		if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
+		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
+        	System.out.println("Puzzle Completed");
+        }
     }
 
     private void moveBoulder(Entity w, int x, int y) {
@@ -179,7 +184,7 @@ public class Player extends Entity {
 
     public void moveDown() {
     	Entity removedEntity = null;
-
+    	int invinNew = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
 
@@ -223,12 +228,14 @@ public class Player extends Entity {
     			removedEntity = w;
     			//w.getImage().setImage(null);
     			invincibility = (Invincibility) w;
+    			invinNew = 1;
 			}
 		}
         if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
     				if(invincibility !=null && invincibility.getCountdown()>0) {
+    					dungeon.getEntities().remove(w);
     					System.out.println("Invincible");
     				}
     				System.out.println("Game Over");}
@@ -293,12 +300,15 @@ public class Player extends Entity {
 
         if (getY() < dungeon.getHeight() - 1) // move down
             y().set(getY() + 1);
-        if(invincibility != null) invincibility.countdownInvincibility();
+        if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
+        if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
+        	System.out.println("Puzzle Completed");
+        }
     }
 
     public void moveLeft() {
     	Entity removedEntity = null;
-
+    	int invinNew = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
 
@@ -343,12 +353,14 @@ public class Player extends Entity {
     			removedEntity = w;
     			//w.getImage().setImage(null);
     			invincibility = (Invincibility) w;
+    			invinNew = 1;
 			}
 		}
         if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() && w.getX() == getX()-1){	// if up is a treasure
     				if(invincibility !=null && invincibility.getCountdown()>0) {
+    					dungeon.getEntities().remove(w);
     					System.out.println("Invincible");
     				}
     				System.out.println("Game Over");    			}
@@ -411,11 +423,15 @@ public class Player extends Entity {
 
         if (getX() > 0)
             x().set(getX() - 1);	// move left
-        if(invincibility != null) invincibility.countdownInvincibility();    }
+        if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();    
+        if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
+        	System.out.println("Puzzle Completed");
+        }
+    }
 
     public void moveRight() {
     	Entity removedEntity = null;
-
+    	int invinNew = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
 
@@ -453,12 +469,14 @@ public class Player extends Entity {
     			removedEntity = w;
     			//w.getImage().setImage(null);
     			invincibility = (Invincibility) w;
+    			invinNew = 1;
 			}
 		}
         if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() && w.getX() == getX()+1){	// if up is a treasure
     				if(invincibility !=null && invincibility.getCountdown()>0) {
+    					dungeon.getEntities().remove(w);
     					System.out.println("Invincible");
     				}
     				System.out.println("Game Over");    			}
@@ -531,7 +549,10 @@ public class Player extends Entity {
 
         if (getX() < dungeon.getWidth() - 1)
             x().set(getX() + 1);	// move right
-        if(invincibility != null) invincibility.countdownInvincibility();
+        if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
+        if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
+        	System.out.println("Puzzle Completed");
+        }
     }
 
     // to drop the carry-ons by pressing SPACE on the keyboard

@@ -83,6 +83,14 @@ public class Dungeon {
 		return goals;
 	}
 
+	public Goals getDungeonGoal() {
+		return dungeonGoal;
+	}
+
+	public void setDungeonGoal(Goals dungeonGoal) {
+		this.dungeonGoal = dungeonGoal;
+	}
+
 	public void setGoals(JSONArray goals) {
 		this.goals = goals;
 	}
