@@ -46,12 +46,10 @@ public class Dungeon {
     }
     public void explode(Bomb b) {
     	if(b.exploded()) {
-    		for(Entity e: this.entities) {
-    			if(e.getX() == b.getX() && e.getY() == b.getY()-1||e.getX() == b.getX() && e.getY() == b.getY()+1||
-    					e.getX() == b.getX()-1 && e.getY() == b.getY()||e.getX() == b.getX()+1 && e.getY() == b.getY()) {
-    				removeEntity(e);
-    			}
-    		}
+    		removeEntity(getEntity(b.getX()+1, b.getY()));
+    		removeEntity(getEntity(b.getX()-1, b.getY()));
+    		removeEntity(getEntity(b.getX(), b.getY()+1));
+    		removeEntity(getEntity(b.getX(), b.getY()-1));
     	}
     }
     public void setPlayer(Player player) {
