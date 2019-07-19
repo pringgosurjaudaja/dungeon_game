@@ -14,11 +14,12 @@ import javafx.scene.layout.GridPane;
  */
 public class Player extends Entity {
 	
-
+// TEST
+	
     private Dungeon dungeon;
     private Entity carryOns;
     private int treasure = 0;
-    //private int invincibilityCounter = 0;
+    private int invincibilityCounter = 0;
     Invincibility invincibility;
 
     /**
@@ -95,17 +96,16 @@ public class Player extends Entity {
     				}
     			}
     		}
-        if(w instanceof Enemy) {
+        	if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
-<<<<<<< HEAD
     				if(invincibility !=null && invincibility.getCountdown()>0) {
-=======
-    				if(invincibilityCounter > 0) {
->>>>>>> second
-    					System.out.println("Invincible");
+    					if(invincibilityCounter > 0) {
+    						System.out.println("Invincible");
+    					}
+    				} else {
+    					System.out.println("Game Over");
     				}
-    				System.out.println("Game Over");
     			}
     		}
     		if(w instanceof Treasure) {
@@ -121,12 +121,11 @@ public class Player extends Entity {
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// if up is a treasure
         			removedEntity = w;
         			//w.getImage().setImage(null);
-<<<<<<< HEAD
+
         			invincibility = (Invincibility) w;
-=======
         			w.setImage(null);
         			invincibilityCounter = 10;
->>>>>>> second
+
     			}
     		}
     		if(w instanceof Bomb) {
@@ -178,12 +177,16 @@ public class Player extends Entity {
     	}
 
     	//remove entity from list of entities
-    	if(removedEntity != null)dungeon.getEntities().remove(removedEntity);
+    	if(removedEntity != null) dungeon.getEntities().remove(removedEntity);
 
 		if (getY() > 0)
             y().set(getY() - 1);// move up
-			if(invincibility != null) invincibility.countdownInvincibility();
-    }
+		
+		if(invincibility != null) 
+			invincibility.countdownInvincibility();
+    	
+
+    	}
 
     private void moveBoulder(Entity w, int x, int y) {
 		//move boulder
@@ -213,8 +216,9 @@ public class Player extends Entity {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a boulder
     				if(!((Boulder)(w)).checkBoulder(0 , 1 , dungeon.getEntities())){	//if there is another entity(other than switch) below the boulder
     					return;
-    				}else
+    				}else {
     					moveBoulder(w , 0 , 1);
+    				}
     			}
     		}
         if(w instanceof Bomb && ((Bomb) w).isLit()) {
@@ -237,25 +241,22 @@ public class Player extends Entity {
 			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
     			removedEntity = w;
     			//w.getImage().setImage(null);
-<<<<<<< HEAD
     			invincibility = (Invincibility) w;
-=======
     			w.setImage(null);
     			invincibilityCounter = 10;
->>>>>>> second
 			}
 		}
-        if(w instanceof Enemy) {
+        	if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
-    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is a treasure
-<<<<<<< HEAD
-    				if(invincibility !=null && invincibility.getCountdown()>0) {
-=======
-    				if(invincibilityCounter > 0) {
->>>>>>> second
-    					System.out.println("Invincible");
+    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if up is an enemy
+    				if(invincibility != null && invincibility.getCountdown()>0) {
+    					if(invincibilityCounter > 0) {
+    						System.out.println("Invincible");
+    					}
+    				}else {
+    					System.out.println("Game Over");
     				}
-    				System.out.println("Game Over");}
+    			}
     		}
     		if(w instanceof Treasure) {
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// if down is a treasure
@@ -321,6 +322,9 @@ public class Player extends Entity {
         if (getY() < dungeon.getHeight() - 1) // move down
             y().set(getY() + 1);
         if(invincibility != null) invincibility.countdownInvincibility();
+        
+        //////////////
+    	
     }
 
     public void moveLeft() {
@@ -370,25 +374,27 @@ public class Player extends Entity {
 			if(w.getY() == getY() && w.getX() == getX()-1){	// if up is a treasure
     			removedEntity = w;
     			//w.getImage().setImage(null);
-<<<<<<< HEAD
+
     			invincibility = (Invincibility) w;
-=======
+
     			w.setImage(null);
     			invincibilityCounter = 10;
->>>>>>> second
+
 			}
 		}
-        if(w instanceof Enemy) {
+        	if(w instanceof Enemy) {
     			// collect treasure and remove treasureImage
     			if(w.getY() == getY() && w.getX() == getX()-1){	// if up is a treasure
-<<<<<<< HEAD
+
     				if(invincibility !=null && invincibility.getCountdown()>0) {
-=======
-    				if(invincibilityCounter > 0) {
->>>>>>> second
-    					System.out.println("Invincible");
+
+    					if(invincibilityCounter > 0) {
+    						System.out.println("Invincible");
+    					}
+    				}else {
+    					System.out.println("Game Over");
     				}
-    				System.out.println("Game Over");    			}
+    			}
     		}
     		if(w instanceof Treasure) {
     			if(w.getX() == getX() - 1 && w.getY() == getY()){	// if left is a treasure
@@ -451,7 +457,12 @@ public class Player extends Entity {
 
         if (getX() > 0)
             x().set(getX() - 1);	// move left
-        if(invincibility != null) invincibility.countdownInvincibility();    }
+        if(invincibility != null) invincibility.countdownInvincibility(); 
+        
+        ////////
+
+        
+    	}
 
     public void moveRight() {
     	Entity removedEntity = null;
@@ -493,12 +504,12 @@ public class Player extends Entity {
 			if(w.getY() == getY() && w.getX() == getX()+1){	// if up is a treasure
     			removedEntity = w;
     			//w.getImage().setImage(null);
-<<<<<<< HEAD
+
     			invincibility = (Invincibility) w;
-=======
+
     			w.setImage(null);
     			invincibilityCounter = 10;
->>>>>>> second
+
 			}
 		}
         if(w instanceof Enemy) {
@@ -585,21 +596,21 @@ public class Player extends Entity {
 
     // to drop the carry-ons by pressing SPACE on the keyboard
     // entities that can be dropped: key, bomb, sword?
-<<<<<<< HEAD
+
     //grid input removed for Milestone 2
-=======
+
     
     //public void dropEntity(GridPane grid) {
->>>>>>> second
+
     public void dropEntity() {
     	if(carryOns != null) {
         	if(carryOns instanceof Key) {
         		Key key = new Key(getX(), getY(), ((Key) carryOns).getId());
         		System.out.println("Dropped a key with id: " + ((Key) carryOns).getId() + " at "+ getX() + getY());
-<<<<<<< HEAD
+
         		//Image keyImage = new Image("/key.png");
-=======
->>>>>>> second
+
+
                 //key.setImage(new ImageView(new Image("/key.png")));
                 //grid.add(key.getImage() , getX() , getY());
                 
@@ -619,11 +630,11 @@ public class Player extends Entity {
         		Bomb bomb = new Bomb(getX(), getY());
         		System.out.println("Dropped a bomb at "+ getX() + getY());
                 //bomb.setImage(new ImageView(new Image("/bomb_unlit.png")));
-<<<<<<< HEAD
+
                // grid.add(bomb.getImage() , getX() , getY());
-=======
+
                 //grid.add(bomb.getImage() , getX() , getY());
->>>>>>> second
+
     
         		dungeon.addEntity(bomb);
         		carryOns = null;
