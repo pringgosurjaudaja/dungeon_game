@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class LockedDoor extends Entity {
 
@@ -30,7 +31,7 @@ public class LockedDoor extends Entity {
     
 	public void openDoor() {
 		this.isOpen = true;
-		this.getImage().setImage(new Image("/open_door.png"));
+		//this.getImage().setImage(new Image("/open_door.png"));
 	}
     
     
