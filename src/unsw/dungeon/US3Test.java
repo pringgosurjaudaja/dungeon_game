@@ -47,7 +47,7 @@ public class US3Test {
 		for(int i = 0; i < 8; i++) {
 			player.moveDown();
 		}
-		//infront should be enemy
+		//in front should be enemy
 		assertNotNull(testDungeon.getEntity(16, 10));
 		assertTrue(testDungeon.getEntity(16, 10) instanceof Enemy);
 		player.killEnemy();
@@ -59,7 +59,7 @@ public class US3Test {
 			player.moveUp();
 		}
 		player.moveLeft();
-		//tryies to pick up another item (bomb), but can't
+		//tries to pick up another item (bomb), but can't
 		player.moveLeft();
 		assertNotNull(testDungeon.getEntity(13, 4));
 	}

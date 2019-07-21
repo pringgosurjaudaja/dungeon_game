@@ -76,12 +76,14 @@ public class DungeonController {
         	//player.dropEntity(squares);
         	player.dropEntity();
             break;
-       /* case ENTER:
-        	
-        	removedEntity = player.killEnemy();
+        case ENTER:		// used to kill enemy with sword
+        	if(player.getCarryOns() instanceof Sword) {
+        		player.killEnemy();
+        	}
+        /*	removedEntity = player.killEnemy();
         	System.out.println("enemy to kill : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));
-        	break;*/
+            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));*/
+        	break;
         default:
             break;
         }

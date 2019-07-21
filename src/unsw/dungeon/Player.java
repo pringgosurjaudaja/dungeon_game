@@ -19,7 +19,6 @@ public class Player extends Entity {
     private Dungeon dungeon;
     private Entity carryOns;
     private int treasure = 0;
-    private int invincibilityCounter = 0;
     Invincibility invincibility;
 
     /**
@@ -41,19 +40,25 @@ public class Player extends Entity {
     public Invincibility getInvincibility() {
 		return invincibility;
 	}
+    
 	public void killEnemy() {
-    	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability()!=0) {
+    	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability()!= 0) {
 	    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
 	    		Entity w = dungeon.getEntities().get(i);
 	    		if(w instanceof Enemy) {
-	    			if(w.getY() == getY() + 1 && w.getX() == getX()||w.getY() == getY() - 1 && w.getX() == getX()||w.getY() == getY() && w.getX() == getX()-1||w.getY() == getY() && w.getX() == getX()+1){	// if up is a treasure
+	    			if(w.getY() == getY() + 1 && w.getX() == getX()||w.getY() == getY() - 1 && w.getX() == getX()||w.getY() == getY() && w.getX() == getX()-1||w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
 		    			dungeon.getEntities().remove(w);
 		    			((Sword) carryOns).reduceDurability();
+		    			System.out.println("Killed an enemy using sword. Sword durability becomes = " + ((Sword) carryOns).getDurability());
+		    			if(((Sword) carryOns).getDurability() == 0) {	// if durability of sword becomes 0
+		    				carryOns = null;		// drop carryOns
+		    			}
 	    			}
 	    		}
 	    	}
     	}
     }
+	
     public void moveUp() {
     	Entity removedEntity = null;
     	int invinNew = 0;
