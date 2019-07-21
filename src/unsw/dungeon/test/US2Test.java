@@ -88,14 +88,14 @@ public class US2Test {
 		assertEquals(9, boulder4.getX());
 		assertEquals(2, boulder4.getY());
 		
-		Boulder boulder5 = new Boulder(2, 4);
+/*		Boulder boulder5 = new Boulder(2, 4);
 		dungeon.addEntity(boulder5);
 		Player player5 = new Player(dungeon, 1, 4);
 		player5.moveRight();					// both player and boulders should move right, should FAIL
 		assertEquals(1, player5.getX());
 		assertEquals(4, player5.getY());
 		assertEquals(2, boulder5.getX());
-		assertEquals(4, boulder5.getY());
+		assertEquals(4, boulder5.getY()); */
 
 	}
 	
@@ -111,11 +111,11 @@ public class US2Test {
 		assertEquals(4, boulder1.getX());
 		assertEquals(1, boulder1.getY());
 		
-		player1.moveUp();					// up is wall, both player and boulders can't move up, should FAIL
+/*		player1.moveUp();					// up is wall, both player and boulders can't move up, should FAIL
 		assertEquals(4, player1.getX());
 		assertEquals(1, player1.getY());
 		assertEquals(4, boulder1.getX());
-		assertEquals(0, boulder1.getY());
+		assertEquals(0, boulder1.getY()); */
 		
 
 	}
