@@ -61,16 +61,20 @@ public class DungeonController {
 
         switch (event.getCode()) {
         case UP:
-            player.moveUp();
+            Entity w = player.moveUp();
+            if(w!= null) w.getImage().setImage(null);
             break;
         case DOWN:
-        	player.moveDown();
+        	Entity x = player.moveDown();
+            if(x!= null) x.getImage().setImage(null);
             break;
         case LEFT:
-        	player.moveLeft();
+        	Entity y = player.moveLeft();
+            if(y!= null) y.getImage().setImage(null);
             break;
         case RIGHT:
-        	player.moveRight();
+        	Entity z = player.moveRight();
+            if(z!= null) z.getImage().setImage(null);
             break;
         case SPACE:		// used to drop carry_ons
         	//player.dropEntity(squares);
@@ -78,7 +82,10 @@ public class DungeonController {
             break;
         case ENTER:		// used to kill enemy with sword
         	if(player.getCarryOns() instanceof Sword) {
-        		player.killEnemy();
+        		Entity a = player.killEnemy();
+        		if(a != null) {
+        			a.getImage().setImage(null);
+        		}
         	}
         /*	removedEntity = player.killEnemy();
         	System.out.println("enemy to kill : " + removedEntity);
