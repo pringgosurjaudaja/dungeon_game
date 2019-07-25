@@ -6,4 +6,9 @@ public class Wall extends Entity {
         super(x, y);
     }
 
+	@Override
+	public void interact(Player p) {
+		System.out.println("Can't go forward, there is a wall!");
+	}
+
 }

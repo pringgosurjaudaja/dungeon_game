@@ -6,4 +6,9 @@ public class Treasure extends Entity {
         super(x, y);
     }
 
+	@Override
+	public void interact(Player p) {
+		p.setTreasure(p.getTreasure()+1);
+	}
+    
 }

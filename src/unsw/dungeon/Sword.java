@@ -22,6 +22,16 @@ public class Sword extends Entity {
 	public void setDurability(int durability) {
 		this.durability = durability;
 	}
+
+	@Override
+	public void interact(Player p) {
+		if(p.getCarryOns() == null) {
+			p.setCarryOns(this);
+		}
+		else {
+			System.out.println("Can't pickup sword, already carrying something");
+		}
+	}
 	
 	
 
