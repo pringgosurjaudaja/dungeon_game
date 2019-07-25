@@ -6,4 +6,10 @@ public class Exit extends Entity {
         super(x, y);
     }
 
+	@Override
+	public Entity interact(Player p) {
+		System.out.println("EXIT");
+		return null;
+	}
+    
 }

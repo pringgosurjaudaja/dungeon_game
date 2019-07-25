@@ -48,7 +48,7 @@ public class Entity {
     public int getX() {
         return x().get();
     }
-    public void interact(Player p) {
-    	
+    public Entity interact(Player p) {
+    	return null;
     }
 }

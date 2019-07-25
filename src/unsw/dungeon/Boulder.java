@@ -21,6 +21,55 @@ public class Boulder extends Entity {
     	
     	return true;
     }
-
+    public void moveBoulder(int x, int y) {
+    	this.y().set(getY()+y);
+    	this.x().set(getX()+x);
+    }
+	@Override
+	public Entity interact(Player p) {
+		if(p.getX() == this.getX()) {
+			if(this.getY() == p.getY()-1) {
+				if(checkBoulder(0,-1,p.getDungeon().getEntities())) {
+					return null;
+				}
+				else {
+					moveBoulder(0,-1);
+					return this;
+				}
+			}
+			if(this.getY() == p.getY()+1) {
+				if(checkBoulder(0,1,p.getDungeon().getEntities())) {
+					return null;
+				}
+				else {
+					moveBoulder(0,1);
+					return this;
+				}
+			}
+		}
+		else if(p.getY()==this.getY()) {
+			if(this.getX() == p.getX()-1) {
+				if(checkBoulder(-1,0,p.getDungeon().getEntities())) {
+					return null;
+				}
+				else {
+					moveBoulder(-1,0);
+					return this;
+				}
+			}
+			if(this.getX() == p.getX()+1) {
+				if(checkBoulder(1,0,p.getDungeon().getEntities())) {
+					return null;
+				}
+				else {
+					moveBoulder(1,0);
+					return this;
+				}
+			}
+		}
+		
+		return null;
+	}
+    
 
 }

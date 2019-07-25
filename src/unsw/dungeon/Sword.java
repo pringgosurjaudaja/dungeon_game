@@ -24,12 +24,15 @@ public class Sword extends Entity {
 	}
 
 	@Override
-	public void interact(Player p) {
+	public Entity interact(Player p) {
 		if(p.getCarryOns() == null) {
 			p.setCarryOns(this);
+			p.getDungeon().removeEntity(this);
+			return this;
 		}
 		else {
 			System.out.println("Can't pickup sword, already carrying something");
+			return null;
 		}
 	}
 	

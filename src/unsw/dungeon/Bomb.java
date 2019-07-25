@@ -78,4 +78,17 @@ public class Bomb extends Entity {
 		}
 		return false;
 	}
+	@Override
+	public Entity interact(Player p) {
+		if(p.getCarryOns()== null) {
+			p.setCarryOns(this);
+			p.getDungeon().removeEntity(this);
+			return this;
+		}
+		else {
+			System.out.println("Couldn't pick up bomb, already carrying something");
+			return null;
+		}
+	}
+	
 }

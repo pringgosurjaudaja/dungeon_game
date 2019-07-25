@@ -33,6 +33,23 @@ public class LockedDoor extends Entity {
 		this.isOpen = true;
 		//this.getImage().setImage(new Image("/open_door.png"));
 	}
+
+	@Override
+	public Entity interact(Player p) {
+		if(this.isOpen) {
+			System.out.println("Door already opened");
+		}
+		else {
+			if(p.getCarryOns() instanceof Key && ((LockedDoor) p.getCarryOns()).getId()== this.getId()) {
+				this.openDoor();
+				return this;
+			}
+			else {
+				System.out.println("Key Doesn't Fit");
+			}
+		}
+		return null;
+	}
     
     
 }

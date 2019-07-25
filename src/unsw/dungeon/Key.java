@@ -16,6 +16,19 @@ public class Key extends Entity {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	@Override
+	public Entity interact(Player p) {
+		if(p.getCarryOns() == null) {
+			p.setCarryOns(this);
+			p.getDungeon().removeEntity(this);
+			return this;
+		}
+		else {
+			System.out.println("Cannot pick up key, already carrying something");
+			return null;
+		}
+	}
     
     
 }

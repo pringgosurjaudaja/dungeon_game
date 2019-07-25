@@ -7,8 +7,10 @@ public class Treasure extends Entity {
     }
 
 	@Override
-	public void interact(Player p) {
+	public Entity interact(Player p) {
 		p.setTreasure(p.getTreasure()+1);
+		p.getDungeon().removeEntity(this);
+		return this;
 	}
     
 }

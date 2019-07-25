@@ -75,8 +75,10 @@ public class Invincibility extends Entity {
 		this.noInvincibility = noInvincibility;
 	}
 	@Override
-	public void interact(Player p) {
+	public Entity interact(Player p) {
 		p.setInvincibility(this);
+		p.getDungeon().removeEntity(this);
+		return this;
 	}
 	
 }
