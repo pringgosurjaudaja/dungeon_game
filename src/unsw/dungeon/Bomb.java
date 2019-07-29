@@ -97,12 +97,12 @@ public class Bomb extends Entity {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
 			return this;
-		}
-		else {
+		} else {
 			System.out.println("Couldn't pick up bomb, already carrying something");
 			return null;
 		}
 	}
+	
 	@Override
 	public Entity drop() {
 		countDownBomb();

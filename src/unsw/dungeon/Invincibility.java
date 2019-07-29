@@ -4,9 +4,11 @@ public class Invincibility extends Entity {
 	
 	InvincibilityState state;
 	private int countdown;
+	Player temp;
+	
     public Invincibility(int x, int y) {
         super(x, y);
-        state = new Invincibility1(this);
+        state = new Invincibility1(this, temp);
         setCountdown(6);
         
     }
@@ -33,6 +35,7 @@ public class Invincibility extends Entity {
 			p.setCarryOns(this);
 			p.setInvincibility(this);
 			p.getDungeon().removeEntity(this);
+			state = new Invincibility1(this, p);
 			return this;
 		} else {
 			System.out.println("Can't pickup invincibility, already carrying something");

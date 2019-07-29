@@ -24,11 +24,13 @@ public class Boulder extends Entity {
     	}
     	return false;
     }
+    
     public void moveBoulder(int x, int y) {
     	System.out.println("ERGERFS");
     	this.y().set(getY()+y);
     	this.x().set(getX()+x);
     }
+    
 	@Override
 	public Entity interact(Player p) {
 		System.out.println("ERGERFS");
@@ -36,8 +38,7 @@ public class Boulder extends Entity {
 			if(this.getY() == p.getY()-1) {
 				if(checkBoulder(0,-1,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(0,-1);
 					return null;
 				}
@@ -45,30 +46,27 @@ public class Boulder extends Entity {
 			if(this.getY() == p.getY()+1) {
 				if(checkBoulder(0,1,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(0,1);
 					return null;
 				}
 			}
-		}
-		else if(p.getY()==this.getY()) {
+		} else if(p.getY() == this.getY()) {
+			System.out.println("INSIDE Y");
 			if(this.getX() == p.getX()-1) {
 				if(checkBoulder(-1,0,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(-1,0);
-					return null;
+					return this;
 				}
 			}
 			if(this.getX() == p.getX()+1) {
 				if(checkBoulder(1,0,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(1,0);
-					return null;
+					return this;
 				}
 			}
 		}
