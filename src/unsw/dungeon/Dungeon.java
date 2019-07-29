@@ -60,15 +60,15 @@ public class Dungeon {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX()+1, b.getY()));
     	}
-    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    	if(getEntity(b.getX()-1, b.getY()) instanceof Enemy || getEntity(b.getX()-1, b.getY()) instanceof Boulder) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX()-1, b.getY()));
     	}
-    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    	if(getEntity(b.getX(), b.getY()+1) instanceof Enemy || getEntity(b.getX(), b.getY()+1) instanceof Boulder) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX(), b.getY()+1));
     	}
-    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    	if(getEntity(b.getX(), b.getY()-1) instanceof Enemy || getEntity(b.getX(), b.getY()-1) instanceof Boulder) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX(), b.getY()-1));
     	}
