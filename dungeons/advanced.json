@@ -103,6 +103,11 @@
       "type": "player"
     },
     {
+      "x": 3,
+      "y": 1,
+      "type": "key"
+    },
+    {
       "x": 6,
       "y": 1,
       "type": "sword"
@@ -203,9 +208,19 @@
       "type": "wall"
     },
     {
+      "x": 10,
+      "y": 4,
+      "type": "enemy"
+    },
+    {
       "x": 13,
       "y": 4,
       "type": "bomb"
+    },
+    {
+      "x": 14,
+      "y": 4,
+      "type": "boulder"
     },
     {
       "x": 17,
@@ -223,6 +238,11 @@
       "type": "sword"
     },
     {
+      "x": 5,
+      "y": 5,
+      "type": "key"
+    },
+    {
       "x": 8,
       "y": 5,
       "type": "wall"
@@ -234,6 +254,26 @@
     },
     {
       "x": 0,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "type": "door"
+    },
+    {
+      "x": 3,
+      "y": 6,
+      "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "type": "door"
+    },
+    {
+      "x": 5,
       "y": 6,
       "type": "wall"
     },
@@ -266,6 +306,16 @@
       "x": 0,
       "y": 7,
       "type": "wall"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "type": "wall"
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "type": "key"
     },
     {
       "x": 6,
@@ -313,6 +363,11 @@
       "type": "wall"
     },
     {
+      "x": 7,
+      "y": 8,
+      "type": "treasure"
+    },
+    {
       "x": 8,
       "y": 8,
       "type": "wall"
@@ -331,6 +386,16 @@
       "x": 13,
       "y": 8,
       "type": "wall"
+    },
+    {
+      "x": 14,
+      "y": 8,
+      "type": "switch"
+    },
+    {
+      "x": 15,
+      "y": 8,
+      "type": "boulder"
     },
     {
       "x": 17,
@@ -388,6 +453,11 @@
       "type": "treasure"
     },
     {
+    "x": 8,
+    "y": 10,
+    "type": "treasure"
+    },
+    {
       "x": 11,
       "y": 10,
       "type": "invincibility"
@@ -401,6 +471,11 @@
       "x": 0,
       "y": 11,
       "type": "wall"
+    },
+    {
+      "x": 2,
+      "y": 11,
+      "type": "door"
     },
     {
       "x": 3,
@@ -483,6 +558,11 @@
       "type": "wall"
     },
     {
+      "x": 7,
+      "y": 13,
+      "type": "treasure"
+   },
+    {
       "x": 12,
       "y": 13,
       "type": "wall"
@@ -506,6 +586,11 @@
       "x": 0,
       "y": 14,
       "type": "wall"
+    },
+    {
+      "x": 16,
+      "y": 14,
+      "type": "exit"
     },
     {
       "x": 17,
