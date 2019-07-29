@@ -13,20 +13,25 @@ public class Boulder extends Entity {
     	
  
     	for(Entity e : listEntities){
-    		if (this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && !(e instanceof Switch)){
-    			return false;
+    		System.out.println("X: "+ this.getX());
+    		System.out.println("Y: "+ this.getY());
+    		System.out.println("Xi: "+ e.getX());
+    		System.out.println("Yi: "+ e.getY());
+    		System.out.println(e instanceof Switch);
+    		if ((this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && !(e instanceof Switch))){
+    			return true;
     		}
     	}
-    	
-    	
-    	return true;
+    	return false;
     }
     public void moveBoulder(int x, int y) {
+    	System.out.println("ERGERFS");
     	this.y().set(getY()+y);
     	this.x().set(getX()+x);
     }
 	@Override
 	public Entity interact(Player p) {
+		System.out.println("ERGERFS");
 		if(p.getX() == this.getX()) {
 			if(this.getY() == p.getY()-1) {
 				if(checkBoulder(0,-1,p.getDungeon().getEntities())) {
@@ -34,7 +39,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(0,-1);
-					return this;
+					return null;
 				}
 			}
 			if(this.getY() == p.getY()+1) {
@@ -43,7 +48,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(0,1);
-					return this;
+					return null;
 				}
 			}
 		}
@@ -54,7 +59,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(-1,0);
-					return this;
+					return null;
 				}
 			}
 			if(this.getX() == p.getX()+1) {
@@ -63,7 +68,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(1,0);
-					return this;
+					return null;
 				}
 			}
 		}
