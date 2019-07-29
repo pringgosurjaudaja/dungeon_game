@@ -1031,6 +1031,16 @@
       "x": 19,
       "y": 17,
       "type": "wall"
+    },
+    {
+      "x": 18,
+      "y": 13,
+      "type": "sword"
+    },
+    {
+      "x": 18,
+      "y": 15,
+      "type": "enemy"
     }
   ],
   "goal-condition": {
