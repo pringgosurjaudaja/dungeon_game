@@ -81,25 +81,31 @@ public class Player extends Entity {
     			}
     	}
     	
-    	if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	if(item == 1) {
+    		//return null; 
+    	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
 			if (getY() > 0) {
 	            y().set(getY() - 1);// move up
 			}
-				invincibilityChange();
-				dungeon.bombState();
-				System.out.println("CARRY ONS: " + carryOns);
+			invincibilityChange();
+			dungeon.bombState();
+			System.out.println("CARRY ONS: " + carryOns);
     	}
     	
-    	//remove entity from list of entities
-    	if(removedEntity != null && !(removedEntity instanceof Exit)) dungeon.removeEntity(removedEntity);
-    	
+        //remove entity from list of entities
+       	if(removedEntity != null && !(removedEntity instanceof Boulder)) {
+       		dungeon.removeEntity(removedEntity);
+       	}
+       	
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
 		
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
+		if(!(removedEntity instanceof Boulder)) {
+			dungeon.addRemovedEntity(removedEntity);
+		}
 		
     }
 
@@ -117,16 +123,18 @@ public class Player extends Entity {
     	if(item == 1 ) {
     		//return null; 
     	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
-			if (getY() > 0)
+			if (getY() > 0) {
 	            y().set(getY() + 1);// move down
-				invincibilityChange();
-				dungeon.bombState();
-				
-				System.out.println("CARRY ONS: " + carryOns);
+			}
+			invincibilityChange();
+			dungeon.bombState();
+			System.out.println("CARRY ONS: " + carryOns);
     	}
     	
-    	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+        //remove entity from list of entities
+       	if(removedEntity != null && !(removedEntity instanceof Boulder)) {
+       		dungeon.removeEntity(removedEntity);
+       	}
     	
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
@@ -134,7 +142,9 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
+		if(!(removedEntity instanceof Boulder)) {
+			dungeon.addRemovedEntity(removedEntity);
+		}
     }
 
     
@@ -153,16 +163,18 @@ public class Player extends Entity {
     	if(item == 1) {
     		//return null; 
     	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
-			if (getY() > 0)
+			if (getY() > 0) {
 	            x().set(getX() - 1);	// move left
-				invincibilityChange();
-				dungeon.bombState();
-				
-				System.out.println("CARRY ONS: " + carryOns);
+			}
+			invincibilityChange();
+			dungeon.bombState();
+			System.out.println("CARRY ONS: " + carryOns);
     	}
     	
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null && !(removedEntity instanceof Boulder)) {
+    		dungeon.removeEntity(removedEntity);
+    	}
     	
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
@@ -170,7 +182,9 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
+		if(!(removedEntity instanceof Boulder)) {
+			dungeon.addRemovedEntity(removedEntity);
+		}
     }
 
     public void moveRight() {
@@ -188,18 +202,16 @@ public class Player extends Entity {
     	if(item == 1) {
     		//return null; 
     	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
-    		System.out.println("INSIDEEEEEEEEEEE IF");
-			if (getY() > 0)
+			if (getY() > 0) {
 	            x().set(getX() + 1);	// move right
-				invincibilityChange();
-				dungeon.bombState();
-				
-				System.out.println("CARRY ONS: " + carryOns);
+			}
+			invincibilityChange();
+			dungeon.bombState();
+			System.out.println("CARRY ONS: " + carryOns);
     	}
     	
     	//remove entity from list of entities
     	if(removedEntity != null && !(removedEntity instanceof Boulder)) {
-    		System.out.println("INSIDE REMOVE ENTITY");
     		dungeon.removeEntity(removedEntity);
     	}
     	
@@ -209,7 +221,10 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-//		dungeon.addRemovedEntity(removedEntity);
+		if(!(removedEntity instanceof Boulder)) {
+			dungeon.addRemovedEntity(removedEntity);
+		}
+		
 
     }
 
