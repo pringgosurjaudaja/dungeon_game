@@ -22,6 +22,7 @@ public class Key extends Entity {
 		if(p.getCarryOns() == null) {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
+			System.out.println("CARRIED KEY WITH ID = " +this.id);
 			return this;
 		}
 		else {

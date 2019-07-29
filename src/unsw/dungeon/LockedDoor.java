@@ -31,21 +31,21 @@ public class LockedDoor extends Entity {
     
 	public void openDoor() {
 		this.isOpen = true;
-		//this.getImage().setImage(new Image("/open_door.png"));
+		this.getImage().setImage(new Image("/open_door.png"));
 	}
 
 	@Override
 	public Entity interact(Player p) {
 		if(this.isOpen) {
 			System.out.println("Door already opened");
-		}
-		else {
-			if(p.getCarryOns() instanceof Key && ((LockedDoor) p.getCarryOns()).getId()== this.getId()) {
-				this.openDoor();
+			return this;
+		} else {
+			if(p.getCarryOns() instanceof Key && ((Key) p.getCarryOns()).getId() == this.getId()) {
+				this.openDoor();	// open the door
+				p.setCarryOns(null);
 				return this;
-			}
-			else {
-				System.out.println("Key Doesn't Fit");
+			} else {
+				System.out.println("Key Doesn't Fit or Player is not carrying any key.");
 			}
 		}
 		return null;
