@@ -56,7 +56,7 @@ public class Player extends Entity {
 	    		Entity w = dungeon.getEntities().get(i);
 	    		if(w instanceof Enemy) {
 	    			if(w.getY() == getY() + 1 && w.getX() == getX()||w.getY() == getY() - 1 && w.getX() == getX()||w.getY() == getY() && w.getX() == getX()-1||w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
-		    			//dungeon.getEntities().remove(w);
+		    			dungeon.getEntities().remove(w);
 		    			((Sword) carryOns).reduceDurability();
 		    			System.out.println("Killed an enemy using sword. Sword durability becomes = " + ((Sword) carryOns).getDurability());
 		    			if(((Sword) carryOns).getDurability() == 0) {	// if durability of sword becomes 0
@@ -88,7 +88,7 @@ public class Player extends Entity {
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	//if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
@@ -124,7 +124,7 @@ public class Player extends Entity {
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	//if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
@@ -155,7 +155,7 @@ public class Player extends Entity {
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	//if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
@@ -185,7 +185,7 @@ public class Player extends Entity {
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	//if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
