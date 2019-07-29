@@ -8,6 +8,7 @@ public class Bomb extends Entity {
 	BombState litBomb3;
 	BombState explodingBomb;
 	BombState state = unlitBomb;
+	BombState postExplosionBomb;
 	private int countdown;
 	public Bomb(int x, int y) {
 		super(x, y);
@@ -16,6 +17,7 @@ public class Bomb extends Entity {
 		litBomb2 = new LitBomb2(this);
 		litBomb3 = new LitBomb3(this);
 		explodingBomb = new ExplodingBomb(this);
+		postExplosionBomb = new PostExplosionBomb(this);
 		setCountdown(4);
 		this.state = unlitBomb;
 	}
@@ -78,6 +80,16 @@ public class Bomb extends Entity {
 		}
 		return false;
 	}
+	public boolean postExplode() {
+		if(state == postExplosionBomb) return true;
+		return false;
+	}
+	public BombState getPostExplosionBomb() {
+		return postExplosionBomb;
+	}
+	public void setPostExplosionBomb(BombState postExplosionBomb) {
+		this.postExplosionBomb = postExplosionBomb;
+	}
 	@Override
 	public Entity interact(Player p) {
 		if(p.getCarryOns()== null) {
@@ -89,6 +101,11 @@ public class Bomb extends Entity {
 			System.out.println("Couldn't pick up bomb, already carrying something");
 			return null;
 		}
+	}
+	@Override
+	public Entity drop() {
+		countDownBomb();
+		return this;
 	}
 	
 }

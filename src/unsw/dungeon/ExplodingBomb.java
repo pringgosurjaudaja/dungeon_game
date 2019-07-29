@@ -14,6 +14,7 @@ public class ExplodingBomb implements BombState {
 
 	@Override
 	public void countdown() {
+		bomb.setState(bomb.getPostExplosionBomb());
 		System.out.println("Bomb Exploded");
 	}
 
