@@ -29,6 +29,11 @@ public class Key extends Entity {
 			return null;
 		}
 	}
+
+	@Override
+	public Entity drop() {
+		return this;
+	}
     
     
 }
