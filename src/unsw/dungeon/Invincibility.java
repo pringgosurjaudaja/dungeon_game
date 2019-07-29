@@ -32,5 +32,9 @@ public class Invincibility extends Entity {
 		p.getDungeon().removeEntity(this);
 		return this;
 	}
+	@Override
+	public boolean remove() {
+		return true;
+	}
 	
 }

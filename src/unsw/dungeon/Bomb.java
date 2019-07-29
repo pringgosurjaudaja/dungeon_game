@@ -107,5 +107,9 @@ public class Bomb extends Entity {
 		countDownBomb();
 		return this;
 	}
+	@Override
+	public boolean remove() {
+		return true;
+	}
 	
 }

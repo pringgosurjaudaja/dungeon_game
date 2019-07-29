@@ -40,7 +40,10 @@ public class Sword extends Entity {
 	public Entity drop() {
 		return this;
 	}
-	
+	@Override
+	public boolean remove() {
+		return true;
+	}
 	
 
 }

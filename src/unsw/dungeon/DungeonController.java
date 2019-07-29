@@ -65,6 +65,7 @@ public class DungeonController {
             invincibleState(player.getInvincibility());
             bombState();
             removeItem();
+            loadDungeon();
             //if(w!= null) w.getImage().setImage(null);
             break;
         case DOWN:
@@ -72,6 +73,7 @@ public class DungeonController {
         	invincibleState(player.getInvincibility());
         	bombState();
         	removeItem();
+        	loadDungeon();
             //if(x!= null) x.getImage().setImage(null);
             break;
         case LEFT:
@@ -79,6 +81,7 @@ public class DungeonController {
         	invincibleState(player.getInvincibility());
         	bombState();
         	removeItem();
+        	loadDungeon();
            // if(y!= null) y.getImage().setImage(null);
             break;
         case RIGHT:
@@ -86,6 +89,7 @@ public class DungeonController {
         	invincibleState(player.getInvincibility());
         	bombState();
         	removeItem();
+        	loadDungeon();
             //if(z!= null) z.getImage().setImage(null);
             break;
         case SPACE:		// used to drop carry_ons
@@ -124,7 +128,16 @@ public class DungeonController {
     		e.getImage().setImage(null);
     	}
     }
-    
+    public void loadDungeon() {
+    	for(Entity e: dungeon.getEntities()) {
+    		if(e instanceof LockedDoor) {
+    			if(((LockedDoor) e).isOpen()) {
+    				System.out.println("RTSF");
+    				e.getImage().setImage(new Image("/open_door.png"));
+    			}
+    		}
+    	}
+    }
     public void dropItem(Entity e) {
     	if(e instanceof Key) {
     		e.setImage(new ImageView("/key.png"));

@@ -77,24 +77,29 @@ public class Player extends Entity {
     		Entity w = dungeon.getEntities().get(i);
     			if(w.getY() == getY() - 1 && w.getX() == getX()){	// cannot move up because there's a wall
     				removedEntity = w.interact(this);
-    				if(removedEntity == null)item = 1;
-    				break;
+    				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
+    				//break;
     			}
     	}
-    	if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    
+    	if((removedEntity != null && removedEntity.pass())|| item ==0) {
 			if (getY() > 0)
 	            y().set(getY() - 1);// move up
 				invincibilityChange();
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) {
+    		if(removedEntity.remove()) {
+    			dungeon.removeEntity(removedEntity);
+        		dungeon.addRemovedEntity(removedEntity);
+    		}
+    	}
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
     }
 
     private void moveBoulder(Entity w, int x, int y) {
@@ -110,27 +115,29 @@ public class Player extends Entity {
     		Entity w = dungeon.getEntities().get(i);
     			if(w.getY() == getY() + 1 && w.getX() == getX()){	// cannot move up because there's a wall
     				removedEntity = w.interact(this);
-    				if(removedEntity == null)item = 1;
+    				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
     				break;
     			}
     	}
-    	if(item ==1 ) {
-    		//return null; 
-    	}
-    	else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	if((removedEntity != null && removedEntity.pass())|| item ==0) {
 			if (getY() > 0)
 	            y().set(getY() + 1);// move up
 				invincibilityChange();
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) {
+    		if(removedEntity.remove()) {
+    			dungeon.removeEntity(removedEntity);
+        		dungeon.addRemovedEntity(removedEntity);
+    		}
+    	}
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
+		//dungeon.addRemovedEntity(removedEntity);
     }
 
     
@@ -141,27 +148,29 @@ public class Player extends Entity {
     		Entity w = dungeon.getEntities().get(i);
     			if(w.getY() == getY() && w.getX() == getX()-1){	// cannot move up because there's a wall
     				removedEntity = w.interact(this);
-    				if(removedEntity == null)item = 1;
+    				if(removedEntity == null|| removedEntity instanceof Wall)item = 1;
     				break;
     			}
     	}
-    	if(item ==1) {
-    		//return null; 
-    	}
-    	else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	if((removedEntity != null && removedEntity.pass())|| item ==0) {
 			if (getY() > 0)
 	            x().set(getX() - 1);// move up
 				invincibilityChange();
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) {
+    		if(removedEntity.remove()) {
+    			dungeon.removeEntity(removedEntity);
+        		dungeon.addRemovedEntity(removedEntity);
+    		}
+    	}
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
+		//dungeon.addRemovedEntity(removedEntity);
     }
 
     public void moveRight() {
@@ -171,27 +180,29 @@ public class Player extends Entity {
     		Entity w = dungeon.getEntities().get(i);
     			if(w.getY() == getY() && w.getX() == getX()+1){	// cannot move up because there's a wall
     				removedEntity = w.interact(this);
-    				if(removedEntity == null)item = 1;
+    				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
     				break;
     			}
     	}
-    	if(item ==1) {
-    		//return null; 
-    	}
-    	else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	if((removedEntity != null && removedEntity.pass())|| item ==0) {
 			if (getY() > 0)
 	            x().set(getX() + 1);// move up
 				invincibilityChange();
 				dungeon.bombState();
     	}
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null) {
+    		if(removedEntity.remove()) {
+    			dungeon.removeEntity(removedEntity);
+        		dungeon.addRemovedEntity(removedEntity);
+    		}
+    	}
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
 		System.out.println(removedEntity);
-		dungeon.addRemovedEntity(removedEntity);
+		//dungeon.addRemovedEntity(removedEntity);
     }
 
     // to drop the carry-ons by pressing SPACE on the keyboard

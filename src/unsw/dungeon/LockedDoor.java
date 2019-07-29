@@ -38,17 +38,27 @@ public class LockedDoor extends Entity {
 	public Entity interact(Player p) {
 		if(this.isOpen) {
 			System.out.println("Door already opened");
+			return this;
 		}
 		else {
-			if(p.getCarryOns() instanceof Key && ((LockedDoor) p.getCarryOns()).getId()== this.getId()) {
-				this.openDoor();
-				return this;
+			if(p.getCarryOns() instanceof Key) {
+				if(((Key) p.getCarryOns()).getId()== this.getId()) {
+					this.openDoor();
+					return this;
+				}
+				
 			}
 			else {
 				System.out.println("Key Doesn't Fit");
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean pass() {
+		if(isOpen) return true;
+		return false;
 	}
     
     

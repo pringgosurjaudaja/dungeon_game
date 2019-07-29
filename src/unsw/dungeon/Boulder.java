@@ -21,6 +21,12 @@ public class Boulder extends Entity {
     		if ((this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && !(e instanceof Switch))){
     			return true;
     		}
+    		else if((this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && (e instanceof Switch))) {
+    			((Switch) e).boulderSwitch();
+    		}
+    		else if((this.getX() == e.getX() && this.getY() == e.getY() && (e instanceof Switch))&&this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() ) {
+    			((Switch) e).boulderSwitch();
+    		}
     	}
     	return false;
     }
@@ -39,7 +45,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(0,-1);
-					return null;
+					return this;
 				}
 			}
 			if(this.getY() == p.getY()+1) {
@@ -48,7 +54,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(0,1);
-					return null;
+					return this;
 				}
 			}
 		}
@@ -59,7 +65,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(-1,0);
-					return null;
+					return this;
 				}
 			}
 			if(this.getX() == p.getX()+1) {
@@ -68,7 +74,7 @@ public class Boulder extends Entity {
 				}
 				else {
 					moveBoulder(1,0);
-					return null;
+					return this;
 				}
 			}
 		}
