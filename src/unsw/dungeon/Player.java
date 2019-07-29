@@ -74,7 +74,7 @@ public class Player extends Entity {
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// up is an entity
+    			if(w.getY() == getY() - 1 && w.getX() == getX() && !(w instanceof Switch)){	// up is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null)item = 1;
     				break;
@@ -83,7 +83,7 @@ public class Player extends Entity {
     	
     	if(item == 1) {
     		//return null; 
-    	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	} else if(item == 0 || removedEntity instanceof Boulder || removedEntity instanceof LockedDoor) {
 			if (getY() > 0) {
 	            y().set(getY() - 1);// move up
 			}
@@ -114,7 +114,7 @@ public class Player extends Entity {
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// down is an entity
+    			if(w.getY() == getY() + 1 && w.getX() == getX() && !(w instanceof Switch)){	// down is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null)item = 1;
     				break;
@@ -122,7 +122,7 @@ public class Player extends Entity {
     	}
     	if(item == 1 ) {
     		//return null; 
-    	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	} else if(item == 0 || removedEntity instanceof Boulder || removedEntity instanceof LockedDoor) {
 			if (getY() > 0) {
 	            y().set(getY() + 1);// move down
 			}
@@ -153,7 +153,7 @@ public class Player extends Entity {
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() && w.getX() == getX()-1){	// left is an entity
+    			if(w.getY() == getY() && w.getX() == getX()-1 && !(w instanceof Switch)){	// left is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null)item = 1;
     				break;
@@ -162,7 +162,7 @@ public class Player extends Entity {
     	
     	if(item == 1) {
     		//return null; 
-    	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	} else if(item == 0 || removedEntity instanceof Boulder || removedEntity instanceof LockedDoor) {
 			if (getY() > 0) {
 	            x().set(getX() - 1);	// move left
 			}
@@ -192,7 +192,7 @@ public class Player extends Entity {
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() && w.getX() == getX()+1){	// right is an entity
+    			if(w.getY() == getY() && w.getX() == getX()+1 && !(w instanceof Switch)){	// right is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null)item = 1;
     				break;
@@ -201,7 +201,7 @@ public class Player extends Entity {
     	
     	if(item == 1) {
     		//return null; 
-    	} else if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
+    	} else if(item == 0 || removedEntity instanceof Boulder || removedEntity instanceof LockedDoor) {
 			if (getY() > 0) {
 	            x().set(getX() + 1);	// move right
 			}
