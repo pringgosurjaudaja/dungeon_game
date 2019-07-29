@@ -61,31 +61,45 @@ public class DungeonController {
 
         switch (event.getCode()) {
         case UP:
-            Entity w = player.moveUp();
-            if(w!= null) w.getImage().setImage(null);
+            player.moveUp();
+            invincibleState(player.getInvincibility());
+            bombState();
+            removeItem();
+            //if(w!= null) w.getImage().setImage(null);
             break;
         case DOWN:
-        	Entity x = player.moveDown();
-            if(x!= null) x.getImage().setImage(null);
+        	player.moveDown();
+        	invincibleState(player.getInvincibility());
+        	bombState();
+        	removeItem();
+            //if(x!= null) x.getImage().setImage(null);
             break;
         case LEFT:
-        	Entity y = player.moveLeft();
-            if(y!= null) y.getImage().setImage(null);
+        	player.moveLeft();
+        	invincibleState(player.getInvincibility());
+        	bombState();
+        	removeItem();
+           // if(y!= null) y.getImage().setImage(null);
             break;
         case RIGHT:
-        	Entity z = player.moveRight();
-            if(z!= null) z.getImage().setImage(null);
+        	player.moveRight();
+        	invincibleState(player.getInvincibility());
+        	bombState();
+        	removeItem();
+            //if(z!= null) z.getImage().setImage(null);
             break;
         case SPACE:		// used to drop carry_ons
         	//player.dropEntity(squares);
-        	player.dropEntity();
+        	Entity b = player.dropEntity();
+        	if(b!= null) dropItem(b);
             break;
         case ENTER:		// used to kill enemy with sword
         	if(player.getCarryOns() instanceof Sword) {
-        		Entity a = player.killEnemy();
-        		if(a != null) {
-        			a.getImage().setImage(null);
-        		}
+        		player.killEnemy();
+        		removeItem();
+        		//if(a != null) {
+        		//	a.getImage().setImage(null);
+        		//}
         	}
         /*	removedEntity = player.killEnemy();
         	System.out.println("enemy to kill : " + removedEntity);
@@ -103,7 +117,77 @@ public class DungeonController {
         	// goals haven't been reached
         }
     }
+    
+    public void removeItem() {
+    	for(Entity e: dungeon.getRemovedEntity()) {
+    		if(e!= null)
+    		e.getImage().setImage(null);
+    	}
+    }
+    
+    public void dropItem(Entity e) {
+    	if(e instanceof Key) {
+    		e.setImage(new ImageView("/key.png"));
+    		squares.add(e.getImage(),player.getX(),player.getY());
 
+    	}
+    	else if(e instanceof Sword) {
+    		e.setImage(new ImageView("/greatsword_1_new.png"));
+    		squares.add(e.getImage(),player.getX(),player.getY());
+    	}
+    	else if(e instanceof Bomb) {
+    		e.setImage(new ImageView("/bomb_unlit.png"));
+    		squares.add(e.getImage(),player.getX(),player.getY());
+    	}
+    }
+    
+    public void bombState() {
+    	for(Entity e: dungeon.getEntities()) {
+    		if(e instanceof Bomb && ((Bomb) e).isLit()) {
+    			if(((Bomb) e).getState() == ((Bomb) e).getLitBomb1()) {
+    				e.getImage().setImage(new Image("/bomb_lit_1.png"));
+    			}
+    			else if(((Bomb) e).getState() == ((Bomb) e).getLitBomb2()) {
+    				System.out.println(e);
+    				e.getImage().setImage(new Image("/bomb_lit_2.png"));
+    			}
+    			else if(((Bomb) e).getState() == ((Bomb) e).getLitBomb3()) {
+    				e.getImage().setImage(new Image("/bomb_lit_3.png"));
+    			}
+    			else if(((Bomb) e).getState() == ((Bomb) e).getExplodingBomb()) {
+    				System.out.println("WFGWDEFEGF");
+    				e.getImage().setImage(new Image("/bomb_lit_4.png"));
+    			}
+    			else if(((Bomb) e).getState() == ((Bomb) e).getPostExplosionBomb()) {
+    				e.getImage().setImage(null);
+    			}
+    		}
+    	}
+    }
+    
+    public void invincibleState(Invincibility i) {
+    	//System.out.println("PLAyeR INV: "+i);
+    	if(i != null) {
+	    	if(i.getCountdown() == 5) {
+	    		player.getImage().setImage(new Image("/invincibility1.png"));
+	    	}
+	    	else if(i.getCountdown() == 4) {
+	    		player.getImage().setImage(new Image("/invincibility2.png"));
+	    	}	
+	    	else if(i.getCountdown() == 3) {
+	    		player.getImage().setImage(new Image("/invincibility3.png"));
+	    	}
+	    	else if(i.getCountdown() == 2) {
+	    		player.getImage().setImage(new Image("/invincibility4.png"));
+	    	}
+	    	else if(i.getCountdown() == 1) {
+	    		player.getImage().setImage(new Image("/invincibility5.png"));
+	    	}
+	    	else if(i.getCountdown() == 0) {
+	    		player.getImage().setImage(new Image("human_new.png"));
+	    	}
+    	}
+    }
     // check if all the goals have been met
     public boolean checkGoals(Dungeon dungeon, JSONArray subgoals) {
     	if (subgoals == null) return false;

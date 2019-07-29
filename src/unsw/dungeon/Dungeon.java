@@ -21,6 +21,7 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
+    private List<Entity> removedEntity;
     private Player player;
     private JSONArray goals;
     private Goals dungeonGoal;
@@ -28,6 +29,7 @@ public class Dungeon {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
+        this.removedEntity = new ArrayList<>();
         this.player = null;
         goalToJSON(goals);
         System.out.println(dungeonGoal.toString());
@@ -37,7 +39,15 @@ public class Dungeon {
         return width;
     }
 
-    public int getHeight() {
+    public List<Entity> getRemovedEntity() {
+		return removedEntity;
+	}
+
+	public void addRemovedEntity(Entity e) {
+		this.removedEntity.add(e);
+	}
+
+	public int getHeight() {
         return height;
     }
 
@@ -45,13 +55,49 @@ public class Dungeon {
         return player;
     }
     public void explode(Bomb b) {
-    	if(b.exploded()) {
-    		removeEntity(getEntity(b.getX()+1, b.getY()));
-    		removeEntity(getEntity(b.getX()-1, b.getY()));
-    		removeEntity(getEntity(b.getX(), b.getY()+1));
-    		removeEntity(getEntity(b.getX(), b.getY()-1));
+    	//if(b.exploded()) {
+    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    		System.out.println("KILL");
+    		addRemovedEntity(getEntity(b.getX()+1, b.getY()));
+    	}
+    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    		System.out.println("KILL");
+    		addRemovedEntity(getEntity(b.getX()-1, b.getY()));
+    	}
+    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    		System.out.println("KILL");
+    		addRemovedEntity(getEntity(b.getX(), b.getY()+1));
+    	}
+    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    		System.out.println("KILL");
+    		addRemovedEntity(getEntity(b.getX(), b.getY()-1));
+    	}
+    		//addRemovedEntity(getEntity(b.getX()+1, b.getY()));
+    		//removeEntity(getEntity(b.getX()+1, b.getY()));
+    		//addRemovedEntity(getEntity(b.getX()-1, b.getY()));
+    		//addRemovedEntity(getEntity(b.getX(), b.getY()+1));
+    		//addRemovedEntity(getEntity(b.getX(), b.getY()-1));
+    		System.out.println("bomb removed");
+    		//entities.remove(b);
+    	//}
+    }
+    
+    public void bombState() {
+    	for(Entity e : entities) {
+    		if(e instanceof Bomb && ((Bomb) e).isLit()) {
+    			if(((Bomb) e).postExplode()) { 
+    				entities.remove(e);
+    				break;
+    			}
+    			((Bomb) e).countDownBomb();
+    			if(((Bomb) e).exploded()) {
+    				explode((Bomb) e);
+    				break;
+    			}
+    		}
     	}
     }
+    
     public void setPlayer(Player player) {
         this.player = player;
     }
