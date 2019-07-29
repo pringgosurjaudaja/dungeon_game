@@ -51,4 +51,7 @@ public class Entity {
     public Entity interact(Player p) {
     	return null;
     }
+    public Entity drop() {
+    	return null;
+    }
 }
