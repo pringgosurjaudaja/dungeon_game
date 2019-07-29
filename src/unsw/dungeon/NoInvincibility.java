@@ -10,6 +10,7 @@ public class NoInvincibility implements InvincibilityState {
 	@Override
 	public void countdown() {
 		System.out.println("Invincibility ran out");
+		invincibility.setState(null);
 	}
 
 }

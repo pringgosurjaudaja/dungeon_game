@@ -9,7 +9,7 @@ public class Invincibility3 implements InvincibilityState {
 
 	@Override
 	public void countdown() {
-		invincibility.setState(invincibility.getInvincibility2());
+		invincibility.setState(new Invincibility4(invincibility));
 	}
 
 }
