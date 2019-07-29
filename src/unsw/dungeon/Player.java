@@ -93,7 +93,7 @@ public class Player extends Entity {
     	}
     	
         //remove entity from list of entities
-       	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+       	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
        		dungeon.removeEntity(removedEntity);
        	}
        	
@@ -103,7 +103,7 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
 			dungeon.addRemovedEntity(removedEntity);
 		}
 		
@@ -132,7 +132,7 @@ public class Player extends Entity {
     	}
     	
         //remove entity from list of entities
-       	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+       	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
        		dungeon.removeEntity(removedEntity);
        	}
     	
@@ -142,7 +142,7 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
 			dungeon.addRemovedEntity(removedEntity);
 		}
     }
@@ -172,7 +172,7 @@ public class Player extends Entity {
     	}
     	
     	//remove entity from list of entities
-    	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+    	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
     		dungeon.removeEntity(removedEntity);
     	}
     	
@@ -182,7 +182,7 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
 			dungeon.addRemovedEntity(removedEntity);
 		}
     }
@@ -211,7 +211,7 @@ public class Player extends Entity {
     	}
     	
     	//remove entity from list of entities
-    	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+    	if(removedEntity != null && !(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
     		dungeon.removeEntity(removedEntity);
     	}
     	
@@ -221,7 +221,7 @@ public class Player extends Entity {
         }
 		
 		System.out.println(removedEntity);
-		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor)) {
+		if(!(removedEntity instanceof Boulder) && !(removedEntity instanceof LockedDoor) && !(removedEntity instanceof Exit)) {
 			dungeon.addRemovedEntity(removedEntity);
 		}
 		
