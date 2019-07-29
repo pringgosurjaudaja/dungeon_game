@@ -90,9 +90,10 @@ public class Bomb extends Entity {
 	public void setPostExplosionBomb(BombState postExplosionBomb) {
 		this.postExplosionBomb = postExplosionBomb;
 	}
+	
 	@Override
 	public Entity interact(Player p) {
-		if(p.getCarryOns()== null) {
+		if(p.getCarryOns() == null) {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
 			return this;

@@ -12,13 +12,16 @@ public class BotAutoMove extends Thread {
 	public void run() {
 		
 		AutoMoveAction move = new EnemyChase();
-		if(player.getCarryOns() instanceof Sword || player.getCarryOns() instanceof Invincibility || player.getCarryOns() instanceof Bomb) {
-			move = new EnemyRunAway();
-		}
 
 		while (true) {
 			try {
 				Thread.sleep(1000);
+				
+				if(player.getCarryOns() instanceof Sword || player.getCarryOns() instanceof Invincibility || player.getCarryOns() instanceof Bomb) {
+					move = new EnemyRunAway();
+				} else {
+					move = new EnemyChase();
+				}
 
 				for (Entity a : enemies) {
 					// check if player bring potion or not

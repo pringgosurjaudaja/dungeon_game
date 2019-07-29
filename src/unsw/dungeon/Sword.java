@@ -29,8 +29,7 @@ public class Sword extends Entity {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
 			return this;
-		}
-		else {
+		} else {
 			System.out.println("Can't pickup sword, already carrying something");
 			return null;
 		}

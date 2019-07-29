@@ -7,13 +7,75 @@ import java.util.Map;
 
 public class EnemyRunAway implements AutoMoveAction {
 
-	@Override
 	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height) {
 		// TODO Auto-generated method stub
 		//destination would be the opposite of where the player is at
-		Point dest2 = new Point(width-dest.x, height-dest.y);
-		return BFS(source, dest2, listCoordinates , width , height);
+		Point nextMove = BFS(source, dest, listCoordinates , width , height);
+		
+		ArrayList<Point> listMove = new ArrayList<Point>();
+		
+		
+		if(source.x < dest.x){
+			listMove.add(new Point(-1 , 0));
+		}
+		else {
+			listMove.add(new Point(1, 0));
+		}
+		
+		
+		if(source.y < dest.y){
+			listMove.add(new Point(0 , -1));
+		}
+		else {
+			listMove.add(new Point(0, 1));
+		}
+		
+		if(source.x < dest.x){
+			listMove.add(new Point(1 , 0));
+		}
+		else {
+			listMove.add(new Point(-1, 0));
+		}
+		
+		
+		if(source.y < dest.y){
+			listMove.add(new Point(0, 1));
+		}
+		else {
+			listMove.add(new Point(0, -1));
+		}
+		
+		
+		
+		int x = (nextMove.x - source.x) * -1;
+		int y = (nextMove.y - source.y) * -1;
+		
+		Point newNextMove = new Point(x , y);
+		Point oldNextMove = new Point(x*-1 , y*-1);
+		
+		
+	/*	listMove.remove(newNextMove);
+		listMove.add(0, newNextMove);
+		
+		
+		listMove.remove(oldNextMove);
+		listMove.add(oldNextMove);
+		*/
+		
+		
+		//check if there are obstacles
+		for(int i = 0 ; i < listMove.size() ; i++){
+			Point p = new Point(source.x + listMove.get(i).x  , source.y + listMove.get(i).y);
+			
+			if (listCoordinates.contains(p))continue;
+			
+			
+			return p;
+		}
+		
+		return source;
 	}
+	
 
 	public Point BFS(Point source , Point dest , ArrayList<Point> obstacles , int width , int height){ 
 		
@@ -68,6 +130,8 @@ public class EnemyRunAway implements AutoMoveAction {
 		
 		return previous;
 	}
+
+
 	
 
 }

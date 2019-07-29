@@ -81,14 +81,15 @@ public class Player extends Entity {
     	}
     	
     	if(item == 0 || removedEntity instanceof Boulder|| removedEntity instanceof LockedDoor) {
-			if (getY() > 0)
+			if (getY() > 0) {
 	            y().set(getY() - 1);// move up
+			}
 				invincibilityChange();
 				dungeon.bombState();
     	}
     	
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null && !(removedEntity instanceof Exit)) dungeon.removeEntity(removedEntity);
     	
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
@@ -188,7 +189,7 @@ public class Player extends Entity {
     	}
     	
     	//remove entity from list of entities
-    	if(removedEntity != null) dungeon.removeEntity(removedEntity);
+    	if(removedEntity != null && !(removedEntity instanceof Exit)) dungeon.removeEntity(removedEntity);
     	
 		//if(invincibility != null&& invinNew == 0) invincibility.countdownInvincibility();
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {

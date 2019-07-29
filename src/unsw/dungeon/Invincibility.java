@@ -26,11 +26,19 @@ public class Invincibility extends Entity {
 	public void setState(InvincibilityState state) {
 		this.state = state;
 	}
+	
 	@Override
 	public Entity interact(Player p) {
-		p.setInvincibility(this);
-		p.getDungeon().removeEntity(this);
-		return this;
+		if(p.getCarryOns() == null) {
+			p.setCarryOns(this);
+			p.setInvincibility(this);
+			p.getDungeon().removeEntity(this);
+			return this;
+		} else {
+			System.out.println("Can't pickup invincibility, already carrying something");
+			return null;
+		}
+
 	}
 	
 }
