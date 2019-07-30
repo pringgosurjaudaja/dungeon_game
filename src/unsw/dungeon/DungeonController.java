@@ -124,7 +124,7 @@ public class DungeonController {
     
     public void removeItem() {
     	for(Entity e: dungeon.getRemovedEntity()) {
-    		if(e!= null)
+    		if(e != null)
     		e.getImage().setImage(null);
     	}
     }
@@ -142,7 +142,6 @@ public class DungeonController {
     	if(e instanceof Key) {
     		e.setImage(new ImageView("/key.png"));
     		squares.add(e.getImage(),player.getX(),player.getY());
-
     	}
     	else if(e instanceof Sword) {
     		e.setImage(new ImageView("/greatsword_1_new.png"));
@@ -201,6 +200,7 @@ public class DungeonController {
 	    	}
     	}
     }
+
     // check if all the goals have been met
     public boolean checkGoals(Dungeon dungeon, JSONArray subgoals) {
     	if (subgoals == null) return false;

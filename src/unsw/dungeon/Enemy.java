@@ -102,50 +102,9 @@ public class Enemy extends Entity implements AutoMoveAction{
 
 package unsw.dungeon;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
-public class Enemy extends Entity implements AutoMoveAction {
+public class Enemy extends Entity {
 
 	public Enemy(int x, int y) {
 		super(x, y);
 	}
-
-	private void move(int x, int y) {
-		y().set(getY() + y);
-		x().set(getX() + x);
-
-	}
-
-	@Override
-	public void autoMove(ArrayList<Point> listCoordinates) {
-		// TODO Auto-generated method stub
-
-		ArrayList<Point> points = new ArrayList<Point>();
-
-		points.add(new Point(0 , 1));
-		points.add(new Point(0 , - 1));
-		points.add(new Point(1, 0));
-		points.add(new Point(-1 , 0));
-
-		while (true) {
-
-			int random = (int) (Math.random() * 4);
-			// check if there are another entity;
-			if (!compare(listCoordinates, getX() + points.get(random).x , getY() + points.get(random).y)) {
-				move(points.get(random).x, points.get(random).y);
-				break;
-			}
-		}
-	}
-
-	public boolean compare(ArrayList<Point> arr, int x , int y) {
-		for (Point po : arr) {
-			if (po.x == x && po.y == y)
-				return true;
-		}
-
-		return false;
-	}
-
 }

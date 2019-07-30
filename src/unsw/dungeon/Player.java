@@ -6,15 +6,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-
 /**
  * The player entity
  * @author Robert Clifton-Everest
  *
  */
 public class Player extends Entity {
-
-// TESTTTT
 
     private Dungeon dungeon;
     private Entity carryOns;
@@ -30,6 +27,7 @@ public class Player extends Entity {
         super(x, y);
         this.dungeon = dungeon;
     }
+
     public void setBomb() {
       if(carryOns instanceof Bomb) {
         dungeon.addEntity(carryOns);
@@ -40,16 +38,17 @@ public class Player extends Entity {
     public Invincibility getInvincibility() {
 		return invincibility;
 	}
+
     public void invincibilityChange() {
     	if(invincibility != null) {
-    		if(invincibility.getState()== null) {
+    		if(invincibility.getState() == null) {
         		invincibility = null;
-        	}
-    		else {
+        	} else {
     			invincibility.countdownInvincibility();
     		}
     	}
     }
+
 	public void killEnemy() {
     	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability()!= 0) {
 	    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
@@ -69,24 +68,26 @@ public class Player extends Entity {
     	}
     	//return null;
     }
-	
+
     public void moveUp() {
     	Entity removedEntity = null;
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() - 1 && w.getX() == getX()){	// cannot move up because there's a wall
+    			if(w.getY() == getY() - 1 && w.getX() == getX() && !(w instanceof Switch)){	// up is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
     				//break;
     			}
     	}
-    
+
     	if((removedEntity != null && removedEntity.pass())|| item ==0) {
-			if (getY() > 0)
+			if (getY() > 0) {
 	            y().set(getY() - 1);// move up
-				invincibilityChange();
-				dungeon.bombState();
+			}
+			invincibilityChange();
+			dungeon.bombState();
+			System.out.println("CARRY ONS: " + carryOns);
     	}
     	//remove entity from list of entities
     	if(removedEntity != null) {
@@ -99,21 +100,16 @@ public class Player extends Entity {
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
+
 		System.out.println(removedEntity);
     }
-
-    private void moveBoulder(Entity w, int x, int y) {
-		//move boulder
-    	w.y().set(w.getY() + y);
-		w.x().set(w.getX() + x);
-	}
 
     public void moveDown() {
     	Entity removedEntity = null;
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() + 1 && w.getX() == getX()){	// cannot move up because there's a wall
+    			if(w.getY() == getY() + 1 && w.getX() == getX() && !(w instanceof Switch)){	// down is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
     				break;
@@ -136,17 +132,18 @@ public class Player extends Entity {
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
+
 		System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
-    
+
     public void moveLeft() {
     	Entity removedEntity = null;
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() && w.getX() == getX()-1){	// cannot move up because there's a wall
+    			if(w.getY() == getY() && w.getX() == getX()-1 && !(w instanceof Switch)){	// left is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null|| removedEntity instanceof Wall)item = 1;
     				break;
@@ -169,6 +166,7 @@ public class Player extends Entity {
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
+
 		System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
@@ -178,7 +176,7 @@ public class Player extends Entity {
     	int item = 0;
     	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
     		Entity w = dungeon.getEntities().get(i);
-    			if(w.getY() == getY() && w.getX() == getX()+1){	// cannot move up because there's a wall
+    			if(w.getY() == getY() && w.getX() == getX()+1 && !(w instanceof Switch)){	// right is an entity and NOT a switch
     				removedEntity = w.interact(this);
     				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
     				break;
@@ -201,6 +199,7 @@ public class Player extends Entity {
 		if(dungeon.checkGoal(dungeon.getDungeonGoal())) {
         	System.out.println("Puzzle Completed");
         }
+
 		System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
@@ -253,10 +252,11 @@ public class Player extends Entity {
     	return null;
 
     }
+
 	public Entity getCarryOns() {
 		return carryOns;
 	}
-	
+
 	public void setCarryOns(Entity carryOns) {
 		this.carryOns = carryOns;
 	}

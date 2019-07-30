@@ -9,7 +9,7 @@ public class Exit extends Entity {
 	@Override
 	public Entity interact(Player p) {
 		System.out.println("EXIT");
-		return null;
+		return this;
 	}
     
 }

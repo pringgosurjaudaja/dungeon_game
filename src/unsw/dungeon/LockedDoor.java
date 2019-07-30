@@ -28,10 +28,10 @@ public class LockedDoor extends Entity {
 	public void setOpen(boolean isOpen) {
 		this.isOpen = isOpen;
 	}
-    
+
 	public void openDoor() {
 		this.isOpen = true;
-		//this.getImage().setImage(new Image("/open_door.png"));
+		this.getImage().setImage(new Image("/open_door.png"));
 	}
 
 	@Override
@@ -39,17 +39,13 @@ public class LockedDoor extends Entity {
 		if(this.isOpen) {
 			System.out.println("Door already opened");
 			return this;
-		}
-		else {
-			if(p.getCarryOns() instanceof Key) {
-				if(((Key) p.getCarryOns()).getId()== this.getId()) {
-					this.openDoor();
-					return this;
-				}
-				
-			}
-			else {
-				System.out.println("Key Doesn't Fit");
+		} else {
+			if(p.getCarryOns() instanceof Key && ((Key) p.getCarryOns()).getId() == this.getId()) {
+				this.openDoor();	// open the door
+				p.setCarryOns(null);
+				return this;
+			} else {
+				System.out.println("Key Doesn't Fit or Player is not carrying any key.");
 			}
 		}
 		return null;
@@ -60,6 +56,6 @@ public class LockedDoor extends Entity {
 		if(isOpen) return true;
 		return false;
 	}
-    
-    
+
+
 }

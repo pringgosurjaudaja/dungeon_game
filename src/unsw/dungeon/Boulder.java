@@ -13,13 +13,13 @@ public class Boulder extends Entity {
     	
  
     	for(Entity e : listEntities){
-    		System.out.println("X: "+ this.getX());
+/*    		System.out.println("X: "+ this.getX());
     		System.out.println("Y: "+ this.getY());
     		System.out.println("Xi: "+ e.getX());
     		System.out.println("Yi: "+ e.getY());
-    		System.out.println(e instanceof Switch);
+    		System.out.println(e instanceof Switch);*/
     		if ((this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && !(e instanceof Switch))){
-    			return true;
+    			return true;	// returns true if there IS an entity other than switch
     		}
     		else if((this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && (e instanceof Switch))) {
     			((Switch) e).boulderSwitch();
@@ -30,20 +30,19 @@ public class Boulder extends Entity {
     	}
     	return false;
     }
+    
     public void moveBoulder(int x, int y) {
-    	System.out.println("ERGERFS");
     	this.y().set(getY()+y);
     	this.x().set(getX()+x);
     }
+    
 	@Override
 	public Entity interact(Player p) {
-		System.out.println("ERGERFS");
 		if(p.getX() == this.getX()) {
 			if(this.getY() == p.getY()-1) {
-				if(checkBoulder(0,-1,p.getDungeon().getEntities())) {
-					return null;
-				}
-				else {
+				if(checkBoulder(0,-1,p.getDungeon().getEntities())) {	// if there is an entity other than switch
+					return null;	// can't move
+				} else {
 					moveBoulder(0,-1);
 					return this;
 				}
@@ -51,19 +50,17 @@ public class Boulder extends Entity {
 			if(this.getY() == p.getY()+1) {
 				if(checkBoulder(0,1,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(0,1);
 					return this;
 				}
 			}
-		}
-		else if(p.getY()==this.getY()) {
+		} else if(p.getY() == this.getY()) {
+			System.out.println("INSIDE Y");
 			if(this.getX() == p.getX()-1) {
 				if(checkBoulder(-1,0,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(-1,0);
 					return this;
 				}
@@ -71,8 +68,7 @@ public class Boulder extends Entity {
 			if(this.getX() == p.getX()+1) {
 				if(checkBoulder(1,0,p.getDungeon().getEntities())) {
 					return null;
-				}
-				else {
+				} else {
 					moveBoulder(1,0);
 					return this;
 				}

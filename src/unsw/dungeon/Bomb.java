@@ -90,18 +90,19 @@ public class Bomb extends Entity {
 	public void setPostExplosionBomb(BombState postExplosionBomb) {
 		this.postExplosionBomb = postExplosionBomb;
 	}
+	
 	@Override
 	public Entity interact(Player p) {
-		if(p.getCarryOns()== null) {
+		if(p.getCarryOns() == null) {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
 			return this;
-		}
-		else {
+		} else {
 			System.out.println("Couldn't pick up bomb, already carrying something");
 			return null;
 		}
 	}
+	
 	@Override
 	public Entity drop() {
 		countDownBomb();

@@ -54,4 +54,10 @@ public class Entity {
     public Entity drop() {
     	return null;
     }
+    public boolean pass() {
+    	return false;
+    }
+    public boolean remove() {
+    	return false;
+    }
 }

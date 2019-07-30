@@ -4,5 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 public interface AutoMoveAction {
-	public void autoMove(ArrayList<Point> listCoordinates);
+	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height);
+
 }
