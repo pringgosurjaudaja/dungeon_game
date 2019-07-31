@@ -163,10 +163,10 @@ public class Dungeon {
 				return checkEnemyGoal();
 			}
 			else if(g.getGoal().equals("exit")) {
-
+				return checkExitGoal();
 			}
 			else if(g.getGoal().equals("boulders")) {
-
+				return checkBoulderGoal();
 			}
 		}
 		else {
@@ -231,6 +231,27 @@ public class Dungeon {
 		for(Entity e : this.entities) {
 			if(e instanceof Treasure) {
 				return false;
+			}
+		}
+		return true;
+	}
+	public boolean checkExitGoal() {
+		for(Entity e: this.entities) {
+			if(e instanceof Exit) {
+				if(e.getX() == player.getX() && e.getY() == player.getY()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean checkBoulderGoal() {
+		for(Entity e: this.entities) {
+			if(e instanceof Switch) {
+				if(!((Switch) e).isSwitched()) {
+					return false;
+				}
 			}
 		}
 		return true;

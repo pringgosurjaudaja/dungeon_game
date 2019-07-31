@@ -24,8 +24,8 @@ public class Boulder extends Entity {
     		else if((this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() && (e instanceof Switch))) {
     			((Switch) e).boulderSwitch();
     		}
-    		else if((this.getX() == e.getX() && this.getY() == e.getY() && (e instanceof Switch))&&this.getX() + paramX == e.getX() && this.getY() + paramY == e.getY() ) {
-    			((Switch) e).boulderSwitch();
+    		else if((this.getX() == e.getX() && this.getY() == e.getY() && (e instanceof Switch)) ) {
+    			System.out.println("SWITCH TRUE");
     		}
     	}
     	return false;
@@ -36,6 +36,7 @@ public class Boulder extends Entity {
     	this.x().set(getX()+x);
     }
     
+
 	@Override
 	public Entity interact(Player p) {
 		if(p.getX() == this.getX()) {
