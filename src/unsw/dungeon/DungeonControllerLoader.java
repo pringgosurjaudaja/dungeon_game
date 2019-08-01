@@ -34,6 +34,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image unlitBombImage;
 //  private Image litBombImage;
     private Image enemyImage;
+    private Image houndImage;
     private Image swordImage;
     private Image invincibilityImage;
 
@@ -47,6 +48,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         // MORE TO DO
         exitImage = new Image("/exit.png");
         treasureImage = new Image("/gold_pile.png");
+        //treasureImage = new Image("/shine.png");
         lockedDoorImage = new Image("/closed_door.png");
         keyImage = new Image("/key.png");
         boulderImage = new Image("/boulder.png");
@@ -54,6 +56,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         unlitBombImage = new Image("/bomb_unlit.png");
         //       litBombImage = new Image("/");
         enemyImage = new Image("/deep_elf_master_archer.png");
+        houndImage = new Image("/hound.png");
         swordImage = new Image("/greatsword_1_new.png");
         invincibilityImage = new Image("/brilliant_blue_new.png");
     }
@@ -123,6 +126,13 @@ public class DungeonControllerLoader extends DungeonLoader {
 	public void onLoad(Enemy enemy) {
 		ImageView view = new ImageView(enemyImage);
 		addEntity(enemy, view);
+
+	}
+    
+    @Override
+	public void onLoad(Hound hound) {
+		ImageView view = new ImageView(houndImage);
+		addEntity(hound, view);
 
 	}
 

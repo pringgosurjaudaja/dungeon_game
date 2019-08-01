@@ -18,6 +18,7 @@ public class Player extends Entity {
     private int treasure = 0;
     Invincibility invincibility;
     private boolean dead;
+    public int life = 3;
 
     /**
      * Create a player positioned in square (x,y)
@@ -60,11 +61,11 @@ public class Player extends Entity {
     }
 
 	public void killEnemy() {
-    	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability()!= 0) {
+    	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability() != 0) {
 	    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
 	    		Entity w = dungeon.getEntities().get(i);
 	    		if(w instanceof Enemy) {
-	    			if(w.getY() == getY() + 1 && w.getX() == getX()||w.getY() == getY() - 1 && w.getX() == getX()||w.getY() == getY() && w.getX() == getX()-1||w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
+	    			if(w.getY() == getY() + 1 && w.getX() == getX()|| w.getY() == getY() - 1 && w.getX() == getX() || w.getY() == getY() && w.getX() == getX()-1 || w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
 		    			dungeon.getEntities().remove(w);
 		    			((Sword) carryOns).reduceDurability();
 		    			System.out.println("Killed an enemy using sword. Sword durability becomes = " + ((Sword) carryOns).getDurability());
@@ -86,12 +87,12 @@ public class Player extends Entity {
     		Entity w = dungeon.getEntities().get(i);
     			if(w.getY() == getY() - 1 && w.getX() == getX() && !(w instanceof Switch)){	// up is an entity and NOT a switch
     				removedEntity = w.interact(this);
-    				if(removedEntity == null||removedEntity instanceof Wall)item = 1;
+    				if(removedEntity == null || removedEntity instanceof Wall)item = 1;
     				//break;
     			}
     	}
 
-    	if((removedEntity != null && removedEntity.pass())|| item ==0) {
+    	if((removedEntity != null && removedEntity.pass())|| item == 0) {
 			if (getY() > 0) {
 	            y().set(getY() - 1);// move up
 			}
@@ -111,7 +112,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
     }
 
     public void moveDown() {
@@ -143,7 +144,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
@@ -177,7 +178,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
@@ -210,7 +211,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 

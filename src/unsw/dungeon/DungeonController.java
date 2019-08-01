@@ -1,6 +1,8 @@
 package unsw.dungeon;
 
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class DungeonController {
     private TextField inventoryField;
     @FXML
     private TextField goalField;
-    
+
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -50,9 +52,23 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
-        BotAutoMove bot = new BotAutoMove(dungeon, player);
-        bot.start();
-        treasure = 0;
+
+        ArrayList<BotAutoMove> botList = new ArrayList<BotAutoMove>();
+
+        for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
+    		Entity w = dungeon.getEntities().get(i);
+
+    		if(w instanceof Enemy) {
+    			BotAutoMove bot = new BotAutoMove(dungeon, player , w , 1000);
+    			botList.add(bot);
+    		} else if(w instanceof Hound) {
+    			BotAutoMove bot = new BotAutoMove(dungeon, player , w , 800);
+    			botList.add(bot);
+    		}
+        }
+        for(BotAutoMove b : botList) {
+        	b.start();
+        }
     }
 
     @FXML
@@ -143,20 +159,25 @@ public class DungeonController {
         	// goals haven't been reached
         }
     }
-    
+
     public void removeItem() {
-    	for(Entity e: dungeon.getRemovedEntity()) {
-    		if(e != null)
-    		e.getImage().setImage(null);
-    		if(e instanceof Treasure) {
-    			treasure++;
-    			String tc = Integer.toString(treasure);
-    			treasureCounter.setText(tc);
-    		}
-    	}
+	for(Entity e : dungeon.getRemovedEntity()) {
+		if(e != null) {
+			if(e instanceof Treasure) {
+				Thread th = new Thread((Treasure)(e));
+				th.start();
+				treasure++;
+				String tc = Integer.toString(treasure);
+				treasureCounter.setText(tc);
+			} else {
+				e.getImage().setImage(null);
+			}
+	
+		}
+	}
     	dungeon.removeRemoved();
     }
-    
+	
     public void updateStatus() {
     	if(player.getCarryOns() != null)
     		inventoryField.setText(player.getCarryOns().toString());
@@ -188,7 +209,7 @@ public class DungeonController {
     		squares.add(e.getImage(),player.getX(),player.getY());
     	}
     }
-    
+
     public void bombState() {
     	for(Entity e: dungeon.getEntities()) {
     		if(e instanceof Bomb && ((Bomb) e).isLit()) {
@@ -212,7 +233,7 @@ public class DungeonController {
     		}
     	}
     }
-    
+
     public void invincibleState(Invincibility i) {
     	//System.out.println("PLAyeR INV: "+i);
     	if(i != null) {
@@ -221,7 +242,7 @@ public class DungeonController {
 	    	}
 	    	else if(i.getCountdown() == 4) {
 	    		player.getImage().setImage(new Image("/invincibility2.png"));
-	    	}	
+	    	}
 	    	else if(i.getCountdown() == 3) {
 	    		player.getImage().setImage(new Image("/invincibility3.png"));
 	    	}
