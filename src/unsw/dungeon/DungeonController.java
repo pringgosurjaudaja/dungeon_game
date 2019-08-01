@@ -9,10 +9,14 @@ import org.json.JSONArray;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -24,17 +28,19 @@ public class DungeonController {
     @FXML
     private GridPane squares;
 
+    @FXML
+    private Pane inventory;
     private List<ImageView> initialEntities;
 
     private Player player;
 
+    private Stage mainStage;
     private Dungeon dungeon;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
-
         BotAutoMove bot = new BotAutoMove(dungeon, player);
         bot.start();
     }
@@ -42,7 +48,7 @@ public class DungeonController {
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
-
+        
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
@@ -114,9 +120,10 @@ public class DungeonController {
         }
 
         // checking goals
-        finish = checkGoals(dungeon, dungeon.getGoals());
+        finish = dungeon.checkGoal(dungeon.getDungeonGoal());
         if(finish == true) {
         	System.out.println("The end, all goals have been reached.");
+        	gameOver();
         }else {
         	// goals haven't been reached
         }
@@ -254,4 +261,22 @@ public class DungeonController {
 
     }
 
+    public boolean checkPuzzle() {
+    	if(dungeon.checkTreasureGoal()) return true;
+    	return false;
+    }
+
+	public void setMainStage(Stage mainStage) {
+		this.mainStage = mainStage;
+	}
+	public void gameOver() {
+    	VBox screen = new VBox(mainStage.getHeight());
+    	Image gameover = new Image("/gameover.jpg");
+    	ImageView iv = new ImageView(gameover);
+    	iv.setFitHeight(mainStage.getHeight());
+    	iv.setFitWidth(mainStage.getWidth());
+    	screen.getChildren().add(iv);
+    	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
+    	mainStage.setScene(overScene);
+    }
 }

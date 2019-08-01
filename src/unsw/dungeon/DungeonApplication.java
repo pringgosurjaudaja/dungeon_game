@@ -6,16 +6,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
 
+	Stage main;
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
+        main = primaryStage;
+    	main.setTitle("Dungeon");
 
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("advanced.json");
-
         DungeonController controller = dungeonLoader.loadController();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
@@ -23,13 +27,12 @@ public class DungeonApplication extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+        main.setScene(scene);
+        controller.setMainStage(main);
+        main.show();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }
