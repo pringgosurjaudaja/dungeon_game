@@ -17,6 +17,7 @@ public class Player extends Entity {
     private Entity carryOns;
     private int treasure = 0;
     Invincibility invincibility;
+    private boolean dead;
 
     /**
      * Create a player positioned in square (x,y)
@@ -26,9 +27,18 @@ public class Player extends Entity {
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
+        this.dead=false;
     }
 
-    public void setBomb() {
+    public boolean isDead() {
+		return dead;
+	}
+
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
+
+	public void setBomb() {
       if(carryOns instanceof Bomb) {
         dungeon.addEntity(carryOns);
         ((Bomb) carryOns).getState().countdown();

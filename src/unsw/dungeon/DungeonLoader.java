@@ -56,7 +56,7 @@ public abstract class DungeonLoader {
     		subgoals.put(goal);
     	}
 
-    	dungeon.setGoals(subgoals);
+    	//dungeon.setGoals(subgoals);
 
     }
 

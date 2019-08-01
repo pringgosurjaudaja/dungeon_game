@@ -23,19 +23,24 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Entity> removedEntity;
     private Player player;
-    private JSONArray goals;
+    private JSONObject goals;
     private Goals dungeonGoal;
     public Dungeon(int width, int height, JSONObject goals) {
         this.width = width;
         this.height = height;
+        this.goals = goals;
         this.entities = new ArrayList<>();
         this.removedEntity = new ArrayList<>();
         this.player = null;
         goalToJSON(goals);
-        System.out.println(dungeonGoal.toString());
+        //System.out.println("GOAL "+goals);
     }
 
-    public int getWidth() {
+    public String getGoals() {
+		return goals.toString();
+	}
+
+	public int getWidth() {
         return width;
     }
 
@@ -125,10 +130,7 @@ public class Dungeon {
 		this.entities = entities;
 	}
 
-	public JSONArray getGoals() {
-		return goals;
-	}
-
+	
 	public Goals getDungeonGoal() {
 		return dungeonGoal;
 	}
@@ -137,11 +139,12 @@ public class Dungeon {
 		this.dungeonGoal = dungeonGoal;
 	}
 
-	public void setGoals(JSONArray goals) {
-		this.goals = goals;
-	}
+	
 	public void removeEntity(Entity e) {
 		this.entities.remove(e);
+	}
+	public void removeRemoved() {
+		this.removedEntity.clear();
 	}
 	public void goalToJSON(JSONObject goalJSON) {
 		String goal = goalJSON.getString("goal");
@@ -153,6 +156,16 @@ public class Dungeon {
 			LeafGoal lg = new LeafGoal(goal);
 			this.dungeonGoal = lg;
 		}
+	}
+	public boolean checkDead() {
+		for(Entity e: this.entities) {
+			if(e instanceof Enemy) {
+				if(e.getX()== player.getX() && e.getY() == player.getY()) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	public boolean checkGoal(Goals g) {
 		if(g instanceof LeafGoal) {
