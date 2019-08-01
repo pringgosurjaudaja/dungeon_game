@@ -10,6 +10,7 @@ import org.json.JSONArray;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -29,13 +30,21 @@ public class DungeonController {
     private GridPane squares;
 
     @FXML
-    private Pane inventory;
+    private GridPane inventory;
+    @FXML
+    private TextField treasureCounter;
+    @FXML
+    private TextField inventoryField;
+    @FXML
+    private TextField goalField;
+    
     private List<ImageView> initialEntities;
 
     private Player player;
 
     private Stage mainStage;
     private Dungeon dungeon;
+    private int treasure;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -43,12 +52,14 @@ public class DungeonController {
         this.initialEntities = new ArrayList<>(initialEntities);
         BotAutoMove bot = new BotAutoMove(dungeon, player);
         bot.start();
+        treasure = 0;
     }
 
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
-        
+        Image treasure = new Image("/gold_pile.png");
+        //inventory.add(new ImageView(treasure), 1, 0);
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
@@ -58,7 +69,7 @@ public class DungeonController {
 
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
-
+        goalField.setText(dungeon.getGoals());
     }
 
     @FXML
@@ -118,12 +129,16 @@ public class DungeonController {
         default:
             break;
         }
-
+        updateStatus();
+        System.out.println("PLAYER : "+ player.isDead());
+        if(player.isDead()) {
+        	gameOver();
+        }
         // checking goals
         finish = dungeon.checkGoal(dungeon.getDungeonGoal());
         if(finish == true) {
         	System.out.println("The end, all goals have been reached.");
-        	gameOver();
+        	gameFinished();
         }else {
         	// goals haven't been reached
         }
@@ -133,6 +148,20 @@ public class DungeonController {
     	for(Entity e: dungeon.getRemovedEntity()) {
     		if(e != null)
     		e.getImage().setImage(null);
+    		if(e instanceof Treasure) {
+    			treasure++;
+    			String tc = Integer.toString(treasure);
+    			treasureCounter.setText(tc);
+    		}
+    	}
+    	dungeon.removeRemoved();
+    }
+    
+    public void updateStatus() {
+    	if(player.getCarryOns() != null)
+    		inventoryField.setText(player.getCarryOns().toString());
+    	else {
+    		inventoryField.setText("None");
     	}
     }
     public void loadDungeon() {
@@ -279,4 +308,14 @@ public class DungeonController {
     	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
     	mainStage.setScene(overScene);
     }
+	public void gameFinished() {
+		VBox screen = new VBox(mainStage.getHeight());
+    	Image gamefinish = new Image("/gamefinish.jpg");
+    	ImageView iv = new ImageView(gamefinish);
+    	iv.setFitHeight(mainStage.getHeight());
+    	iv.setFitWidth(mainStage.getWidth());
+    	screen.getChildren().add(iv);
+    	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
+    	mainStage.setScene(overScene);
+	}
 }
