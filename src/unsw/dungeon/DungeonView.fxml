@@ -1,17 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="squares" onKeyPressed="#handleKeyPress" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
+<Pane onKeyPressed="#handleKeyPress" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <GridPane fx:id="squares" onKeyPressed="#handleKeyPress">
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+         <children>
 
    </children>
-</GridPane>
+      </GridPane>
+      <GridPane fx:id="inventory" layoutX="2.0" layoutY="2.0" prefHeight="44.0" prefWidth="223.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="60.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="163.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="Treasure">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="treasureCounter" editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="0" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </TextField>
+            <TextField editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="Inventory" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="inventoryField" editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: b lack;" text="None" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+            </TextField>
+         </children>
+      </GridPane>
+      <TextField editable="false" layoutX="2.0" layoutY="43.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="Goal">
+         <font>
+            <Font name="Arial Bold" size="10.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="goalField" editable="false" layoutX="60.0" layoutY="44.0" maxWidth="400.0" prefWidth="355.0" style="-fx-background-color: transparent; -fx-text-inner-color: black;">
+         <font>
+            <Font name="Arial" size="10.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>
