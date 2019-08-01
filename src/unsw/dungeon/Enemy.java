@@ -112,6 +112,7 @@ public class Enemy extends Entity {
 		if(p.getInvincibility()!=null) {
 			//dead = true;
 			p.getDungeon().addRemovedEntity(this);
+			p.getDungeon().removeEntity(this);
 			return p;
 		}
 		else {
