@@ -19,7 +19,7 @@ public class DungeonApplication extends Application {
         main = primaryStage;
     	main.setTitle("Dungeon");
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("testingdungeon.json");
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("maze.json");
         DungeonController controller = dungeonLoader.loadController();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));

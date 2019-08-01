@@ -39,7 +39,17 @@ public class BotAutoMove extends Thread {
 					enemy.x().set(nextMove.x);
 					enemy.y().set(nextMove.y);
 				} else {
-					System.out.println("player lose");
+					if(enemy instanceof Enemy) {
+						System.out.println("player lose");
+						System.exit(1);
+					} else if (enemy instanceof Hound) {
+						player.life--;
+						System.out.println(player.life);
+						if(player.life == 0) {
+							System.out.println("player lose");
+							System.exit(1);
+						}
+					}
 				}
 
 			} catch (InterruptedException e) {

@@ -1,5 +1,6 @@
 package unsw.dungeon;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -148,7 +149,7 @@ public class DungeonController {
     public void removeItem() {
     	for(Entity e : dungeon.getRemovedEntity()) {
     		if(e != null) {
-    				e.getImage().setImage(null);
+
     			
     		}
     	}

@@ -17,6 +17,7 @@ public class Player extends Entity {
     private Entity carryOns;
     private int treasure = 0;
     Invincibility invincibility;
+    public int life = 3;
 
     /**
      * Create a player positioned in square (x,y)
