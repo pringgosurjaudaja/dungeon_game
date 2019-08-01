@@ -31,7 +31,7 @@ public class BotAutoMove extends Thread {
 							new Point(player.getX(), player.getY()),
 							dungeon.getWidth(), dungeon.getHeight());
 					
-					System.out.println(nextMove.x + " " + nextMove.y);
+					//System.out.println(nextMove.x + " " + nextMove.y);
 					
 					if (nextMove != null) {
 						a.x().set(nextMove.x);
@@ -67,8 +67,16 @@ public class BotAutoMove extends Thread {
 
 		for (int i = 0; i < dungeon.getEntities().size(); i++) {
 			Entity w = dungeon.getEntities().get(i);
+			
+			if(w instanceof LockedDoor) {
 
-			if (!(w instanceof Enemy) && !(w instanceof Player)) {
+				if(!((LockedDoor) w).isOpen()){				
+					Point a = new Point(w.getX(), w.getY());
+							
+					entityPoints.add(a);
+				
+				}		
+			} else if (!(w instanceof Enemy) && !(w instanceof Player)) {
 				Point a = new Point(w.getX(), w.getY());
 				entityPoints.add(a);
 

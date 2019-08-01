@@ -101,7 +101,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
     }
 
     public void moveDown() {
@@ -133,7 +133,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
@@ -167,7 +167,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
@@ -200,7 +200,7 @@ public class Player extends Entity {
         	System.out.println("Puzzle Completed");
         }
 
-		System.out.println(removedEntity);
+		//System.out.println(removedEntity);
 		//dungeon.addRemovedEntity(removedEntity);
     }
 

@@ -9,7 +9,7 @@ public class LeafGoal implements Goals {
 
 	@Override
 	public String getGoal() {
-		System.out.println(goal);
+		//System.out.println(goal);
 		return goal;
 	}
 
