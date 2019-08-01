@@ -149,7 +149,12 @@ public class DungeonController {
     public void removeItem() {
     	for(Entity e : dungeon.getRemovedEntity()) {
     		if(e != null) {
-
+    			if(e instanceof Treasure) {
+    				Thread th = new Thread((Treasure)(e));
+    				th.start();
+    			} else {
+    				e.getImage().setImage(null);
+    			}
     			
     		}
     	}
