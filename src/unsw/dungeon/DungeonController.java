@@ -166,8 +166,7 @@ public class DungeonController {
 			if(e instanceof Treasure) {
 				Thread th = new Thread((Treasure)(e));
 				th.start();
-				treasure++;
-				String tc = Integer.toString(treasure);
+				String tc = Integer.toString(player.getTreasure());
 				treasureCounter.setText(tc);
 			} else {
 				e.getImage().setImage(null);
@@ -175,9 +174,10 @@ public class DungeonController {
 	
 		}
 	}
-    	dungeon.removeRemoved();
-    }
 	
+    //if(t ==0)dungeon.removeRemoved();
+    }
+
     public void updateStatus() {
     	if(player.getCarryOns() != null)
     		inventoryField.setText(player.getCarryOns().toString());
@@ -224,11 +224,11 @@ public class DungeonController {
     				e.getImage().setImage(new Image("/bomb_lit_3.png"));
     			}
     			else if(((Bomb) e).getState() == ((Bomb) e).getExplodingBomb()) {
-    				System.out.println("WFGWDEFEGF");
     				e.getImage().setImage(new Image("/bomb_lit_4.png"));
     			}
     			else if(((Bomb) e).getState() == ((Bomb) e).getPostExplosionBomb()) {
     				e.getImage().setImage(null);
+    				dungeon.removeEntity(e);
     			}
     		}
     	}

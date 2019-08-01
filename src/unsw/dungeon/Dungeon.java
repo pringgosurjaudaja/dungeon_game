@@ -83,7 +83,7 @@ public class Dungeon {
     		//addRemovedEntity(getEntity(b.getX(), b.getY()+1));
     		//addRemovedEntity(getEntity(b.getX(), b.getY()-1));
     		System.out.println("bomb removed");
-    		removeEntity(b);
+    		//removeEntity(b);
     		//entities.remove(b);
     	//}
     }
