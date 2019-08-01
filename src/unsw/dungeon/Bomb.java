@@ -112,5 +112,10 @@ public class Bomb extends Entity {
 	public boolean remove() {
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Bomb";
+	}
+	
 	
 }

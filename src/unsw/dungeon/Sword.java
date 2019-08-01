@@ -43,6 +43,11 @@ public class Sword extends Entity {
 	public boolean remove() {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Sword ,Durability: "+this.durability;
+	}
 	
 
 }

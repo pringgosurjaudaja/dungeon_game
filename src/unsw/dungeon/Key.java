@@ -40,6 +40,12 @@ public class Key extends Entity {
 	public boolean remove() {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Key, ID: "+this.id;
+	}
     
     
 }
