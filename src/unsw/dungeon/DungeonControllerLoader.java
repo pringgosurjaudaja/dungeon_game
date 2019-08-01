@@ -47,6 +47,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         // MORE TO DO
         exitImage = new Image("/exit.png");
         treasureImage = new Image("/gold_pile.png");
+        //treasureImage = new Image("/shine.png");
         lockedDoorImage = new Image("/closed_door.png");
         keyImage = new Image("/key.png");
         boulderImage = new Image("/boulder.png");

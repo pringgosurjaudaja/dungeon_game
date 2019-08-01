@@ -7,9 +7,20 @@ import java.util.Map;
 
 public class EnemyChase implements AutoMoveAction {
 
+/*	@Override
+	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height) {
+		// TODO Auto-generated method stub
+		return BFS(source, dest, listCoordinates , width , height);
+	}*/
+	
+	
 	@Override
 	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height) {
 		// TODO Auto-generated method stub
+
+		//check if player == obstacles when player drops item
+		listCoordinates.remove(dest);
+		
 		return BFS(source, dest, listCoordinates , width , height);
 	}
 
@@ -56,13 +67,17 @@ public class EnemyChase implements AutoMoveAction {
 		
 		//retracking path
 		Point curr = parent.get(dest);
-		Point previous = null;
-		while(curr != null && !curr.equals(source)){
-			previous = curr;
-			curr = parent.get(curr);
-		}
 		
-		if(previous == null)previous = dest;
+		Point previous = null;
+		if(curr != source){
+			while(curr != null && !curr.equals(source)){
+				previous = curr;
+				curr = parent.get(curr);
+			}
+		}else previous = dest;
+		
+		
+		//if(previous == null)previous = dest;
 		
 		return previous;
 	}

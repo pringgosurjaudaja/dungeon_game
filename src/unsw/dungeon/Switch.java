@@ -9,7 +9,7 @@ public class Switch extends Entity {
     }
 
     public void boulderSwitch() {
-    	if(switched ==false) this.switched = true;
+    	if(switched == false) this.switched = true;
     	else if(switched == true) this.switched = false;
     	
     	System.out.println("SWITCH "+ switched);
