@@ -31,8 +31,10 @@ public class BotAutoMove extends Thread {
 							new Point(player.getX(), player.getY()),
 							dungeon.getWidth(), dungeon.getHeight());
 					
-					System.out.println(nextMove.x + " " + nextMove.y);
-					
+					//System.out.println(nextMove.x + " " + nextMove.y);
+					if(a.getX() == player.getX()&& a.getY()== player.getY() && player.getInvincibility()== null) {
+						player.setDead(true);
+					}
 					if (nextMove != null) {
 						a.x().set(nextMove.x);
 						a.y().set(nextMove.y);

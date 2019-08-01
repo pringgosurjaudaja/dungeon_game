@@ -103,8 +103,26 @@ public class Enemy extends Entity implements AutoMoveAction{
 package unsw.dungeon;
 
 public class Enemy extends Entity {
-
 	public Enemy(int x, int y) {
 		super(x, y);
 	}
+
+	@Override
+	public Entity interact(Player p) {
+		if(p.getInvincibility()!=null) {
+			//dead = true;
+			p.getDungeon().addRemovedEntity(this);
+			return p;
+		}
+		else {
+			p.setDead(true);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean remove() {
+		return true;
+	}
+	
 }
