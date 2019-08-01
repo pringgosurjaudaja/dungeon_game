@@ -42,8 +42,23 @@ public class DungeonController {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
-        BotAutoMove bot = new BotAutoMove(dungeon, player);
-        bot.start();
+        
+        ArrayList<BotAutoMove> botList = new ArrayList<BotAutoMove>();
+        
+        for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
+    		Entity w = dungeon.getEntities().get(i);
+    		
+    		if(w instanceof Enemy) {
+    			BotAutoMove bot = new BotAutoMove(dungeon, player , w , 1000); 
+    			botList.add(bot);
+    		} else if(w instanceof Hound) {
+    			BotAutoMove bot = new BotAutoMove(dungeon, player , w , 800);
+    			botList.add(bot);
+    		}
+        }
+        for(BotAutoMove b : botList) {
+        	b.start();
+        }
     }
 
     @FXML
