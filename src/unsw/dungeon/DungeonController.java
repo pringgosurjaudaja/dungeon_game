@@ -46,7 +46,6 @@ public class DungeonController {
 
     private Stage mainStage;
     private Dungeon dungeon;
-    private int treasure;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -74,7 +73,6 @@ public class DungeonController {
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
-        Image treasure = new Image("/gold_pile.png");
         //inventory.add(new ImageView(treasure), 1, 0);
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
@@ -210,7 +208,11 @@ public class DungeonController {
     	}
     }
 
-    public void bombState() {
+    public void setMainStage(Stage mainStage) {
+		this.mainStage = mainStage;
+	}
+
+	public void bombState() {
     	for(Entity e: dungeon.getEntities()) {
     		if(e instanceof Bomb && ((Bomb) e).isLit()) {
     			if(((Bomb) e).getState() == ((Bomb) e).getLitBomb1()) {
@@ -258,67 +260,6 @@ public class DungeonController {
     	}
     }
 
-    // check if all the goals have been met
-    public boolean checkGoals(Dungeon dungeon, JSONArray subgoals) {
-    	if (subgoals == null) return false;
-    	Boolean finish = false;		// not all goals have been met.
-/*    	String goal = json.getString("goal");
-    	JSONArray subgoals = new JSONArray();
-    	if(goal == "AND") {
-    		subgoals = json.getJSONArray("subgoals");
-    	} else {
-    		subgoals.put(goal);
-    	}*/
-
-    	for (int i = 0 ; i < subgoals.length() ; i++) {
-    		if(subgoals.get(i) == "boulders") { // check if all switches have boulders on them
-    	    	for (Entity s : dungeon.getEntities()) {
-    	        	if(s instanceof Switch) {
-    	        		int temp = 0;
-    	                for (Entity b : dungeon.getEntities()) {
-    	                	if(b instanceof Boulder) {
-    	                		if(b.getX() == s.getX() && b.getY() == s.getY()) {
-    	                			temp = 1;	// there is boulder on this switch
-    	                			break;
-    	                		}
-    	                	}
-    	                }
-    	                if(temp == 0) {	// no boulder on this switch
-    	                	System.out.println("No boulder on this switch");
-    	                	// TO DO
-    	               		return false;
-    	               	}
-    	        	}
-    	        }
-    	        System.out.println("All switches have been pressed down by boulders.");
-    	       	finish = true;
-    	       	// TO DO
-    	       	break;
-    		} else if(subgoals.get(i) == "exit") {
-    	       	// TO DO
-    	       	break;
-            } else if(subgoals.get(i) == "enemies") {
-   	        	// TO DO
-   	        	break;
-   	        } else if(subgoals.get(i) == "treasure") {
-   	        	// TO DO
-   	        	break;
-    	    }
-
-    	}
-
-        return finish; // TO DO
-
-    }
-
-    public boolean checkPuzzle() {
-    	if(dungeon.checkTreasureGoal()) return true;
-    	return false;
-    }
-
-	public void setMainStage(Stage mainStage) {
-		this.mainStage = mainStage;
-	}
 	public void gameOver() {
     	VBox screen = new VBox(mainStage.getHeight());
     	Image gameover = new Image("/gameover.jpg");

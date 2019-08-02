@@ -46,14 +46,19 @@ public class Player extends Entity {
       }
     }
 
-    public Invincibility getInvincibility() {
+    public void setTreasure(int treasure) {
+		this.treasure = treasure;
+	}
+
+	public Invincibility getInvincibility() {
 		return invincibility;
 	}
 
     public void invincibilityChange() {
     	if(invincibility != null) {
-    		if(invincibility.getState() == null) {
+    		if(invincibility.getCountdown() == 0) {
         		invincibility = null;
+        		carryOns = null;
         	} else {
     			invincibility.countdownInvincibility();
     		}
@@ -277,17 +282,11 @@ public class Player extends Entity {
 	public int getTreasure() {
 		return treasure;
 	}
-	public void setTreasure(int treasure) {
-		this.treasure = treasure;
-	}
 	public void setInvincibility(Invincibility invincibility) {
 		this.invincibility = invincibility;
 	}
 	public Dungeon getDungeon() {
 		return dungeon;
-	}
-	public void setDungeon(Dungeon dungeon) {
-		this.dungeon = dungeon;
 	}
 
 }

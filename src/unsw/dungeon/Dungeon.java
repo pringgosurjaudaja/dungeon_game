@@ -127,10 +127,6 @@ public class Dungeon {
 		}
 		return null;
 	}
-	public void setEntities(List<Entity> entities) {
-		this.entities = entities;
-	}
-
 	
 	public Goals getDungeonGoal() {
 		return dungeonGoal;

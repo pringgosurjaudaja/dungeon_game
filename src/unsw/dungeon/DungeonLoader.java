@@ -151,8 +151,7 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Key key);
     public abstract void onLoad(Boulder boulder);
     public abstract void onLoad(Switch switch_);
-    public abstract void onLoad(Bomb bomb);	// unlit bomb
-//  public abstract void onLoad(Lit bomb);
+    public abstract void onLoad(Bomb bomb);	
     public abstract void onLoad(Enemy enemy);
     public abstract void onLoad(Hound hound);
   	public abstract void onLoad(Sword sword);
