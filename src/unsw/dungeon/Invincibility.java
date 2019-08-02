@@ -2,19 +2,23 @@ package unsw.dungeon;
 
 public class Invincibility extends Entity {
 	
-	InvincibilityState state;
 	private int countdown;
 	Player temp;
 	
     public Invincibility(int x, int y) {
         super(x, y);
-        state = new Invincibility1(this, temp);
+        //state = new Invincibility1(this, temp);
         setCountdown(6);
         
     }
     public void countdownInvincibility() {
-    	state.countdown();
-    	countdown--;
+    	//state.countdown();
+    	if(countdown == 0) {
+    		temp.setCarryOns(null);
+    	}
+    	else {
+    		countdown--;
+    	}
     }
 	public int getCountdown() {
 		return countdown;
@@ -22,12 +26,7 @@ public class Invincibility extends Entity {
 	public void setCountdown(int countdown) {
 		this.countdown = countdown;
 	}
-	public InvincibilityState getState() {
-		return state;
-	}
-	public void setState(InvincibilityState state) {
-		this.state = state;
-	}
+	
 	
 	@Override
 	public Entity interact(Player p) {
@@ -35,7 +34,6 @@ public class Invincibility extends Entity {
 			p.setCarryOns(this);
 			p.setInvincibility(this);
 			p.getDungeon().removeEntity(this);
-			state = new Invincibility1(this, p);
 			return this;
 		} else {
 			System.out.println("Can't pickup invincibility, already carrying something");
