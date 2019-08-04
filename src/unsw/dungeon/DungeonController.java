@@ -126,7 +126,7 @@ public class DungeonController {
         case SPACE:		// used to drop carry_ons
         	//player.dropEntity(squares);
         	Entity b = player.dropEntity();
-        	if(b!= null) dropItem(b);
+        	if(b != null) dropItem(b);
             break;
         case ENTER:		// used to kill enemy with sword
         	if(player.getCarryOns() instanceof Sword) {
@@ -136,9 +136,6 @@ public class DungeonController {
         		//	a.getImage().setImage(null);
         		//}
         	}
-        /*	removedEntity = player.killEnemy();
-        	System.out.println("enemy to kill : " + removedEntity);
-            if(removedEntity != -1) squares.getChildren().remove(initialEntities.get(removedEntity));*/
         	break;
         default:
             break;
@@ -153,33 +150,30 @@ public class DungeonController {
         if(finish == true) {
         	System.out.println("The end, all goals have been reached.");
         	gameFinished();
-        }else {
+        } else {
         	// goals haven't been reached
         }
     }
 
     public void removeItem() {
-	for(Entity e : dungeon.getRemovedEntity()) {
-		if(e != null) {
-			if(e instanceof Treasure) {
-				Thread th = new Thread((Treasure)(e));
-				th.start();
-				String tc = Integer.toString(player.getTreasure());
-				treasureCounter.setText(tc);
-			} else {
-				e.getImage().setImage(null);
-			}
-	
-		}
-	}
-	
-    //if(t ==0)dungeon.removeRemoved();
+    	for(Entity e : dungeon.getRemovedEntity()) {
+    		if(e != null) {
+    			if(e instanceof Treasure) {
+    				Thread th = new Thread((Treasure)(e));
+    				th.start();
+    				String tc = Integer.toString(player.getTreasure());
+    				treasureCounter.setText(tc);
+    			} else {
+    				e.getImage().setImage(null);
+    			}
+    		}
+    	}
     }
 
     public void updateStatus() {
-    	if(player.getCarryOns() != null)
+    	if(player.getCarryOns() != null) {
     		inventoryField.setText(player.getCarryOns().toString());
-    	else {
+    	} else {
     		inventoryField.setText("None");
     	}
     }
