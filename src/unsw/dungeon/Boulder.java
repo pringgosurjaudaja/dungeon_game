@@ -2,16 +2,31 @@ package unsw.dungeon;
 
 import java.util.List;
 
+/**
+ * 
+ * class Bomb
+ *
+ */
 public class Boulder extends Entity {
 	
+
+	/**
+	 * Constructor Boulder
+	 * @param x Horizontal position of the boulder
+	 * @param y Vertical position of the boulder
+	 */
     public Boulder(int x, int y) {
         super(x, y);
     }
-    
-    // check if there is an entity other than switch in (paramX, paramY). If there is return false.
+
+    /**
+     * Check if there is an entity other than switch in (paramX, paramY). If the entity is a switch, calls boulderSwitch() method from class Switch.
+     * @param paramX This is the horizontal position
+     * @param paramY This is the vertical position
+     * @param listEntities This is the list of all entities in the dungeon
+     * @return true if there is an entity other than switch in (paramX, paramY).
+     */
     public boolean checkBoulder(int paramX , int paramY , List<Entity> listEntities){
-    	
- 
     	for(Entity e : listEntities){
 /*    		System.out.println("X: "+ this.getX());
     		System.out.println("Y: "+ this.getY());
@@ -31,12 +46,24 @@ public class Boulder extends Entity {
     	return false;
     }
     
+    /**
+     * Moves the boulder to (x,y).
+     * @param x Horizontal distance to move
+     * @param y Vertical distance to move
+     */
     public void moveBoulder(int x, int y) {
     	this.y().set(getY()+y);
     	this.x().set(getX()+x);
     }
     
-
+    /**
+     * This method is when player interacts with Boulder.
+     * If there is another entity other than switch at the other side of the boulder, boulder can't be moved.
+     * If there is a switch or nothing on the other side of the boulder, player can move the boulder.
+     * @param p This is the player.
+     * @return null if nothing happens.
+     * @return this (Boulder) entity if it is moved.
+     */
 	@Override
 	public Entity interact(Player p) {
 		if(p.getX() == this.getX()) {

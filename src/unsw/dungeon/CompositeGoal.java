@@ -6,16 +6,31 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * 
+ * This is CompositeGoal class
+ *
+ */
 public class CompositeGoal implements Goals {
 
 	List<Goals> goalList;
 	String logicalOperator;
+	
+
+	/**
+	 * Constructor CompositeGoal
+	 * @param logicalOperator either AND or OR
+	 * @param subgoals	These are the goals
+	 */
 	public CompositeGoal(String logicalOperator, JSONArray subgoals) {
 		goalList = new ArrayList<Goals>();
 		this.logicalOperator = logicalOperator;
 		goalGenerate(subgoals);
 	}
 
+	/**
+	 * @return logicalOperator This is either AND or OR
+	 */
 	@Override
 	public String getGoal() {
 		for(Goals g: this.goalList) {
@@ -36,6 +51,10 @@ public class CompositeGoal implements Goals {
 		this.goalList = goalList;
 	}
 
+	/**
+	 * Generate goals. The goals use composite pattern.
+	 * @param goals This is the JSONArray of goals
+	 */
 	public void goalGenerate(JSONArray goals) {
 		System.out.println("ROPSFDS");
 		for(Object o : goals) {
@@ -45,8 +64,7 @@ public class CompositeGoal implements Goals {
 				CompositeGoal cg = new CompositeGoal(goal, subgoal );
 				this.goalList.add(cg);
 				System.out.println("CG= "+ cg);
-			}
-			else {
+			} else {
 				LeafGoal lg = new LeafGoal(goal);
 				this.goalList.add(lg);
 				System.out.println("goal leaf= "+ goal);

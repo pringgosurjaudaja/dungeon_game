@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+/**
+ * 
+ * class Bomb
+ *
+ */
 public class Bomb extends Entity {
 
 	BombState unlitBomb;
@@ -10,6 +15,13 @@ public class Bomb extends Entity {
 	BombState state = unlitBomb;
 	BombState postExplosionBomb;
 	private int countdown;
+	
+	/**
+	 * Constructor Bomb
+	 * Create new objects for each bomb state, set initial count down of bomb to 4 and set the bomb to be in unlit state initially.
+	 * @param x Horizontal position of the bomb
+	 * @param y Vertical position of the bomb
+	 */
 	public Bomb(int x, int y) {
 		super(x, y);
 		unlitBomb = new UnlitBomb(this);
@@ -21,12 +33,18 @@ public class Bomb extends Entity {
 		setCountdown(4);
 		this.state = unlitBomb;
 	}
+	
 	public int getCountdown() {
 		return countdown;
 	}
 	public void setCountdown(int countdown) {
 		this.countdown = countdown;
 	}
+	
+	/**
+	 * Calls countdown() and explode() method of the bomb depending on their state and 
+	 * reduce the count down by 1.
+	 */
 	public void countDownBomb() {
 		state.countdown();
 		state.explode();
@@ -68,12 +86,22 @@ public class Bomb extends Entity {
 	public void setState(BombState state) {
 		this.state = state;
 	}
+	
+	/**
+	 * Check whether the bomb is lit or not
+	 * @return true when it's lit or false when it is unlit
+	 */
 	public boolean isLit() {
 		if(state == unlitBomb) {
 			return false;
 		}
 		return true;
 	}
+	
+	/**
+	 * Check whether the bomb is exploding or not
+	 * @return true when it's exploding or false otherwise
+	 */
 	public boolean exploded() {
 		if(state == explodingBomb) {
 			return true;
@@ -91,6 +119,14 @@ public class Bomb extends Entity {
 		this.postExplosionBomb = postExplosionBomb;
 	}
 	
+	/**
+	 * 
+	 * This method is when player interacts with Bomb.
+	 * If the player is not carrying anything, he will then carry this (Bomb) entity,
+	 * otherwise nothing happens because a player can only carry one item at a time.
+	 * @param p This is the player
+	 * @return Entity It returns either null or this entity (Bomb)
+	 */
 	@Override
 	public Entity interact(Player p) {
 		if(p.getCarryOns() == null) {
@@ -103,6 +139,9 @@ public class Bomb extends Entity {
 		}
 	}
 	
+	/**
+	 * This method will call countDownBomb()
+	 */
 	@Override
 	public Entity drop() {
 		countDownBomb();

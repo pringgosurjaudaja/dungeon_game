@@ -11,6 +11,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * Application class of the game
+ *
+ */
 public class DungeonApplication extends Application {
 
 	Stage main;

@@ -47,6 +47,11 @@ public class DungeonController {
     private Stage mainStage;
     private Dungeon dungeon;
 
+    /**
+     * Constructor DungeonController
+     * @param dungeon This is the dungeon
+     * @param initialEntities This is the ImageView list of the initial entities of the dungeon. 
+     */
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
@@ -70,6 +75,9 @@ public class DungeonController {
         }
     }
 
+    /**
+     * To initialize all the background image to be of /dirt_0_new.png
+     */
     @FXML
     public void initialize() {
         Image ground = new Image("/dirt_0_new.png");
@@ -86,10 +94,20 @@ public class DungeonController {
         goalField.setText(dungeon.getGoals());
     }
 
+    /**
+     * 6 cases: UP, DOWN, LEFT, RIGHT, SPACE, ENTER
+     * If player presses UP, player will move up.
+     * If player presses DOWN, player will move down.
+     * If player presses LEFT, player will move left.
+     * If player presses RIGHT, player will move right.
+     * If player presses SPACE, player will drop their carry ons (keys, swords, bomb).
+     * This method also checks if the player is dead and if the goals have been met.
+     * If player presses ENTER, player will kill using sword.
+     * @param event This is what is pressed by player from their keyboard
+     */
     @FXML
     public void handleKeyPress(KeyEvent event) {
     	Boolean finish = false;
-
         switch (event.getCode()) {
         case UP:
             player.moveUp();
@@ -155,6 +173,11 @@ public class DungeonController {
         }
     }
 
+    /**
+     * Remove items in the dungeon.getRemovedEntity()
+     * If the remove item is of instance Treasure, it's going to start Thread for shine.png, which is just an
+     * animation to show treasure has been collected
+     */
     public void removeItem() {
     	for(Entity e : dungeon.getRemovedEntity()) {
     		if(e != null) {
@@ -172,6 +195,9 @@ public class DungeonController {
     	}
     }
 
+    /**
+     * This updates the status of the status bar.
+     */
     public void updateStatus() {
     	if(player.getCarryOns() != null) {
     		inventoryField.setText(player.getCarryOns().toString());
@@ -179,6 +205,10 @@ public class DungeonController {
     		inventoryField.setText("None");
     	}
     }
+    
+    /**
+     * This change locked door image to an opened one if it's status isOpen is true.
+     */
     public void loadDungeon() {
     	for(Entity e: dungeon.getEntities()) {
     		if(e instanceof LockedDoor) {
@@ -189,6 +219,12 @@ public class DungeonController {
     		}
     	}
     }
+    
+    /**
+     * This method drops entity in the dungeon in the current location (x,y) of the player.
+     * This method only drops entity of instance key, sword and bomb.
+     * @param e This is the entity to be dropped.
+     */
     public void dropItem(Entity e) {
     	if(e instanceof Key) {
     		e.setImage(new ImageView("/key.png"));
@@ -208,6 +244,9 @@ public class DungeonController {
 		this.mainStage = mainStage;
 	}
 
+    /**
+     * This assigns image of the bomb according to their state.
+     */
 	public void bombState() {
     	for(Entity e: dungeon.getEntities()) {
     		if(e instanceof Bomb && ((Bomb) e).isLit()) {
@@ -232,6 +271,10 @@ public class DungeonController {
     	}
     }
 
+	/**
+	 * This assigns image of the player when they are carrying invincibility potion according to thei countdown.
+	 * @param i
+	 */
     public void invincibleState(Invincibility i) {
     	//System.out.println("PLAyeR INV: "+i);
     	if(i != null) {
@@ -256,6 +299,9 @@ public class DungeonController {
     	}
     }
 
+    /**
+     * Displays gameover.jpg image when the game ends.
+     */
 	public void gameOver() {
     	VBox screen = new VBox(mainStage.getHeight());
     	Image gameover = new Image("/gameover.jpg");
@@ -266,6 +312,10 @@ public class DungeonController {
     	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
     	mainStage.setScene(overScene);
     }
+	
+	/**
+	 * Displays gamefinish.jpg image when the game ends.
+	 */
 	public void gameFinished() {
 		VBox screen = new VBox(mainStage.getHeight());
     	Image gamefinish = new Image("/gamefinish.jpg");
