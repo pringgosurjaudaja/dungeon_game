@@ -61,19 +61,19 @@ public class Dungeon {
     }
     public void explode(Bomb b) {
     	//if(b.exploded()) {
-    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder) {
+    	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder || getEntity(b.getX()+1, b.getY()) instanceof Hound) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX()+1, b.getY()));
     	}
-    	if(getEntity(b.getX()-1, b.getY()) instanceof Enemy || getEntity(b.getX()-1, b.getY()) instanceof Boulder) {
+    	if(getEntity(b.getX()-1, b.getY()) instanceof Enemy || getEntity(b.getX()-1, b.getY()) instanceof Boulder || getEntity(b.getX()-1, b.getY()) instanceof Hound) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX()-1, b.getY()));
     	}
-    	if(getEntity(b.getX(), b.getY()+1) instanceof Enemy || getEntity(b.getX(), b.getY()+1) instanceof Boulder) {
+    	if(getEntity(b.getX(), b.getY()+1) instanceof Enemy || getEntity(b.getX(), b.getY()+1) instanceof Boulder || getEntity(b.getX(), b.getY()+1) instanceof Hound) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX(), b.getY()+1));
     	}
-    	if(getEntity(b.getX(), b.getY()-1) instanceof Enemy || getEntity(b.getX(), b.getY()-1) instanceof Boulder) {
+    	if(getEntity(b.getX(), b.getY()-1) instanceof Enemy || getEntity(b.getX(), b.getY()-1) instanceof Boulder || getEntity(b.getX(), b.getY()-1) instanceof Hound) {
     		System.out.println("KILL");
     		addRemovedEntity(getEntity(b.getX(), b.getY()-1));
     	}
