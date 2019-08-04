@@ -109,7 +109,7 @@ public class Enemy extends Entity {
 
 	@Override
 	public Entity interact(Player p) {
-		if(p.getInvincibility()!=null) {
+		if(p.getInvincibility() != null) {
 			//dead = true;
 			p.getDungeon().addRemovedEntity(this);
 			p.getDungeon().removeEntity(this);

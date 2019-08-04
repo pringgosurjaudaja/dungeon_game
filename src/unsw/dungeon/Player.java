@@ -69,8 +69,8 @@ public class Player extends Entity {
     	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability() != 0) {
 	    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
 	    		Entity w = dungeon.getEntities().get(i);
-	    		if(w instanceof Enemy) {
-	    			if(w.getY() == getY() + 1 && w.getX() == getX()|| w.getY() == getY() - 1 && w.getX() == getX() || w.getY() == getY() && w.getX() == getX()-1 || w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
+	    		if(w instanceof Enemy || w instanceof Hound) {
+	    			if(w.getY() == getY() + 1 && w.getX() == getX() || w.getY() == getY() - 1 && w.getX() == getX() || w.getY() == getY() && w.getX() == getX()-1 || w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
 		    			dungeon.getEntities().remove(w);
 		    			((Sword) carryOns).reduceDurability();
 		    			System.out.println("Killed an enemy using sword. Sword durability becomes = " + ((Sword) carryOns).getDurability());
