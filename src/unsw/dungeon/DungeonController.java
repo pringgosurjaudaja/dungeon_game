@@ -159,10 +159,12 @@ public class DungeonController {
     	for(Entity e : dungeon.getRemovedEntity()) {
     		if(e != null) {
     			if(e instanceof Treasure) {
-    				Thread th = new Thread((Treasure)(e));
-    				th.start();
-    				String tc = Integer.toString(player.getTreasure());
-    				treasureCounter.setText(tc);
+    				if (e.getImage().getImage() != null) {
+    					Thread th = new Thread((Treasure)(e));
+    					th.start();
+    					String tc = Integer.toString(player.getTreasure());
+    					treasureCounter.setText(tc);
+    				}
     			} else {
     				e.getImage().setImage(null);
     			}

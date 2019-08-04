@@ -24,7 +24,7 @@ public class Treasure extends Entity implements Runnable{
 	public void run() {
 		this.getImage().setImage(new Image("/shine.png"));
 		try {
-			Thread.sleep(50);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
