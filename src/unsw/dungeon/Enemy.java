@@ -114,8 +114,7 @@ public class Enemy extends Entity {
 			p.getDungeon().addRemovedEntity(this);
 			p.getDungeon().removeEntity(this);
 			return p;
-		}
-		else {
+		} else {
 			p.setDead(true);
 		}
 		return null;

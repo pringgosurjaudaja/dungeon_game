@@ -28,7 +28,7 @@ public class Player extends Entity {
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
-        this.dead=false;
+        this.dead = false;
     }
 
     public boolean isDead() {
@@ -288,5 +288,7 @@ public class Player extends Entity {
 	public Dungeon getDungeon() {
 		return dungeon;
 	}
+
+	
 
 }

@@ -231,7 +231,7 @@ public class Dungeon {
 	}
 	public boolean checkEnemyGoal() {
 		for(Entity e : this.entities) {
-			if(e instanceof Enemy) {
+			if(e instanceof Enemy || e instanceof Hound) {
 				return false;
 			}
 		}

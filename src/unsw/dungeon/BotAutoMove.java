@@ -44,7 +44,7 @@ public class BotAutoMove extends Thread {
 						player.setDead(true);
 					} else if (enemy instanceof Hound) {
 						player.life--;
-						System.out.println(player.life);
+						System.out.println("Player's Life = " + player.life);
 						if(player.life == 0) {
 							System.out.println("player lose");
 							player.setDead(true);

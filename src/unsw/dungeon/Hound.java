@@ -13,9 +13,14 @@ public class Hound extends Entity {
 			p.getDungeon().addRemovedEntity(this);
 			p.getDungeon().removeEntity(this);
 			return p;
-		}
-		else {
-			p.setDead(true);
+		} else {
+			//p.setDead(true);
+			if(p.life == 0) {
+				p.setDead(true);
+			} else {
+				p.life--;
+				System.out.println("Player's Life = " + p.life);
+			}
 		}
 		return null;
 	}
