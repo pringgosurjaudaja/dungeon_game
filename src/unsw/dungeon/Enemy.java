@@ -102,11 +102,28 @@ public class Enemy extends Entity implements AutoMoveAction{
 
 package unsw.dungeon;
 
+/**
+ * 
+ * Enemy class
+ *
+ */
 public class Enemy extends Entity {
+
+	/**
+	 * Constructor Enemy
+	 * @param x Horizontal position of the enemy
+	 * @param y Vertical position of the enemy
+	 */
 	public Enemy(int x, int y) {
 		super(x, y);
 	}
 
+	/**
+	 * This method is when player interacts with Enemy.
+	 * If the player is carrying invincibility potion, this (Enemy) entity will die, otherwise the player will die.
+	 * @param p This is the player
+	 * @return p if the enemy die or null if the player die.
+	 */
 	@Override
 	public Entity interact(Player p) {
 		if(p.getInvincibility() != null) {

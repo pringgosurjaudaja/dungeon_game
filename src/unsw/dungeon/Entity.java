@@ -48,6 +48,12 @@ public class Entity {
     public int getX() {
         return x().get();
     }
+    
+    /**
+     * This method is called when player interacts with Entity.
+     * @param p The player p
+     * @return null, will be override
+     */
     public Entity interact(Player p) {
     	return null;
     }

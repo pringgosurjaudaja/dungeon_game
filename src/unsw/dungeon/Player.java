@@ -31,6 +31,10 @@ public class Player extends Entity {
         this.dead = false;
     }
 
+    /**
+     * Check is player is dead
+     * @return true if player is dead, and false otherwise
+     */
     public boolean isDead() {
 		return dead;
 	}
@@ -39,6 +43,9 @@ public class Player extends Entity {
 		this.dead = dead;
 	}
 
+	/**
+	 * If player is carrying bomb, this method calls countdown() depending on the state of the Bomb
+	 */
 	public void setBomb() {
       if(carryOns instanceof Bomb) {
         dungeon.addEntity(carryOns);
@@ -54,6 +61,10 @@ public class Player extends Entity {
 		return invincibility;
 	}
 
+	/**
+	 * If there is invincibility, reduce its countdown.
+	 * If it's countdown is 0, remove it from carryOns. 
+	 */
     public void invincibilityChange() {
     	if(invincibility != null) {
     		if(invincibility.getCountdown() == 0) {
@@ -65,6 +76,10 @@ public class Player extends Entity {
     	}
     }
 
+    /**
+     * This method is used to kills enemies: Enemy and Hound, using sword.
+     * If the sword is used, its durability decreases by one.
+     */
 	public void killEnemy() {
     	if(carryOns instanceof Sword && ((Sword) carryOns).getDurability() != 0) {
 	    	for (int i = 0 ; i < dungeon.getEntities().size() ; i++) {
@@ -85,6 +100,10 @@ public class Player extends Entity {
     	//return null;
     }
 
+	/**
+	 * This method is to move player upwards if possible.
+	 * It also calls interact method if there is an entity above the player.
+	 */
     public void moveUp() {
     	Entity removedEntity = null;
     	int item = 0;
@@ -120,6 +139,10 @@ public class Player extends Entity {
 		//System.out.println(removedEntity);
     }
 
+	/**
+	 * This method is to move player downwards if possible.
+	 * It also calls interact method if there is an entity below the player.
+	 */
     public void moveDown() {
     	Entity removedEntity = null;
     	int item = 0;
@@ -153,7 +176,10 @@ public class Player extends Entity {
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
-
+	/**
+	 * This method is to move player to the left if possible.
+	 * It also calls interact method if there is an entity on the left of the player.
+	 */
     public void moveLeft() {
     	Entity removedEntity = null;
     	int item = 0;
@@ -187,6 +213,10 @@ public class Player extends Entity {
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
+	/**
+	 * This method is to move player to the right if possible.
+	 * It also calls interact method if there is an entity on the right of the player.
+	 */
     public void moveRight() {
     	Entity removedEntity = null;
     	int item = 0;
@@ -220,14 +250,10 @@ public class Player extends Entity {
 		//dungeon.addRemovedEntity(removedEntity);
     }
 
-    // to drop the carry-ons by pressing SPACE on the keyboard
-    // entities that can be dropped: key, bomb, sword?
-
-    //grid input removed for Milestone 2
-
-
-    //public void dropEntity(GridPane grid) {
-
+    /**
+     * This method is used to drop carry ons of type key, sword and bomb in current position of the player.
+     * @return entity Returns either key, sword or bomb entity.
+     */
     public Entity dropEntity() {
     	if(carryOns != null) {
         	if(carryOns instanceof Key) {

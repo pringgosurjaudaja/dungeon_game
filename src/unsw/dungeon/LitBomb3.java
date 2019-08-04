@@ -1,9 +1,18 @@
 package unsw.dungeon;
 
-import javafx.scene.image.Image;
-
+/**
+ * 
+ * Class LitBomb3
+ * One of the bomb states.
+ *
+ */
 public class LitBomb3 implements BombState {
 	Bomb bomb;
+	
+	/**
+	 * Constructor LitBomb3
+	 * @param bomb This is the bomb
+	 */
 	public LitBomb3(Bomb bomb) {
 		this.bomb = bomb;
 	}
@@ -14,6 +23,9 @@ public class LitBomb3 implements BombState {
 
 	}
 
+	/**
+	 * Change state of the bomb into ExplodingBomb
+	 */
 	@Override
 	public void countdown() {
 		bomb.setState(bomb.getExplodingBomb());

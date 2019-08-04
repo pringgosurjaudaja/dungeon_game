@@ -5,15 +5,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * Class EnemyChase
+ *
+ */
 public class EnemyChase implements AutoMoveAction {
-
-/*	@Override
-	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height) {
-		// TODO Auto-generated method stub
-		return BFS(source, dest, listCoordinates , width , height);
-	}*/
 	
-	
+	/**
+	 * Removes the destination point from listCoordinates list and calls BFS() method.
+	 * @param listCoordinates	List coordinates of entities in the dungeon.
+	 * @param source Point of the enemy
+	 * @param dest	 Point of the player
+	 * @param width  This is the width of the dungeon
+	 * @param height This is the height of the dungeon
+	 */
 	@Override
 	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height) {
 		// TODO Auto-generated method stub
@@ -24,6 +30,15 @@ public class EnemyChase implements AutoMoveAction {
 		return BFS(source, dest, listCoordinates , width , height);
 	}
 
+	/**
+	 * This is the Breath First Search Method to move the enemy towards the player.
+	 * @param source Point of the enemy
+	 * @param dest	 Point of the player
+	 * @param obstacles Point of entities in the dungeon
+	 * @param width	 This is the width of the dungeon
+	 * @param height This is the height of the dungeon
+	 * @return previous This is the point for enemy to move.
+	 */
 	public Point BFS(Point source , Point dest , ArrayList<Point> obstacles , int width , int height){ 
 		
 		int arrX[] = {0, 0, 1, -1};

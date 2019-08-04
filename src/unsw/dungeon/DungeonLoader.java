@@ -60,7 +60,12 @@ public abstract class DungeonLoader {
 
     }
 
-
+    /**
+     * This method loads the Entity according to their type.
+     * This will create objects and calls onLoad() method.
+     * @param dungeon This is the dungeon to put the entities at.
+     * @param json This is the JSONObject
+     */
     private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
         int x = json.getInt("x");
@@ -127,7 +132,6 @@ public abstract class DungeonLoader {
     		onLoad(invincibility);
     		entity = invincibility;
     		break;
-        // TODO Handle other possible entities
         case "exit":
             Exit exit = new Exit(x, y);
             onLoad(exit);

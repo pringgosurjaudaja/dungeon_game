@@ -1,14 +1,24 @@
 package unsw.dungeon;
 
+/**
+ * 
+ * Class Sword
+ *
+ */
 public class Sword extends Entity {
 
 	private int durability;
 
+	/**
+	 * Constructor Sword
+	 * @param x Horizontal position of the Sword
+	 * @param y Vertical position of the Sword
+	 * @param durability This is the durability of the sword, initially = 5
+	 */
 	public Sword(int x, int y, int durability) {
 		super(x, y);
 		this.durability = durability;
 		//durability = 5;
-		// TODO Auto-generated constructor stub
 	}
 
 	public void reduceDurability() {
@@ -23,6 +33,14 @@ public class Sword extends Entity {
 		this.durability = durability;
 	}
 
+	/**
+	 * 
+	 * This method is when player interacts with Sword.
+	 * If the player is not carrying anything, he will then carry this (Sword) entity,
+	 * otherwise nothing happens because a player can only carry one item at a time.
+	 * @param p This is the player
+	 * @return Entity It returns either null or this entity (Sword)
+	 */
 	@Override
 	public Entity interact(Player p) {
 		if(p.getCarryOns() == null) {

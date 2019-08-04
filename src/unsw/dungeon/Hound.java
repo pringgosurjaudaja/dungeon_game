@@ -1,11 +1,28 @@
 package unsw.dungeon;
 
+/**
+ * 
+ * Hound Class
+ *
+ */
 public class Hound extends Entity {
 
+	/**
+	 * Constructor Hound
+	 * @param x Horizontal position of the Hound
+	 * @param y Vertical position of the Hound
+	 */
 	public Hound(int x, int y) {
 		super(x, y);
 	}
 	
+	/**
+	 * This method is when player interacts with Hound.
+	 * If the player is carrying invincibility potion, this (Hound) entity will die, 
+	 * otherwise the player will die if it is killed by this (Hound) entity 3 times.
+	 * @param p This is the player
+	 * @return p if the Hound die or null if the player die.
+	 */
 	@Override
 	public Entity interact(Player p) {
 		if(p.getInvincibility() != null) {

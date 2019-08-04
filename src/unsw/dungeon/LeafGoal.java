@@ -1,8 +1,18 @@
 package unsw.dungeon;
 
+/**
+ * 
+ * Class LeafGoal
+ *
+ */
 public class LeafGoal implements Goals {
 
 	private String goal;
+	
+	/**
+	 * Constructor LeafGoal
+	 * @param goal This is the goal of the dungeon
+	 */
 	public LeafGoal(String goal) {
 		this.goal = goal;
 	}

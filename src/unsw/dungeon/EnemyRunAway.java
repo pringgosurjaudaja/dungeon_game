@@ -5,8 +5,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * Class EnemyRunAway
+ *
+ */
 public class EnemyRunAway implements AutoMoveAction {
 
+	/**
+	 * Calls BFS() method. This returns point for the enemy to run away from player. 
+	 * This is used when player is carrying sword, bomb or invincibility which could kill the enemy.
+	 * @param listCoordinates	List coordinates of entities in the dungeon.
+	 * @param source Point of the source
+	 * @param dest	 Point of the dest
+	 * @param width  This is the width of the dungeon
+	 * @param height This is the height of the dungeon
+	 * @return source This is the point for the enemy to move.
+	 */
 	public Point autoMove(ArrayList<Point> listCoordinates , Point source , Point dest , int width , int height) {
 		// TODO Auto-generated method stub
 		//destination would be the opposite of where the player is at
@@ -76,7 +91,15 @@ public class EnemyRunAway implements AutoMoveAction {
 		return source;
 	}
 	
-
+	/**
+	 * This is the Breath First Search Method to move from source to dest.
+	 * @param source Point of the source
+	 * @param dest	 Point of the dest
+	 * @param obstacles Point of entities in the dungeon
+	 * @param width	 This is the width of the dungeon
+	 * @param height This is the height of the dungeon
+	 * @return previous This is the point for enemy to move.
+	 */
 	public Point BFS(Point source , Point dest , ArrayList<Point> obstacles , int width , int height){ 
 		
 		int arrX[] = {0, 0, 1, -1};

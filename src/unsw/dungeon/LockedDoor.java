@@ -3,11 +3,22 @@ package unsw.dungeon;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * 
+ * Class LockedDoor
+ *
+ */
 public class LockedDoor extends Entity {
 
 	private int id;
 	private boolean isOpen = false;
 
+	/**
+	 * Constructor LockedDoor
+	 * @param x Horizontal position of the LockedDoor
+	 * @param y Vertical position of the LockedDoor
+	 * @param id This is the ID of the key
+	 */
     public LockedDoor(int x, int y, int id) {
         super(x, y);
         this.id = id;
@@ -29,11 +40,22 @@ public class LockedDoor extends Entity {
 		this.isOpen = isOpen;
 	}
 
+	/**
+	 * If the door is opened, change its image to /open_door.png
+	 */
 	public void openDoor() {
 		this.isOpen = true;
 		this.getImage().setImage(new Image("/open_door.png"));
 	}
 
+	/**
+	 * 
+	 * This method is when player interacts with LockedDoor.
+	 * If the player is carrying a key and the key fits this (LockedDoor) entity, 
+	 * open the door, otherwise nothing happens.
+	 * @param p This is the player
+	 * @return Entity It returns either null or this entity (LockedDoor)
+	 */
 	@Override
 	public Entity interact(Player p) {
 		if(this.isOpen) {
@@ -51,6 +73,9 @@ public class LockedDoor extends Entity {
 		return null;
 	}
 
+	/**
+	 * @return true if door is opened, and false otherwise.
+	 */
 	@Override
 	public boolean pass() {
 		if(isOpen) return true;
