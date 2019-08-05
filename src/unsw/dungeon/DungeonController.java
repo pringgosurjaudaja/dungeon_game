@@ -45,6 +45,10 @@ public class DungeonController {
     private TextField goalField;
     @FXML
     private TextField goaltextfield;
+/*    @FXML
+    private TextField lifetextfield;
+    @FXML
+    private TextField lifefield;*/
 
     private List<ImageView> initialEntities;
 
@@ -105,6 +109,8 @@ public class DungeonController {
         this.goaltextfield.setLayoutY((dungeon.getHeight())*32 + 40);
         this.goalField.setLayoutY((dungeon.getHeight())*32 + 40);
         goalField.setText(dungeon.getGoals());
+        //this.lifetextfield.setLayoutY((dungeon.getHeight())*32 + 60);
+        //this.lifefield.setLayoutY((dungeon.getHeight())*32 + 60);
     }
 
     /**
@@ -222,6 +228,9 @@ public class DungeonController {
     	} else {
     		inventoryField.setText("None");
     	}
+    	
+    	//lifefield.setText(player.life + " ");
+    	
     }
     
     /**
