@@ -1,7 +1,11 @@
 package unsw.dungeon;
 
+import java.io.File;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * 
@@ -65,6 +69,10 @@ public class LockedDoor extends Entity {
 			if(p.getCarryOns() instanceof Key && ((Key) p.getCarryOns()).getId() == this.getId()) {
 				this.openDoor();	// open the door
 				p.setCarryOns(null);
+		    	String musicFile = "./sounds/UnlockDoor.wav";
+				Media sound = new Media(new File(musicFile).toURI().toString());
+				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+				mediaPlayer.play();
 				return this;
 			} else {
 				System.out.println("Key Doesn't Fit or Player is not carrying any key.");
