@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+import java.io.File;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 /**
  * 
  * Class Key
@@ -41,6 +46,10 @@ public class Key extends Entity {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
 			System.out.println("CARRIED KEY WITH ID = " +this.id);
+			String musicFile = "./sounds/Key.wav";
+			Media sound = new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			return this;
 		} else {
 			System.out.println("Cannot pick up key, already carrying something");

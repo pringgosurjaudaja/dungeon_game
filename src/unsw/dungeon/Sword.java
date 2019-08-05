@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+import java.io.File;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 /**
  * 
  * Class Sword
@@ -46,6 +51,10 @@ public class Sword extends Entity {
 		if(p.getCarryOns() == null) {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
+			String musicFile = "./sounds/PickUp.wav";
+			Media sound = new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			return this;
 		} else {
 			System.out.println("Can't pickup sword, already carrying something");

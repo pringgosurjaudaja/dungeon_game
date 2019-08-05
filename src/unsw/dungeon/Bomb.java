@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+import java.io.File;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 /**
  * 
  * class Bomb
@@ -132,6 +137,10 @@ public class Bomb extends Entity {
 		if(p.getCarryOns() == null) {
 			p.setCarryOns(this);
 			p.getDungeon().removeEntity(this);
+			String musicFile = "./sounds/PickUp.wav";
+			Media sound = new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			mediaPlayer.play();
 			return this;
 		} else {
 			System.out.println("Couldn't pick up bomb, already carrying something");
