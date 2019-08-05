@@ -1,6 +1,11 @@
 package unsw.dungeon;
 
+import java.io.File;
 import java.util.List;
+
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * 
@@ -72,6 +77,10 @@ public class Boulder extends Entity {
 					return null;	// can't move
 				} else {
 					moveBoulder(0,-1);
+					String musicFile = "./sounds/Push.wav";
+					Media sound = new Media(new File(musicFile).toURI().toString());
+					MediaPlayer mediaPlayer = new MediaPlayer(sound);
+					mediaPlayer.play();
 					return this;
 				}
 			}
@@ -80,6 +89,10 @@ public class Boulder extends Entity {
 					return null;
 				} else {
 					moveBoulder(0,1);
+					String musicFile = "./sounds/Push.wav";
+					Media sound = new Media(new File(musicFile).toURI().toString());
+					MediaPlayer mediaPlayer = new MediaPlayer(sound);
+					mediaPlayer.play();
 					return this;
 				}
 			}
@@ -90,6 +103,10 @@ public class Boulder extends Entity {
 					return null;
 				} else {
 					moveBoulder(-1,0);
+					String musicFile = "./sounds/Push.wav";
+					Media sound = new Media(new File(musicFile).toURI().toString());
+					MediaPlayer mediaPlayer = new MediaPlayer(sound);
+					mediaPlayer.play();
 					return this;
 				}
 			}
@@ -98,6 +115,10 @@ public class Boulder extends Entity {
 					return null;
 				} else {
 					moveBoulder(1,0);
+					String musicFile = "./sounds/Push.wav";
+					Media sound = new Media(new File(musicFile).toURI().toString());
+					MediaPlayer mediaPlayer = new MediaPlayer(sound);
+					mediaPlayer.play();
 					return this;
 				}
 			}
