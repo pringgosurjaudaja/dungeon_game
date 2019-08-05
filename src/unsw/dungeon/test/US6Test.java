@@ -69,8 +69,8 @@ public class US6Test {
 	
 		Point p = new Point(enemy.getX(), enemy.getY());	// point before the enemy moves
 		
-		BotAutoMove b = new BotAutoMove(dungeon, player);
-		enemy.autoMove(b.getAllEntitiesCoordinates());
+		BotAutoMove b = new BotAutoMove(dungeon, player, enemy, 1000);
+		//enemy.autoMove(b.getAllEntitiesCoordinates());
 
 		assertThat(p, not(new Point(enemy.getX(), enemy.getY())));	// check that the point before enemy moves != point after enemy moves, should succeed
 

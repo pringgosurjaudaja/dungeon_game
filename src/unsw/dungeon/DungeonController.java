@@ -21,6 +21,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 /**
  * A JavaFX controller for the dungeon.
  * @author Robert Clifton-Everest
@@ -320,6 +324,11 @@ public class DungeonController {
     	screen.getChildren().add(iv);
     	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
     	mainStage.setScene(overScene);
+    	
+    	String musicFile = "./sounds/Coin.wav";
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
     }
 	
 	/**
@@ -334,5 +343,10 @@ public class DungeonController {
     	screen.getChildren().add(iv);
     	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
     	mainStage.setScene(overScene);
+    	
+    	String musicFile = "./sounds/Coin.wav";
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 	}
 }

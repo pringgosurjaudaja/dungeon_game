@@ -57,7 +57,7 @@
             <Font name="Arial Bold" size="10.0" />
          </font>
       </TextField>
-      <TextField fx:id="goalField" editable="false" layoutX="60.0" layoutY="590.0" maxWidth="400.0" prefWidth="355.0" style="-fx-background-color: pink; -fx-text-inner-color: black;">
+      <TextField fx:id="goalField" editable="false" layoutX="60.0" layoutY="590.0" maxWidth="478.0" prefHeight="19.0" prefWidth="478.0" style="-fx-background-color: pink; -fx-text-inner-color: black;">
          <font>
             <Font name="Arial" size="10.0" />
          </font>
