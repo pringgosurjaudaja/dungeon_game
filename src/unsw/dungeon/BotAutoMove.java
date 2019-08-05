@@ -48,6 +48,7 @@ public class BotAutoMove extends Thread {
 					enemy.x().set(nextMove.x);
 					enemy.y().set(nextMove.y);
 				} else {
+					System.out.println("asd");
 					if(enemy instanceof Enemy) {
 						System.out.println("player lose");
 						player.setDead(true);

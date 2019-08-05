@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane onKeyPressed="#handleKeyPress" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane onKeyPressed="#handleKeyPress" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="squares" onKeyPressed="#handleKeyPress">
          <columnConstraints>
@@ -30,12 +30,12 @@
           <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="Treasure">
+            <TextField editable="false" style="-fx-background-color: pink; -fx-border-color: black; -fx-text-inner-color: black;" text="Treasure">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="treasureCounter" editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="0" GridPane.columnIndex="1">
+            <TextField fx:id="treasureCounter" editable="false" style="-fx-background-color: pink; -fx-border-color: black; -fx-text-inner-color: black;" text="0" GridPane.columnIndex="1">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Font name="Arial Bold" size="10.0" />
                </font>
             </TextField>
-            <TextField fx:id="inventoryField" editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: b lack;" text="None" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="inventoryField" editable="false" style="-fx-background-color: pink; -fx-border-color: black; -fx-text-inner-color: b lack;" text="None" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>

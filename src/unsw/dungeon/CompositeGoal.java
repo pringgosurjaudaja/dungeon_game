@@ -60,14 +60,14 @@ public class CompositeGoal implements Goals {
 		for(Object o : goals) {
 			String goal = ((JSONObject) o).getString("goal");
 			if(goal.equals("OR") || goal.equals("AND")) {
-				JSONArray subgoal = ((JSONObject) o).getJSONArray("subgoal");
-				CompositeGoal cg = new CompositeGoal(goal, subgoal );
+				JSONArray subgoal = ((JSONObject) o).getJSONArray("subgoals");
+				CompositeGoal cg = new CompositeGoal(goal, subgoal);
 				this.goalList.add(cg);
-				System.out.println("CG= "+ cg);
+				System.out.println("CG = "+ cg);
 			} else {
 				LeafGoal lg = new LeafGoal(goal);
 				this.goalList.add(lg);
-				System.out.println("goal leaf= "+ goal);
+				System.out.println("goal leaf = "+ goal);
 			}
 		}
 	}
