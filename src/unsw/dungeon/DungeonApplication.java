@@ -24,7 +24,7 @@ public class DungeonApplication extends Application {
         main = primaryStage;
     	main.setTitle("Dungeon");
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("advanced.json");
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("marking.json");
         DungeonController controller = dungeonLoader.loadController();
 
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("TextAreaExample.fxml"));
