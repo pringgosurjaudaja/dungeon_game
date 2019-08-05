@@ -325,7 +325,7 @@ public class DungeonController {
     	Scene overScene = new Scene(screen,mainStage.getWidth(),mainStage.getHeight());
     	mainStage.setScene(overScene);
     	
-    	String musicFile = "./sounds/Coin.wav";
+    	String musicFile = "./sounds/Game_Over.wav";
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
 		mediaPlayer.play();
