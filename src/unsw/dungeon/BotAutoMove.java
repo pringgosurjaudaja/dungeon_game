@@ -47,20 +47,24 @@ public class BotAutoMove extends Thread {
 				if (nextMove != null) {
 					enemy.x().set(nextMove.x);
 					enemy.y().set(nextMove.y);
-				} else {
-					System.out.println("asd");
-					if(enemy instanceof Enemy) {
-						System.out.println("player lose");
-						player.setDead(true);
-					} else if (enemy instanceof Hound) {
-						player.life--;
-						System.out.println("Player's Life = " + player.life);
-						if(player.life == 0) {
+					
+					if (enemy.getX() == player.getX() && enemy.getY() == player.getY()){
+						if(enemy instanceof Enemy) {
 							System.out.println("player lose");
 							player.setDead(true);
-						}
+						} else if (enemy instanceof Hound) {
+							player.life--;
+							System.out.println("Player's Life = " + player.life);
+							if(player.life == 0) {
+								System.out.println("player lose");
+								player.setDead(true);
+							}
+						}	
 					}
-				}
+				} /*else {
+					System.out.println("asd");
+					
+				}*/
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
