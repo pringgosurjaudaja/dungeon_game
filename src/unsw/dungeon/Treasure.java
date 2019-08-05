@@ -1,6 +1,9 @@
 package unsw.dungeon;
 
 import javafx.scene.image.Image;
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * 
@@ -43,6 +46,11 @@ public class Treasure extends Entity implements Runnable{
 	@Override
 	public void run() {
 		this.getImage().setImage(new Image("/shine.png"));
+		String musicFile = "./sounds/Coin.wav";
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
+		
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
