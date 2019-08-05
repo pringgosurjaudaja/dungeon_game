@@ -275,6 +275,10 @@ public class DungeonController {
     			}
     			else if(((Bomb) e).getState() == ((Bomb) e).getExplodingBomb()) {
     				e.getImage().setImage(new Image("/bomb_lit_4.png"));
+    				String musicFile = "./sounds/explosion.wav";
+    				Media sound = new Media(new File(musicFile).toURI().toString());
+    				MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    				mediaPlayer.play();
     			}
     			else if(((Bomb) e).getState() == ((Bomb) e).getPostExplosionBomb()) {
     				e.getImage().setImage(null);
