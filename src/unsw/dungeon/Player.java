@@ -1,10 +1,14 @@
 package unsw.dungeon;
 
+import java.io.File;
+
 import org.json.JSONObject;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * The player entity
@@ -88,6 +92,10 @@ public class Player extends Entity {
 	    			if(w.getY() == getY() + 1 && w.getX() == getX() || w.getY() == getY() - 1 && w.getX() == getX() || w.getY() == getY() && w.getX() == getX()-1 || w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
 		    			dungeon.getEntities().remove(w);
 		    			((Sword) carryOns).reduceDurability();
+				    	String musicFile = "./sounds/Sword.wav";
+						Media sound = new Media(new File(musicFile).toURI().toString());
+						MediaPlayer mediaPlayer = new MediaPlayer(sound);
+						mediaPlayer.play();
 		    			System.out.println("Killed an enemy using sword. Sword durability becomes = " + ((Sword) carryOns).getDurability());
 		    			if(((Sword) carryOns).getDurability() == 0) {	// if durability of sword becomes 0
 		    				carryOns = null;		// drop carryOns
