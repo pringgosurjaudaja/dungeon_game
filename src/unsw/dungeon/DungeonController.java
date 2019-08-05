@@ -39,6 +39,8 @@ public class DungeonController {
     private TextField inventoryField;
     @FXML
     private TextField goalField;
+    @FXML
+    private TextField goaltextfield;
 
     private List<ImageView> initialEntities;
 
@@ -84,13 +86,20 @@ public class DungeonController {
         //inventory.add(new ImageView(treasure), 1, 0);
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
-            for (int y = 0; y < dungeon.getHeight(); y++) {
+            for (int y = 0; y < dungeon.getHeight() + 3; y++) {
                 squares.add(new ImageView(ground), x, y);
             }
         }
 
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
+        //goalField.setText(dungeon.getGoals());
+        
+        
+
+        this.inventory.setLayoutY((dungeon.getHeight())*32);
+        this.goaltextfield.setLayoutY((dungeon.getHeight())*32 + 40);
+        this.goalField.setLayoutY((dungeon.getHeight())*32 + 40);
         goalField.setText(dungeon.getGoals());
     }
 
@@ -115,7 +124,6 @@ public class DungeonController {
             bombState();
             removeItem();
             loadDungeon();
-            playerSwordBomb();
             //if(w!= null) w.getImage().setImage(null);
             break;
         case DOWN:
@@ -124,7 +132,6 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
-        	playerSwordBomb();
             //if(x!= null) x.getImage().setImage(null);
             break;
         case LEFT:
@@ -133,7 +140,6 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
-        	playerSwordBomb();
            // if(y!= null) y.getImage().setImage(null);
             break;
         case RIGHT:
@@ -142,14 +148,12 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
-        	playerSwordBomb();
             //if(z!= null) z.getImage().setImage(null);
             break;
         case SPACE:		// used to drop carry_ons
         	//player.dropEntity(squares);
         	Entity b = player.dropEntity();
         	if(b != null) dropItem(b);
-        	playerSwordBomb();
             break;
         case ENTER:		// used to kill enemy with sword
         	if(player.getCarryOns() instanceof Sword) {
@@ -277,7 +281,7 @@ public class DungeonController {
     }
 
 	/**
-	 * This assigns image of the player when they are carrying invincibility potion according to their countdown.
+	 * This assigns image of the player when they are carrying invincibility potion according to thei countdown.
 	 * @param i
 	 */
     public void invincibleState(Invincibility i) {
@@ -302,20 +306,6 @@ public class DungeonController {
 	    		player.getImage().setImage(new Image("human_new.png"));
 	    	}
     	}
-    }
-    
-    /**
-     * This method assigns /human_sword.png image when the player is carrying a sword,
-     * or /human_bomb.png when the player is carrying a bomb and human_new.png otherwise.
-     */
-    public void playerSwordBomb() {
-		if(player.getCarryOns() instanceof Sword) {
-			player.getImage().setImage(new Image("/human_sword.png"));
-		} else if(player.getCarryOns() instanceof Bomb) {
-			player.getImage().setImage(new Image("/human_bomb.png"));
-		} else if (!(player.getCarryOns() instanceof Invincibility)) {
-			player.getImage().setImage(new Image("human_new.png"));
-		}
     }
 
     /**

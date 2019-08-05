@@ -20,7 +20,7 @@
 
    </children>
       </GridPane>
-      <GridPane fx:id="inventory" layoutX="2.0" layoutY="2.0" prefHeight="44.0" prefWidth="223.0">
+      <GridPane fx:id="inventory" layoutX="2.0" layoutY="550.0" prefHeight="44.0" prefWidth="223.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="60.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="163.0" />
@@ -40,7 +40,7 @@
                   <Font name="Arial Bold" size="10.0" />
                </font>
             </TextField>
-            <TextField editable="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="Inventory" GridPane.rowIndex="1">
+            <TextField editable="false" style="-fx-background-color: pink; -fx-border-color: black; -fx-text-inner-color: black;" text="Inventory" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
@@ -52,12 +52,12 @@
             </TextField>
          </children>
       </GridPane>
-      <TextField editable="false" layoutX="2.0" layoutY="43.0" prefWidth="58.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-text-inner-color: black;" text="Goal">
+      <TextField fx:id="goaltextfield" editable="false" layoutX="2.0" layoutY="590.0" prefWidth="58.0" style="-fx-background-color: pink; -fx-border-color: black; -fx-text-inner-color: black;" text="Goal">
          <font>
             <Font name="Arial Bold" size="10.0" />
          </font>
       </TextField>
-      <TextField fx:id="goalField" editable="false" layoutX="60.0" layoutY="44.0" maxWidth="400.0" prefWidth="355.0" style="-fx-background-color: transparent; -fx-text-inner-color: black;">
+      <TextField fx:id="goalField" editable="false" layoutX="60.0" layoutY="590.0" maxWidth="400.0" prefWidth="355.0" style="-fx-background-color: pink; -fx-text-inner-color: black;">
          <font>
             <Font name="Arial" size="10.0" />
          </font>

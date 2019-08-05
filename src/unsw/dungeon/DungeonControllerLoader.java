@@ -145,9 +145,9 @@ public class DungeonControllerLoader extends DungeonLoader {
 	 * @param view The image to set.
 	 */
 	private void addEntity(Entity entity, ImageView view) {
-		  entity.setImage(view);
-      trackPosition(entity, view);
-      entities.add(view);
+		entity.setImage(view);
+    	trackPosition(entity, view);
+    	entities.add(view);
     }
 
 
