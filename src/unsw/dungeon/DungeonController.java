@@ -115,7 +115,7 @@ public class DungeonController {
             bombState();
             removeItem();
             loadDungeon();
-            playerSword();
+            playerSwordBomb();
             //if(w!= null) w.getImage().setImage(null);
             break;
         case DOWN:
@@ -124,7 +124,7 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
-        	playerSword();
+        	playerSwordBomb();
             //if(x!= null) x.getImage().setImage(null);
             break;
         case LEFT:
@@ -133,7 +133,7 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
-        	playerSword();
+        	playerSwordBomb();
            // if(y!= null) y.getImage().setImage(null);
             break;
         case RIGHT:
@@ -142,14 +142,14 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
-        	playerSword();
+        	playerSwordBomb();
             //if(z!= null) z.getImage().setImage(null);
             break;
         case SPACE:		// used to drop carry_ons
         	//player.dropEntity(squares);
         	Entity b = player.dropEntity();
         	if(b != null) dropItem(b);
-        	playerSword();
+        	playerSwordBomb();
             break;
         case ENTER:		// used to kill enemy with sword
         	if(player.getCarryOns() instanceof Sword) {
@@ -305,15 +305,17 @@ public class DungeonController {
     }
     
     /**
-     * This method assigns /human_sword.png image when the player is carrying a sword and human_new.png otherwise.
+     * This method assigns /human_sword.png image when the player is carrying a sword,
+     * or /human_bomb.png when the player is carrying a bomb and human_new.png otherwise.
      */
-    public void playerSword() {
-    		if(player.getCarryOns() instanceof Sword) {
-    			player.getImage().setImage(new Image("/human_sword.png"));
-    		
-    		} else if (!(player.getCarryOns() instanceof Invincibility)) {
-    			player.getImage().setImage(new Image("human_new.png"));
-    		}
+    public void playerSwordBomb() {
+		if(player.getCarryOns() instanceof Sword) {
+			player.getImage().setImage(new Image("/human_sword.png"));
+		} else if(player.getCarryOns() instanceof Bomb) {
+			player.getImage().setImage(new Image("/human_bomb.png"));
+		} else if (!(player.getCarryOns() instanceof Invincibility)) {
+			player.getImage().setImage(new Image("human_new.png"));
+		}
     }
 
     /**
