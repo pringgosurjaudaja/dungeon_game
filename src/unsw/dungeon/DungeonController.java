@@ -115,6 +115,7 @@ public class DungeonController {
             bombState();
             removeItem();
             loadDungeon();
+            playerSword();
             //if(w!= null) w.getImage().setImage(null);
             break;
         case DOWN:
@@ -123,6 +124,7 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
+        	playerSword();
             //if(x!= null) x.getImage().setImage(null);
             break;
         case LEFT:
@@ -131,6 +133,7 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
+        	playerSword();
            // if(y!= null) y.getImage().setImage(null);
             break;
         case RIGHT:
@@ -139,12 +142,14 @@ public class DungeonController {
         	bombState();
         	removeItem();
         	loadDungeon();
+        	playerSword();
             //if(z!= null) z.getImage().setImage(null);
             break;
         case SPACE:		// used to drop carry_ons
         	//player.dropEntity(squares);
         	Entity b = player.dropEntity();
         	if(b != null) dropItem(b);
+        	playerSword();
             break;
         case ENTER:		// used to kill enemy with sword
         	if(player.getCarryOns() instanceof Sword) {
@@ -272,7 +277,7 @@ public class DungeonController {
     }
 
 	/**
-	 * This assigns image of the player when they are carrying invincibility potion according to thei countdown.
+	 * This assigns image of the player when they are carrying invincibility potion according to their countdown.
 	 * @param i
 	 */
     public void invincibleState(Invincibility i) {
@@ -297,6 +302,18 @@ public class DungeonController {
 	    		player.getImage().setImage(new Image("human_new.png"));
 	    	}
     	}
+    }
+    
+    /**
+     * This method assigns /human_sword.png image when the player is carrying a sword and human_new.png otherwise.
+     */
+    public void playerSword() {
+    		if(player.getCarryOns() instanceof Sword) {
+    			player.getImage().setImage(new Image("/human_sword.png"));
+    		
+    		} else if (!(player.getCarryOns() instanceof Invincibility)) {
+    			player.getImage().setImage(new Image("human_new.png"));
+    		}
     }
 
     /**
