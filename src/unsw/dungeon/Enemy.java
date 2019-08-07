@@ -109,6 +109,8 @@ package unsw.dungeon;
  */
 public class Enemy extends Entity {
 
+	boolean isDead = false;
+	
 	/**
 	 * Constructor Enemy
 	 * @param x Horizontal position of the enemy
@@ -116,6 +118,7 @@ public class Enemy extends Entity {
 	 */
 	public Enemy(int x, int y) {
 		super(x, y);
+		this.isDead = false;
 	}
 
 	/**
@@ -130,6 +133,8 @@ public class Enemy extends Entity {
 			//dead = true;
 			p.getDungeon().addRemovedEntity(this);
 			p.getDungeon().removeEntity(this);
+			System.out.println("Enemy is killed by invincibility");
+			this.isDead = true;
 			return p;
 		} else {
 			p.setDead(true);

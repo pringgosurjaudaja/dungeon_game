@@ -90,7 +90,12 @@ public class Player extends Entity {
 	    		Entity w = dungeon.getEntities().get(i);
 	    		if(w instanceof Enemy || w instanceof Hound) {
 	    			if(w.getY() == getY() + 1 && w.getX() == getX() || w.getY() == getY() - 1 && w.getX() == getX() || w.getY() == getY() && w.getX() == getX()-1 || w.getY() == getY() && w.getX() == getX()+1){	// if adjacent square is an enemy
-		    			dungeon.getEntities().remove(w);
+	    				if(w instanceof Enemy) {
+	    					((Enemy) w).isDead = true;
+	    				} else if(w instanceof Hound) {
+	    					((Hound) w).isDead = true;
+	    				}
+	    				dungeon.getEntities().remove(w);
 		    			((Sword) carryOns).reduceDurability();
 				    	String musicFile = "./sounds/Sword.wav";
 						Media sound = new Media(new File(musicFile).toURI().toString());
@@ -162,7 +167,7 @@ public class Player extends Entity {
     				break;
     			}
     	}
-    	if((removedEntity != null && removedEntity.pass())|| item ==0) {
+    	if((removedEntity != null && removedEntity.pass())|| item == 0) {
 			if (getY() > 0)
 	            y().set(getY() + 1);// move up
 				invincibilityChange();

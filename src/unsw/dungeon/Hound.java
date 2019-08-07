@@ -7,6 +7,8 @@ package unsw.dungeon;
  */
 public class Hound extends Entity {
 
+	boolean isDead = false;
+	
 	/**
 	 * Constructor Hound
 	 * @param x Horizontal position of the Hound
@@ -14,6 +16,7 @@ public class Hound extends Entity {
 	 */
 	public Hound(int x, int y) {
 		super(x, y);
+		this.isDead = false;
 	}
 	
 	/**
@@ -29,6 +32,7 @@ public class Hound extends Entity {
 			//dead = true;
 			p.getDungeon().addRemovedEntity(this);
 			p.getDungeon().removeEntity(this);
+			this.isDead = true;
 			return p;
 		} else {
 			//p.setDead(true);

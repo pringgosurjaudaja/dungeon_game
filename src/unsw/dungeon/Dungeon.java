@@ -241,8 +241,7 @@ public class Dungeon {
 			if(go instanceof CompositeGoal) {
 				if(go.getGoal().equals("AND")) {
 					return checkAndGoalComposite((CompositeGoal)go);
-				}
-				else {
+				} else {
 					return checkOrGoalComposite((CompositeGoal)go);
 				}
 			}
@@ -267,12 +266,11 @@ public class Dungeon {
 			if(go instanceof CompositeGoal) {
 				if(go.getGoal().equals("AND")) {
 					return checkAndGoalComposite((CompositeGoal)go);
-				}
-				else {
+				} else {
 					return checkOrGoalComposite((CompositeGoal)go);
 				}
 			}
-			if( complete == false) {
+			if(complete == false) {
 				break;
 			}
 		}
@@ -289,6 +287,7 @@ public class Dungeon {
 				return false;
 			}
 		}
+		System.out.println("GOAL ENEMY HAS BEEN REACHED");
 		return true;
 	}
 	
@@ -302,6 +301,7 @@ public class Dungeon {
 				return false;
 			}
 		}
+		System.out.println("GOAL TREASURE HAS BEEN REACHED");
 		return true;
 	}
 	
@@ -313,6 +313,7 @@ public class Dungeon {
 		for(Entity e: this.entities) {
 			if(e instanceof Exit) {
 				if(e.getX() == player.getX() && e.getY() == player.getY()) {
+					System.out.println("GOAL EXIT HAS BEEN REACHED");
 					return true;
 				}
 			}
@@ -332,6 +333,7 @@ public class Dungeon {
 				}
 			}
 		}
+		System.out.println("GOAL BOULDER HAS BEEN REACHED");
 		return true;
 	}
 }

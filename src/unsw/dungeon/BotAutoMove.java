@@ -25,7 +25,8 @@ public class BotAutoMove extends Thread {
 
 		AutoMoveAction move = new EnemyChase();
 
-		while (true) {
+		if(enemy instanceof Enemy) {
+		while (!(((Enemy) enemy).isDead)) {
 			try {
 				Thread.sleep(timeDelay);
 
@@ -68,6 +69,53 @@ public class BotAutoMove extends Thread {
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			}
+		}
+		} else if (enemy instanceof Hound) {
+			while (!(((Hound) enemy).isDead)) {
+				try {
+					Thread.sleep(timeDelay);
+
+					if (player.getCarryOns() instanceof Sword
+							|| player.getCarryOns() instanceof Invincibility
+							|| player.getCarryOns() instanceof Bomb) {
+						move = new EnemyRunAway();
+					} else {
+						move = new EnemyChase();
+					}
+
+					Point nextMove = move.autoMove(getAllEntitiesCoordinates(),
+							new Point(enemy.getX(), enemy.getY()),
+							new Point(player.getX(), player.getY()),
+							dungeon.getWidth(), dungeon.getHeight());
+
+					// System.out.println(nextMove.x + " " + nextMove.y);
+
+					if (nextMove != null) {
+						enemy.x().set(nextMove.x);
+						enemy.y().set(nextMove.y);
+						
+						if (enemy.getX() == player.getX() && enemy.getY() == player.getY()){
+							if(enemy instanceof Enemy) {
+								System.out.println("player lose");
+								player.setDead(true);
+							} else if (enemy instanceof Hound) {
+								player.life--;
+								System.out.println("Player's Life = " + player.life);
+								if(player.life == 0) {
+									System.out.println("player lose");
+									player.setDead(true);
+								}
+							}	
+						}
+					} /*else {
+						System.out.println("asd");
+						
+					}*/
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
