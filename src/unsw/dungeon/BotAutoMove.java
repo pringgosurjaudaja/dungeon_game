@@ -28,7 +28,7 @@ public class BotAutoMove extends Thread {
 		if(enemy instanceof Enemy) {
 		while (!(((Enemy) enemy).isDead)) {
 			try {
-				Thread.sleep(timeDelay);
+
 
 				if (player.getCarryOns() instanceof Sword
 						|| player.getCarryOns() instanceof Invincibility
@@ -66,6 +66,7 @@ public class BotAutoMove extends Thread {
 					System.out.println("asd");
 					
 				}*/
+				Thread.sleep(timeDelay);
 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -74,7 +75,7 @@ public class BotAutoMove extends Thread {
 		} else if (enemy instanceof Hound) {
 			while (!(((Hound) enemy).isDead)) {
 				try {
-					Thread.sleep(timeDelay);
+
 
 					if (player.getCarryOns() instanceof Sword
 							|| player.getCarryOns() instanceof Invincibility
@@ -112,6 +113,7 @@ public class BotAutoMove extends Thread {
 						System.out.println("asd");
 						
 					}*/
+					Thread.sleep(timeDelay);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
