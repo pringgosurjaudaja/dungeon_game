@@ -232,7 +232,7 @@ public class Dungeon {
 	 * @param g Goals of the dungeon
 	 * @return complete. This is true if some of the goals are fulfilled, or false otherwise.
 	 */
-	public boolean checkOrGoalComposite(CompositeGoal g) {
+/*	public boolean checkOrGoalComposite(CompositeGoal g) {
 		boolean complete = false;
 		for(Goals go : g.getGoalList()) {
 			if(go instanceof LeafGoal) {
@@ -250,6 +250,27 @@ public class Dungeon {
 			}
 		}
 		return complete;
+	}*/
+	
+	public boolean checkOrGoalComposite(CompositeGoal g) {
+		boolean complete = false;
+		for(Goals go : g.getGoalList()) {
+			if(go instanceof LeafGoal) {
+				complete = checkGoal(go);
+			}
+			if(go instanceof CompositeGoal) {
+				if(go.getGoal().equals("AND")) {
+					complete = checkAndGoalComposite((CompositeGoal)go);
+				}
+				else {
+					complete = checkOrGoalComposite((CompositeGoal)go);
+				}
+			}
+			if(complete == true) {
+				break;
+			}
+		}
+		return complete;
 	}
 	
 	/**
@@ -257,7 +278,7 @@ public class Dungeon {
 	 * @param g Goals of the dungeon
 	 * @return complete. This is true if some all of the goals are fulfilled, or false otherwise.
 	 */
-	public boolean checkAndGoalComposite(CompositeGoal g) {
+/*	public boolean checkAndGoalComposite(CompositeGoal g) {
 		boolean complete = false;
 		for(Goals go : g.getGoalList()) {
 			if(go instanceof LeafGoal) {
@@ -271,6 +292,27 @@ public class Dungeon {
 				}
 			}
 			if(complete == false) {
+				break;
+			}
+		}
+		return complete;
+	}*/
+	
+	public boolean checkAndGoalComposite(CompositeGoal g) {
+		boolean complete = false;
+		for(Goals go : g.getGoalList()) {
+			if(go instanceof LeafGoal) {
+				complete = checkGoal(go);
+			}
+			if(go instanceof CompositeGoal) {
+				if(go.getGoal().equals("AND")) {
+					complete = checkAndGoalComposite((CompositeGoal)go);
+				}
+				else {
+					complete = checkOrGoalComposite((CompositeGoal)go);
+				}
+			}
+			if( complete == false) {
 				break;
 			}
 		}
