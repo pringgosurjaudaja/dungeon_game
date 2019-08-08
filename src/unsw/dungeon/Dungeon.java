@@ -76,18 +76,38 @@ public class Dungeon {
     	//if(b.exploded()) {
     	if(getEntity(b.getX()+1, b.getY()) instanceof Enemy || getEntity(b.getX()+1, b.getY()) instanceof Boulder || getEntity(b.getX()+1, b.getY()) instanceof Hound) {
     		System.out.println("KILL");
+    		if(getEntity(b.getX()+1, b.getY()) instanceof Enemy) {
+    			((Enemy) getEntity(b.getX()+1, b.getY())).isDead = true;
+    		} else if(getEntity(b.getX()+1, b.getY()) instanceof Hound) {
+    			((Hound) getEntity(b.getX()+1, b.getY())).isDead = true;
+    		}
     		addRemovedEntity(getEntity(b.getX()+1, b.getY()));
     	}
     	if(getEntity(b.getX()-1, b.getY()) instanceof Enemy || getEntity(b.getX()-1, b.getY()) instanceof Boulder || getEntity(b.getX()-1, b.getY()) instanceof Hound) {
     		System.out.println("KILL");
+    		if(getEntity(b.getX()-1, b.getY()) instanceof Enemy) {
+    			((Enemy) getEntity(b.getX()-1, b.getY())).isDead = true;
+    		} else if(getEntity(b.getX()-1, b.getY()) instanceof Hound) {
+    			((Hound) getEntity(b.getX()-1, b.getY())).isDead = true;
+    		}
     		addRemovedEntity(getEntity(b.getX()-1, b.getY()));
     	}
     	if(getEntity(b.getX(), b.getY()+1) instanceof Enemy || getEntity(b.getX(), b.getY()+1) instanceof Boulder || getEntity(b.getX(), b.getY()+1) instanceof Hound) {
     		System.out.println("KILL");
+    		if(getEntity(b.getX(), b.getY()+1) instanceof Enemy) {
+    			((Enemy) getEntity(b.getX(), b.getY()+1)).isDead = true;
+    		} else if(getEntity(b.getX(), b.getY()+1) instanceof Hound) {
+    			((Hound) getEntity(b.getX(), b.getY()+1)).isDead = true;
+    		}
     		addRemovedEntity(getEntity(b.getX(), b.getY()+1));
     	}
     	if(getEntity(b.getX(), b.getY()-1) instanceof Enemy || getEntity(b.getX(), b.getY()-1) instanceof Boulder || getEntity(b.getX(), b.getY()-1) instanceof Hound) {
     		System.out.println("KILL");
+    		if(getEntity(b.getX(), b.getY()-1) instanceof Enemy) {
+    			((Enemy) getEntity(b.getX(), b.getY()-1)).isDead = true;
+    		} else if(getEntity(b.getX(), b.getY()-1) instanceof Hound) {
+    			((Hound) getEntity(b.getX(), b.getY()-1)).isDead = true;
+    		}
     		addRemovedEntity(getEntity(b.getX(), b.getY()-1));
     	}
     		//addRemovedEntity(getEntity(b.getX()+1, b.getY()));

@@ -30,21 +30,21 @@ public class US5Test {
         player.moveDown();
         assertNotNull(player.getInvincibility());
         assertEquals(invin.getClass(), player.getInvincibility().getClass());
-        assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
+        //assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
         player.moveDown();
         invin.countdownInvincibility();
-        assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
+        //assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
         player.moveDown();
         invin.countdownInvincibility();
-        assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
+        //assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
         player.moveDown();
         invin.countdownInvincibility();
-        assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
+        //assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
         player.moveDown();
         //enemy is in front of player
         assertNotNull(testDungeon.getEntity(1, 6));
         invin.countdownInvincibility();
-        assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
+        //assertEquals(invin.getState().getClass(), player.getInvincibility().getState().getClass());
         player.moveRight();
         //assert enemy is dead because hit by invincibility potion
         assertNull(testDungeon.getEntity(1, 6));
